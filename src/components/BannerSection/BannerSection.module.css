@@ -1,0 +1,96 @@
+/* BannerSection — Full-bleed brand banner */
+
+.bannerSection {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    /* Negative margin to pull tight against the Hero's bottom edge */
+    margin-top: calc(var(--space-xl) * -0.5);
+}
+
+/* Ambient cyan glow that bleeds over the section edges */
+.bannerGlow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 50%,
+            rgba(81, 217, 254, 0.08) 0%,
+            transparent 70%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Border-top and border-bottom fade lines */
+.bannerSection::before,
+.bannerSection::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(81, 217, 254, 0.25) 30%,
+            rgba(81, 217, 254, 0.4) 50%,
+            rgba(81, 217, 254, 0.25) 70%,
+            transparent 100%);
+    z-index: 3;
+}
+
+.bannerSection::before {
+    top: 0;
+}
+
+.bannerSection::after {
+    bottom: 0;
+}
+
+.bannerWrapper {
+    position: relative;
+    width: 100%;
+    /* Constrain max height on very wide screens */
+    max-height: 620px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bannerImage {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    /* Subtle scale so it feels "alive" */
+    transition: transform 600ms ease;
+}
+
+.bannerSection:hover .bannerImage {
+    transform: scale(1.01);
+}
+
+/* Gradient overlays — fade into the page background on top and bottom */
+.bannerOverlay {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to bottom,
+            var(--bg-primary) 0%,
+            transparent 12%,
+            transparent 88%,
+            var(--bg-primary) 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+    .bannerWrapper {
+        max-height: 380px;
+    }
+}
+
+@media (max-width: 600px) {
+    .bannerWrapper {
+        max-height: 240px;
+    }
+}

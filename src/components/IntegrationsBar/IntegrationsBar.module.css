@@ -1,0 +1,100 @@
+.wrapper {
+    padding: 32px 0 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.wrapper::before,
+.wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 120px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, var(--bg-primary), transparent);
+}
+
+.wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, var(--bg-primary), transparent);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.label {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.track {
+    overflow: hidden;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 20px 0;
+}
+
+@keyframes scrollLeft {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.marquee {
+    display: flex;
+    gap: 12px;
+    white-space: nowrap;
+    animation: scrollLeft 28s linear infinite;
+    width: max-content;
+}
+
+.marquee:hover {
+    animation-play-state: paused;
+}
+
+.logoItem {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 24px;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-md);
+    cursor: default;
+    transition: all 250ms ease;
+    flex-shrink: 0;
+}
+
+.logoItem:hover {
+    background: rgba(81, 217, 254, 0.06);
+    border-color: rgba(81, 217, 254, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(81, 217, 254, 0.1);
+}
+
+.logoText {
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'League Spartan', sans-serif;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 0.5px;
+    transition: color 250ms ease;
+}
+
+.logoItem:hover .logoText {
+    color: var(--accent-blue);
+}

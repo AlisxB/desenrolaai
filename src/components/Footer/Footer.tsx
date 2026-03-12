@@ -1,0 +1,41 @@
+import Link from 'next/link';
+import styles from './Footer.module.css';
+
+export default function Footer() {
+    return (
+        <footer className={styles.footer}>
+            <div className="container">
+                <div className={styles.footerTop}>
+                    <div>
+                        <div className={styles.logo}>Desenrola<span>AI</span></div>
+                        <p style={{ fontSize: '14px' }}>Tecnologia que descomplica.<br />Soluções sob medida para empresas que visam o futuro.</p>
+                    </div>
+                    <div>
+                        <h4 className={styles.heading}>Plataforma</h4>
+                        <Link href="#solucoes" className={styles.link}>Soluções</Link>
+                        <Link href="#diferenciais" className={styles.link}>Diferenciais</Link>
+                        <Link href="#resultados" className={styles.link}>Resultados</Link>
+                    </div>
+                    <div>
+                        <h4 className={styles.heading}>Empresa</h4>
+                        <Link href="#" className={styles.link}>Sobre Nós</Link>
+                        <Link href="/blog" className={styles.link}>Blog</Link>
+                        <Link href="#contato" className={styles.link}>Contato</Link>
+                    </div>
+                    <div>
+                        <h4 className={styles.heading}>Social</h4>
+                        <a href="#" className={styles.link}>LinkedIn</a>
+                        <a href="#" className={styles.link}>Instagram</a>
+                    </div>
+                </div>
+                <div className={styles.footerBottom}>
+                    <div>© 2025 DesenrolaAI. Todos os direitos reservados.</div>
+                    <div className={styles.legal}>
+                        <span>Termos de Uso</span>
+                        <span>Privacidade</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    );
+}

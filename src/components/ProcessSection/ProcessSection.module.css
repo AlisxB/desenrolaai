@@ -1,0 +1,192 @@
+.section {
+    position: relative;
+    padding: var(--space-3xl) 0;
+    overflow: hidden;
+    background: #000;
+}
+
+.inner {
+    position: relative;
+    z-index: 2;
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────── */
+.header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.title {
+    font-size: clamp(32px, 5vw, 56px);
+    line-height: 1.1;
+    margin-top: 12px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -1.5px;
+}
+
+.titleAccent {
+    background: var(--accent-blue-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ── Grid & Step Cards ─────────────────────────────────────────────────── */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    position: relative;
+}
+
+.stepCard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.animateIn {
+    animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation-delay: var(--delay);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.iconWrapper {
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--accent);
+    color-mix: in srgb, var(--accent) 70%, #fff;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+.stepCard:hover .iconWrapper {
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 15px color-mix(in srgb, var(--accent) 15%, transparent);
+    transform: translateY(-4px);
+}
+
+.iconWrapper svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+}
+
+.number {
+    font-family: 'League Spartan', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.2);
+    letter-spacing: 1px;
+}
+
+.cardBody {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.stepTitle {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.25;
+}
+
+.stepDescription {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+/* Desktop Connector Line */
+.connector {
+    position: absolute;
+    top: 27px;
+    left: calc(100% + 15px);
+    width: 10px;
+    height: 1px;
+    z-index: 1;
+}
+
+.connectorLine {
+    width: 10px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), transparent);
+}
+
+/* ── Footer Elements ─────────────────────────────────────────────────────── */
+.footerGlow {
+    position: absolute;
+    bottom: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 300px;
+    background: radial-gradient(ellipse at bottom,
+            rgba(0, 104, 207, 0.08) 0%,
+            transparent 70%);
+    filter: blur(80px);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 64px 40px;
+    }
+
+    .connector {
+        display: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+
+    .section {
+        padding: var(--space-2xl) 0;
+    }
+
+    .header {
+        text-align: left;
+        margin-left: 0;
+        margin-bottom: var(--space-xl);
+    }
+}

@@ -1,0 +1,9 @@
+.checkList {
+    list-style: none;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.checkList li {
+    margin-bottom: 12px;
+}
