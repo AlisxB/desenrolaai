@@ -85,16 +85,15 @@
 /* ── Card ───────────────────────────────────────────────────────────────── */
 .card {
     position: absolute;
-    width: min(420px, 90vw);
-    background: rgba(255, 255, 255, 0.028);
-    border: 1px solid rgba(255, 255, 255, 0.07);
+    width: min(520px, 92vw);
+    height: 380px;
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     backdrop-filter: blur(20px) saturate(140%);
     -webkit-backdrop-filter: blur(20px) saturate(140%);
-    border-radius: var(--radius-lg);
-    padding: var(--space-md);
+    border-radius: var(--radius-xl);
     display: flex;
     flex-direction: column;
-    gap: 12px;
     transition:
         transform 550ms cubic-bezier(0.4, 0, 0.2, 1),
         opacity 550ms ease,
@@ -104,173 +103,82 @@
     overflow: hidden;
 }
 
-/* Top edge shine */
-.card::before {
-    content: '';
+/* Image / Visual Area */
+.imageArea {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.imagePlaceholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.placeholderIcon {
+    font-size: 48px;
+    opacity: 0.5;
+    filter: drop-shadow(0 0 10px var(--card-accent, #51D9FE));
+}
+
+.placeholderText {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+/* Overlay content */
+.imageOverlay {
     position: absolute;
     inset: 0;
-    border-radius: var(--radius-lg);
-    padding: 1px;
-    background: linear-gradient(160deg,
-            rgba(255, 255, 255, 0.12) 0%,
-            transparent 40%);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
+    background: linear-gradient(to top, rgba(0, 4, 10, 0.9) 0%, rgba(0, 4, 10, 0.4) 40%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: var(--space-md);
+    gap: 12px;
 }
 
-.cardActive {
-    border-color: color-mix(in srgb, var(--card-accent, #51D9FE) 30%, rgba(255, 255, 255, 0.1));
-    box-shadow:
-        0 32px 80px rgba(0, 0, 0, 0.5),
-        0 0 0 1px color-mix(in srgb, var(--card-accent, #51D9FE) 18%, transparent),
-        0 0 50px color-mix(in srgb, var(--card-accent, #51D9FE) 12%, transparent);
-}
-
-.cardAdjacent {
-    cursor: pointer;
-}
-
-/* Card header row */
 .cardHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
 }
 
 .segmentBadge {
-    display: flex;
-    align-items: center;
-    gap: 8px;
     font-family: 'League Spartan', sans-serif;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 16px;
     color: var(--text-primary);
-}
-
-.segmentEmoji {
-    font-size: 22px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
 .tagBadge {
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.2px;
-    color: var(--card-accent, #51D9FE);
-    background: color-mix(in srgb, var(--card-accent, #51D9FE) 10%, transparent);
-    border: 1px solid color-mix(in srgb, var(--card-accent, #51D9FE) 25%, transparent);
-    padding: 4px 12px;
+    color: #fff;
+    background: var(--card-accent, #51D9FE);
+    padding: 3px 10px;
     border-radius: var(--radius-pill);
-    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
-/* Problem → Solution flow */
-.flowBlock {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    background: rgba(255, 255, 255, 0.025);
-    border: 1px solid rgba(255, 255, 255, 0.055);
-    border-radius: var(--radius-md);
-    padding: 14px 16px;
-}
-
-.flowItem {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
-
-.flowLabel {
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--text-secondary);
-}
-
-.flowText {
-    font-size: 14px;
+.cardTitle {
+    font-size: clamp(20px, 4vw, 28px);
+    font-weight: 800;
+    line-height: 1.2;
     color: var(--text-primary);
-    line-height: 1.4;
-    margin: 0;
-}
-
-.flowArrow {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--card-accent, #51D9FE);
-    font-size: 16px;
-}
-
-.arrowLine {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg,
-            color-mix(in srgb, var(--card-accent, #51D9FE) 35%, transparent),
-            transparent);
-}
-
-/* Result highlight */
-.resultBlock {
-    background: color-mix(in srgb, var(--card-accent, #51D9FE) 8%, rgba(255, 255, 255, 0.02));
-    border: 1px solid color-mix(in srgb, var(--card-accent, #51D9FE) 20%, transparent);
-    border-radius: var(--radius-md);
-    padding: 14px 18px;
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-}
-
-.resultValue {
-    font-family: 'League Spartan', sans-serif;
-    font-size: 34px;
-    font-weight: 700;
-    color: var(--card-accent, #51D9FE);
-    line-height: 1;
-}
-
-.resultLabel {
-    font-size: 13px;
-    color: var(--text-secondary);
-}
-
-/* Mini detail metrics */
-.detailsRow {
-    display: flex;
-    gap: 8px;
-}
-
-.detailItem {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    padding: 10px 10px;
-    text-align: center;
-}
-
-.detailValue {
-    font-family: 'League Spartan', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--text-primary);
-}
-
-.detailLabel {
-    font-size: 9px;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
+    max-width: 90%;
 }
 
 /* Card bottom glow */

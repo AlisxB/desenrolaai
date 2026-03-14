@@ -8,76 +8,36 @@ const cases = [
         segment: 'E-commerce',
         emoji: '🛍️',
         accent: '#51D9FE',
-        problem: 'Carrinho abandonado em 72% das visitas',
-        solution: 'Agente WhatsApp reativando em até 30min',
-        result: '+R$18.400',
-        resultLabel: 'recuperados/mês',
         tag: 'Automação de Vendas',
-        details: [
-            { label: 'Taxa de recuperação', value: '34%' },
-            { label: 'Tempo de resposta', value: '< 1min' },
-            { label: 'ROI no 1º mês', value: '6,2x' },
-        ],
+        title: 'Recuperação de Carrinho via WhatsApp',
     },
     {
         segment: 'Clínicas & Saúde',
         emoji: '🏥',
         accent: '#BCCF1C',
-        problem: '40% das consultas sem retorno agendado',
-        solution: 'Agente de follow-up + agendamento automático',
-        result: '+112',
-        resultLabel: 'consultas/mês',
         tag: 'Gestão de Pacientes',
-        details: [
-            { label: 'Retornos agendados', value: '+112%' },
-            { label: 'Faltas reduzidas', value: '-38%' },
-            { label: 'Horas economizadas', value: '60h/mês' },
-        ],
+        title: 'Follow-up de Consultas Automatizado',
     },
     {
         segment: 'SaaS & Tech',
         emoji: '💻',
         accent: '#A78BFA',
-        problem: 'Onboarding manual consumia 5h por cliente',
-        solution: 'Fluxo automatizado e integrado com o CRM',
-        result: '5h → 15min',
-        resultLabel: 'por onboarding',
         tag: 'Automação de Processos',
-        details: [
-            { label: 'Churn no 1º mês', value: '-22%' },
-            { label: 'NPS médio', value: '+41pts' },
-            { label: 'Capacidade', value: '10x mais clientes' },
-        ],
+        title: 'Onboarding de Clientes Escalável',
     },
     {
-        segment: 'Pet Shops & Serviços',
+        segment: 'Pet Shops',
         emoji: '🐾',
         accent: '#FB923C',
-        problem: 'Agenda lotada, mas sem controle de retorno',
-        solution: 'Bot de reativação + NF-e automática',
-        result: '+67%',
-        resultLabel: 'em receita mensal',
-        tag: 'Fidelização de Clientes',
-        details: [
-            { label: 'Clientes reativos', value: '+210' },
-            { label: 'NF-e emitidas auto', value: '100%' },
-            { label: 'Tempo admin', value: '-4h/dia' },
-        ],
+        tag: 'Fidelização',
+        title: 'Reativação de Clientes Inativos',
     },
     {
         segment: 'Imobiliárias',
         emoji: '🏠',
         accent: '#34D399',
-        problem: 'Leads perdidos por falta de resposta rápida',
-        solution: 'IA qualificando e agendando visitas 24/7',
-        result: '3x mais',
-        resultLabel: 'visitas por corretor',
         tag: 'Qualificação de Leads',
-        details: [
-            { label: 'Tempo de resposta', value: '< 2min' },
-            { label: 'Leads qualificados', value: '+245%' },
-            { label: 'Custo por lead', value: '-58%' },
-        ],
+        title: 'Qualificação 24/7 com IA',
     },
 ];
 
@@ -203,7 +163,7 @@ export default function CasesCarousel() {
                         <span className={styles.titleAccent}>em cada segmento</span>
                     </h2>
                     <p className={styles.subtitle}>
-                        Role, arraste ou use as setas para explorar os cases.
+                        Explore como transformamos negócios através da inteligência artificial.
                     </p>
                 </div>
 
@@ -249,45 +209,21 @@ export default function CasesCarousel() {
                                 } as React.CSSProperties}
                                 onClick={() => !isActive && goTo(i)}
                             >
-                                {/* Card header */}
-                                <div className={styles.cardHeader}>
-                                    <div className={styles.segmentBadge}>
-                                        <span className={styles.segmentEmoji}>{c.emoji}</span>
-                                        <span>{c.segment}</span>
+                                {/* Visual Placeholder / Image Area */}
+                                <div className={styles.imageArea}>
+                                    <div className={styles.imagePlaceholder}>
+                                        <div className={styles.placeholderIcon}>{c.emoji}</div>
+                                        <span className={styles.placeholderText}>Espaço para imagem</span>
                                     </div>
-                                    <span className={styles.tagBadge}>{c.tag}</span>
-                                </div>
-
-                                {/* Problem → Solution */}
-                                <div className={styles.flowBlock}>
-                                    <div className={styles.flowItem}>
-                                        <span className={styles.flowLabel}>❌ Problema</span>
-                                        <p className={styles.flowText}>{c.problem}</p>
-                                    </div>
-                                    <div className={styles.flowArrow}>
-                                        <div className={styles.arrowLine} />
-                                        <span>↓</span>
-                                    </div>
-                                    <div className={styles.flowItem}>
-                                        <span className={styles.flowLabel}>✅ Solução</span>
-                                        <p className={styles.flowText}>{c.solution}</p>
-                                    </div>
-                                </div>
-
-                                {/* Result */}
-                                <div className={styles.resultBlock}>
-                                    <span className={styles.resultValue}>{c.result}</span>
-                                    <span className={styles.resultLabel}>{c.resultLabel}</span>
-                                </div>
-
-                                {/* Detail metrics */}
-                                <div className={styles.detailsRow}>
-                                    {c.details.map((d, di) => (
-                                        <div key={di} className={styles.detailItem}>
-                                            <span className={styles.detailValue}>{d.value}</span>
-                                            <span className={styles.detailLabel}>{d.label}</span>
+                                    <div className={styles.imageOverlay}>
+                                        <div className={styles.cardHeader}>
+                                            <div className={styles.segmentBadge}>
+                                                <span>{c.segment}</span>
+                                            </div>
+                                            <span className={styles.tagBadge}>{c.tag}</span>
                                         </div>
-                                    ))}
+                                        <h3 className={styles.cardTitle}>{c.title}</h3>
+                                    </div>
                                 </div>
 
                                 <div className={styles.cardGlow} />
