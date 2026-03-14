@@ -4,7 +4,7 @@ import IntegrationsBar from '@/components/IntegrationsBar/IntegrationsBar';
 import ProductShowcase from '@/components/ProductShowcase/ProductShowcase';
 import BannerSection from '@/components/BannerSection/BannerSection';
 import CasesCarousel from '@/components/CasesCarousel/CasesCarousel';
-import ProcessSection from '@/components/ProcessSection/ProcessSection';
+import MethodologySection from '@/components/MethodologySection/MethodologySection';
 import FAQSection from '@/components/FAQSection/FAQSection';
 import Features from '@/components/Features/Features';
 import Pricing from '@/components/Pricing/Pricing';
@@ -35,7 +35,7 @@ export default function HomePage() {
         </section>
 
         <ProductShowcase />
-        <ProcessSection />
+        <MethodologySection />
         <CasesCarousel />
         <Testimonials />
         <FAQSection />
