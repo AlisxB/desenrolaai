@@ -31,10 +31,15 @@ export const viewport: Viewport = {
   themeColor: '#000000',
 };
 
+import SmoothScroll from '@/components/SmoothScroll/SmoothScroll';
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR">
-      <body>{children}</body>
+      <body>
+        <SmoothScroll />
+        {children}
+      </body>
     </html>
   );
 }
