@@ -202,7 +202,7 @@
     font-size: 13px;
     font-weight: 700;
     color: var(--text-primary);
-    font-family: 'League Spartan', sans-serif;
+    font-family: var(--font-league-spartan), sans-serif;
 }
 
 .stepDesc {

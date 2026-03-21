@@ -102,7 +102,7 @@
     font-size: 15px;
     font-weight: 700;
     color: var(--text-primary);
-    font-family: 'League Spartan', sans-serif;
+    font-family: var(--font-league-spartan), sans-serif;
     letter-spacing: -0.3px;
     margin-bottom: 3px;
 }
@@ -176,7 +176,7 @@
 .windowTitle {
     font-size: 11px;
     color: rgba(255, 255, 255, 0.3);
-    font-family: 'League Spartan', sans-serif;
+    font-family: var(--font-league-spartan), sans-serif;
     letter-spacing: 0.3px;
 }
 
@@ -247,11 +247,11 @@
     color: rgba(255, 255, 255, 0.35);
     text-transform: uppercase;
     letter-spacing: 0.8px;
-    font-family: 'League Spartan', sans-serif;
+    font-family: var(--font-league-spartan), sans-serif;
 }
 
 .metricValue {
-    font-family: 'League Spartan', sans-serif;
+    font-family: var(--font-league-spartan), sans-serif;
     font-size: 20px;
     font-weight: 700;
     color: var(--text-primary);
@@ -323,7 +323,7 @@
 .barLabel {
     font-size: 9px;
     color: rgba(255, 255, 255, 0.25);
-    font-family: 'League Spartan', sans-serif;
+    font-family: var(--font-league-spartan), sans-serif;
 }
 
 /* ── Floating cards ── */
@@ -388,7 +388,7 @@
     font-size: 11px;
     font-weight: 700;
     color: var(--text-primary);
-    font-family: 'League Spartan', sans-serif;
+    font-family: var(--font-league-spartan), sans-serif;
 }
 
 .chatStatus {
@@ -513,7 +513,7 @@
     font-size: 9px;
     color: rgba(81, 217, 254, 0.5);
     text-align: center;
-    font-family: 'League Spartan', sans-serif;
+    font-family: var(--font-league-spartan), sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.8px;
 }

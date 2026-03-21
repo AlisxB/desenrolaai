@@ -89,7 +89,7 @@
 .logoText {
     font-size: 13px;
     font-weight: 600;
-    font-family: 'League Spartan', sans-serif;
+    font-family: var(--font-league-spartan), sans-serif;
     color: rgba(255, 255, 255, 0.3);
     letter-spacing: 0.5px;
     transition: color 250ms ease;

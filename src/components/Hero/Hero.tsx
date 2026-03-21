@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Zap } from 'lucide-react';
 import styles from './Hero.module.css';
+import { onLenisScroll } from '@/components/SmoothScroll/SmoothScroll';
 
 export default function Hero() {
     const dashboardRef = useRef<HTMLDivElement>(null);
@@ -11,10 +12,9 @@ export default function Hero() {
     const profileRefs = useRef<(HTMLDivElement | null)[]>([]);
 
     useEffect(() => {
-        const handleScroll = () => {
-            const scrolled = window.scrollY;
+        const handleScroll = (scrollPos: number) => {
+            const scrolled = scrollPos;
 
-            // 1. Dashboard Rise & Tilt
             if (dashboardRef.current && scrolled < 1200) {
                 const tiltFactor = Math.max(0, 25 - scrolled * 0.05);
                 const riseFactor = Math.max(0, 50 - scrolled * 0.35);
@@ -24,7 +24,6 @@ export default function Hero() {
                     `brightness(${1 + scrolled * 0.0003})`;
             }
 
-            // 2. Blur Hero Text
             const totalBlur = Math.min(20, scrolled * 0.04);
             const fadeOut = Math.max(0, 1 - scrolled / 800);
 
@@ -34,7 +33,6 @@ export default function Hero() {
                 heroTextRef.current.style.transform = `translateY(${-scrolled * 0.2}px)`;
             }
 
-            // 3. Profile Cards Convergence & Blur
             const rotateYs = [-25, 25, 35, -35];
             const rotateXs = [15, 15, -15, -15];
             const rotateZs = [-8, 10, -12, 14];
@@ -63,8 +61,8 @@ export default function Hero() {
             });
         };
 
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        return () => window.removeEventListener('scroll', handleScroll);
+        const unsubscribe = onLenisScroll(handleScroll);
+        return unsubscribe;
     }, []);
 
     const profiles = [
@@ -93,7 +91,7 @@ export default function Hero() {
                         className={`${styles.profileCard} ${profile.className}`}
                         ref={(el) => { profileRefs.current[i] = el; }}
                     >
-                        <Image src={profile.src} alt={profile.alt} fill sizes="(max-width: 768px) 0px, 240px" style={{ objectFit: 'cover' }} />
+                        <Image src={profile.src} alt={profile.alt} fill sizes="(max-width: 768px) 0px, 240px" style={{ objectFit: 'cover' }} priority={i < 2} />
                         <span>{profile.name}</span>
                     </div>
                 ))}

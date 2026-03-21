@@ -12,7 +12,7 @@
 }
 
 .title {
-    font-family: var(--font-heading);
+    font-family: var(--font-league-spartan), sans-serif;
     font-size: var(--font-h1);
     font-weight: 700;
     color: var(--text-primary);

@@ -1,9 +1,14 @@
 import type { Metadata, Viewport } from 'next';
+import { Archivo, IBM_Plex_Serif, League_Spartan } from 'next/font/google';
 import './globals.css';
 import SmoothScroll from '@/components/SmoothScroll/SmoothScroll';
 import CustomCursor from '@/components/CustomCursor/CustomCursor';
 import ScrollProgress from '@/components/ScrollProgress/ScrollProgress';
 import PageTransition from '@/components/PageTransition/PageTransition';
+
+const archivo = Archivo({ subsets: ['latin'], weight: ['400', '500', '600'], variable: '--font-archivo', display: 'swap' });
+const ibmPlexSerif = IBM_Plex_Serif({ subsets: ['latin'], weight: ['500'], variable: '--font-ibm-plex-serif', display: 'swap' });
+const leagueSpartan = League_Spartan({ subsets: ['latin'], weight: ['600', '700'], variable: '--font-league-spartan', display: 'swap' });
 
 export const metadata: Metadata = {
   title: 'DesenrolaAI | Tecnologia que descomplica sua empresa',
@@ -37,7 +42,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" className={`${archivo.variable} ${ibmPlexSerif.variable} ${leagueSpartan.variable}`}>
       <body>
         <SmoothScroll />
         <CustomCursor />

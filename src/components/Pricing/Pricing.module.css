@@ -153,11 +153,11 @@
     font-size: 14px;
     font-weight: 600;
     color: var(--accent-blue);
-    font-family: 'Archivo', sans-serif;
+    font-family: var(--font-archivo), sans-serif;
 }
 
 .planName {
-    font-family: 'League Spartan', sans-serif;
+    font-family: var(--font-league-spartan), sans-serif;
     font-size: 32px;
     font-weight: 700;
     color: var(--text-primary);

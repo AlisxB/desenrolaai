@@ -11,7 +11,7 @@
 }
 
 .logo {
-    font-family: 'League Spartan', sans-serif;
+    font-family: var(--font-league-spartan), sans-serif;
     font-size: 24px;
     font-weight: 700;
     color: var(--text-primary);
@@ -31,7 +31,7 @@
     font-size: 16px;
     margin-bottom: var(--space-md);
     color: var(--text-primary);
-    font-family: 'League Spartan', sans-serif;
+    font-family: var(--font-league-spartan), sans-serif;
 }
 
 .link {

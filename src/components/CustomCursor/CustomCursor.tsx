@@ -10,6 +10,9 @@ export default function CustomCursor() {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
+        if (typeof window === 'undefined') return;
+        if (window.matchMedia('(pointer: coarse)').matches) return;
+
         const cursor = cursorRef.current;
         const cursorDot = cursorDotRef.current;
         if (!cursor || !cursorDot) return;
@@ -19,6 +22,7 @@ export default function CustomCursor() {
         let cursorX = 0;
         let cursorY = 0;
         let animFrameId: number;
+        let rafRunning = true;
 
         const handleMouseMove = (e: MouseEvent) => {
             mouseX = e.clientX;
@@ -30,6 +34,7 @@ export default function CustomCursor() {
         const handleMouseEnter = () => setIsVisible(true);
 
         const animate = () => {
+            if (!rafRunning) return;
             const ease = 0.12;
             cursorX += (mouseX - cursorX) * ease;
             cursorY += (mouseY - cursorY) * ease;
@@ -46,17 +51,14 @@ export default function CustomCursor() {
             setIsHovering(!!interactive);
         };
 
-        const smoothAnimate = () => {
-            animate();
-        };
-
         document.addEventListener('mousemove', handleMouseMove);
         document.addEventListener('mousemove', checkHover);
         document.addEventListener('mouseleave', handleMouseLeave);
         document.addEventListener('mouseenter', handleMouseEnter);
-        animFrameId = requestAnimationFrame(smoothAnimate);
+        animFrameId = requestAnimationFrame(animate);
 
         return () => {
+            rafRunning = false;
             document.removeEventListener('mousemove', handleMouseMove);
             document.removeEventListener('mousemove', checkHover);
             document.removeEventListener('mouseleave', handleMouseLeave);

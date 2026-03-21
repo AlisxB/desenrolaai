@@ -3,9 +3,10 @@
    DesenrolaAI Next.js Migration
    ============================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=IBM+Plex+Serif:wght@500&family=League+Spartan:wght@600;700&display=swap');
-
 :root {
+  /* Font family aliases (set by next/font in layout.tsx) */
+  --font-heading: var(--font-league-spartan), sans-serif;
+
   /* Colors - Obsidian Aura */
   --bg-primary: #00040A;
   --bg-secondary: rgba(255, 255, 255, 0.02);
@@ -62,7 +63,7 @@
 body {
   background-color: var(--bg-primary);
   color: var(--text-secondary);
-  font-family: 'Archivo', sans-serif;
+  font-family: var(--font-archivo), sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
 }
@@ -76,14 +77,14 @@ h3 {
 
 h1,
 .hero-title {
-  font-family: 'IBM Plex Serif', serif;
+  font-family: var(--font-ibm-plex-serif), serif;
   font-weight: 500;
 }
 
 h2,
 h3,
 .functional-head {
-  font-family: 'League Spartan', sans-serif;
+  font-family: var(--font-league-spartan), sans-serif;
   font-weight: 600;
   letter-spacing: -1px;
 }
@@ -115,7 +116,7 @@ a:hover {
   cursor: pointer;
   transition: all 200ms ease-in-out;
   border: none;
-  font-family: 'Archivo', sans-serif;
+  font-family: var(--font-archivo), sans-serif;
   font-size: 16px;
 }
 
