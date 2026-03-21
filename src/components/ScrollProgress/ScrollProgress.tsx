@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import styles from './ScrollProgress.module.css';
-import { lenisInstance } from '../SmoothScroll/SmoothScroll';
+import { onLenisScroll } from '../SmoothScroll/SmoothScroll';
 
 export default function ScrollProgress() {
     const [progress, setProgress] = useState(0);
@@ -14,12 +14,8 @@ export default function ScrollProgress() {
             setProgress(Math.min(100, Math.max(0, pct)));
         };
 
-        if (lenisInstance) {
-            lenisInstance.on('scroll', ({ scroll }: { scroll: number }) => {
-                updateProgress(scroll);
-            });
-            updateProgress(lenisInstance.scroll);
-        }
+        const unsubscribe = onLenisScroll(updateProgress);
+        return unsubscribe;
     }, []);
 
     return (
