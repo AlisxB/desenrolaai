@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { Zap } from 'lucide-react';
 import styles from './Hero.module.css';
 
 export default function Hero() {
@@ -75,6 +76,15 @@ export default function Hero() {
 
     return (
         <header className={styles.hero}>
+            {/* Ambient Floating Elements */}
+            <div className={styles.ambientContainer} aria-hidden="true">
+                <div className={`${styles.floatElement} ${styles.floatCircle1}`} />
+                <div className={`${styles.floatElement} ${styles.floatCircle2}`} />
+                <div className={`${styles.floatElement} ${styles.floatHexagon}`} />
+                <div className={`${styles.floatElement} ${styles.floatCircle3}`} />
+                <div className={`${styles.floatElement} ${styles.floatCircle4}`} />
+            </div>
+
             {/* Floating Profile Cards */}
             <div className={styles.floatingProfiles}>
                 {profiles.map((profile, i) => (
@@ -92,7 +102,10 @@ export default function Hero() {
             {/* Hero Content */}
             <div className={`container ${styles.heroContent} animate-entrance`}>
                 <div className={styles.heroHeaderContent} ref={heroTextRef} id="hero-text">
-                    <div className="hero-badge">⚡ Tecnologia de Ponta</div>
+                    <div className="hero-badge">
+                        <Zap size={12} />
+                        Tecnologia de Ponta
+                    </div>
                     <h1 className={styles.heroTitle}>
                         Tecnologia que descomplica. <br /> Resultados que aceleram.
                     </h1>

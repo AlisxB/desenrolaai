@@ -1,42 +1,22 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import {
+    Bot, Link2, FileText, BarChart3, ShoppingCart, Flame,
+    Home, Settings, Mail, Zap
+} from 'lucide-react';
 import styles from './ProductShowcase.module.css';
 
 const features = [
-    {
-        icon: '🤖',
-        title: 'Agente 24/7 no WhatsApp',
-        text: 'Atende, qualifica e fecha vendas enquanto você dorme.',
-    },
-    {
-        icon: '🔗',
-        title: 'Funil 100% conectado',
-        text: 'Do primeiro clique até o pagamento, sem gaps.',
-    },
-    {
-        icon: '🧾',
-        title: 'Notas fiscais automáticas',
-        text: 'Emissão e envio automático a cada venda confirmada.',
-    },
-    {
-        icon: '📊',
-        title: 'Dashboard de lucro real',
-        text: 'Métricas que importam, em tempo real, sem planilhas.',
-    },
+    { Icon: Bot, title: 'Agente 24/7 no WhatsApp', text: 'Atende, qualifica e fecha vendas enquanto você dorme.' },
+    { Icon: Link2, title: 'Funil 100% conectado', text: 'Do primeiro clique até o pagamento, sem gaps.' },
+    { Icon: FileText, title: 'Notas fiscais automáticas', text: 'Emissão e envio automático a cada venda confirmada.' },
+    { Icon: BarChart3, title: 'Dashboard de lucro real', text: 'Métricas que importam, em tempo real, sem planilhas.' },
 ];
 
-// Animated typing indicator
-function TypingDots() {
-    return (
-        <span className={styles.typingDots}>
-            <span /><span /><span />
-        </span>
-    );
-}
+const navIcons = [Home, Bot, Link2, BarChart3, FileText, Settings];
 
-// Chat message bubble
-function ChatMsg({ text, side, delay }: { text: string; side: 'left' | 'right'; delay: number }) {
+function ChatMsg({ text, side, delay }: { text: React.ReactNode; side: 'left' | 'right'; delay: number }) {
     const [visible, setVisible] = useState(false);
     useEffect(() => {
         const t = setTimeout(() => setVisible(true), delay);
@@ -53,7 +33,6 @@ function ChatMsg({ text, side, delay }: { text: string; side: 'left' | 'right'; 
     );
 }
 
-// Bar chart SVG
 function MiniChart() {
     const bars = [40, 68, 55, 82, 73, 95, 88];
     const days = ['S', 'T', 'Q', 'Q', 'S', 'S', 'D'];
@@ -92,7 +71,10 @@ export default function ProductShowcase() {
             <div className={`container ${styles.inner}`}>
                 {/* LEFT — Copy */}
                 <div className={`${styles.copy} ${inView ? styles.copyVisible : ''}`}>
-                    <span className="tag">⚡ Veja em ação</span>
+                    <span className="tag">
+                        <Zap size={14} style={{ display: 'inline', marginRight: '6px', verticalAlign: 'middle' }} />
+                        Veja em ação
+                    </span>
                     <h2 className={styles.headline}>
                         Todo o seu negócio,<br />
                         <span className={styles.headlineAccent}>automatizado</span> num<br />
@@ -104,7 +86,7 @@ export default function ProductShowcase() {
                     </p>
 
                     <ul className={styles.features}>
-                        {features.map((f, i) => (
+                        {features.map(({ Icon, title, text }, i) => (
                             <li
                                 key={i}
                                 className={styles.featureItem}
@@ -114,10 +96,12 @@ export default function ProductShowcase() {
                                     transition: `all 500ms cubic-bezier(0.4,0,0.2,1) ${200 + i * 100}ms`,
                                 }}
                             >
-                                <span className={styles.featureIcon}>{f.icon}</span>
+                                <span className={styles.featureIcon}>
+                                    <Icon size={18} strokeWidth={2} />
+                                </span>
                                 <div>
-                                    <strong className={styles.featureTitle}>{f.title}</strong>
-                                    <p className={styles.featureText}>{f.text}</p>
+                                    <strong className={styles.featureTitle}>{title}</strong>
+                                    <p className={styles.featureText}>{text}</p>
                                 </div>
                             </li>
                         ))}
@@ -144,9 +128,9 @@ export default function ProductShowcase() {
                         <div className={styles.dashboardBody}>
                             {/* Side nav */}
                             <div className={styles.sideNav}>
-                                {['🏠', '🤖', '🔗', '📊', '🧾', '⚙️'].map((icon, i) => (
+                                {navIcons.map((Icon, i) => (
                                     <div key={i} className={`${styles.navIcon} ${i === 1 ? styles.navActive : ''}`}>
-                                        {icon}
+                                        <Icon size={16} strokeWidth={2} />
                                     </div>
                                 ))}
                             </div>
@@ -179,16 +163,18 @@ export default function ProductShowcase() {
                     {/* Floating chat card */}
                     <div className={`${styles.floatingCard} ${styles.chatCard} ${inView ? styles.floatIn : ''}`}>
                         <div className={styles.chatHeader}>
-                            <div className={styles.chatAvatar}>🤖</div>
+                            <div className={styles.chatAvatar}>
+                                <Bot size={18} />
+                            </div>
                             <div>
                                 <div className={styles.chatName}>Agente DesenrolaAI</div>
                                 <div className={styles.chatStatus}><span className={styles.onlineDot} />Online agora</div>
                             </div>
                         </div>
                         <div className={styles.chatMessages}>
-                            <ChatMsg text="Olá! Vi que você deixou itens no carrinho 🛒" side="left" delay={inView ? 600 : 99999} />
+                            <ChatMsg text={<><ShoppingCart size={14} style={{ marginRight: '6px', verticalAlign: 'middle' }} /> Olá! Vi que você deixou itens no carrinho</>} side="left" delay={inView ? 600 : 99999} />
                             <ChatMsg text="Posso te ajudar a finalizar?" side="left" delay={inView ? 1200 : 99999} />
-                            <ChatMsg text="Sim! Quero o desconto 🔥" side="right" delay={inView ? 2000 : 99999} />
+                            <ChatMsg text={<><Flame size={14} style={{ marginRight: '6px', verticalAlign: 'middle' }} /> Sim! Quero o desconto</>} side="right" delay={inView ? 2000 : 99999} />
                             <ChatMsg text="Perfeito! Gerando seu link exclusivo..." side="left" delay={inView ? 2800 : 99999} />
                         </div>
                     </div>
@@ -197,11 +183,20 @@ export default function ProductShowcase() {
                     <div className={`${styles.floatingCard} ${styles.automationPill} ${inView ? styles.floatIn : ''}`}
                         style={{ animationDelay: '300ms' }}>
                         <div className={styles.pillFlow}>
-                            <div className={styles.pillStep}>🧾 Venda</div>
+                            <div className={styles.pillStep}>
+                                <FileText size={12} strokeWidth={2.5} />
+                                Venda
+                            </div>
                             <div className={styles.pillArrow}>→</div>
-                            <div className={styles.pillStep}>📄 NF-e</div>
+                            <div className={styles.pillStep}>
+                                <FileText size={12} strokeWidth={2.5} />
+                                NF-e
+                            </div>
                             <div className={styles.pillArrow}>→</div>
-                            <div className={styles.pillStep}>📧 Email</div>
+                            <div className={styles.pillStep}>
+                                <Mail size={12} strokeWidth={2.5} />
+                                Email
+                            </div>
                         </div>
                         <div className={styles.pillLabel}>Automação ativa • 0s delay</div>
                     </div>

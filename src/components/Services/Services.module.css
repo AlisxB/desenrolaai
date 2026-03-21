@@ -4,19 +4,51 @@
     will-change: transform;
 }
 
+.card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: conic-gradient(
+        from 0deg,
+        transparent 60%,
+        var(--accent-blue) 100%
+    );
+    opacity: 0;
+    transition: opacity 400ms ease;
+    z-index: -1;
+}
+
+.card:hover::before {
+    opacity: 0.4;
+    animation: sweepBorder 0.8s ease forwards;
+}
+
+@keyframes sweepBorder {
+    0% {
+        background: conic-gradient(from 0deg, transparent 80%, var(--accent-blue) 100%);
+    }
+
+    100% {
+        background: conic-gradient(from 360deg, transparent 60%, var(--accent-blue) 100%);
+    }
+}
+
 .icon {
-    font-size: 36px;
-    margin-bottom: 20px;
-    display: inline-block;
+    color: var(--accent-blue);
+    margin-bottom: var(--space-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     filter: drop-shadow(0 0 12px rgba(81, 217, 254, 0.3));
-    transition: filter 300ms ease;
+    transition: filter 300ms ease, transform 300ms ease;
 }
 
 .card:hover .icon {
     filter: drop-shadow(0 0 20px rgba(81, 217, 254, 0.6));
+    transform: scale(1.05);
 }
 
-/* Shine overlay that follows the 3D tilt */
 .cardShine {
     position: absolute;
     inset: 0;

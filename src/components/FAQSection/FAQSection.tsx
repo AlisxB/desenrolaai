@@ -1,6 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { HelpCircle } from 'lucide-react';
 import styles from './FAQSection.module.css';
 
 const faqs = [
@@ -44,12 +46,28 @@ function AccordionItem({ item, isOpen, onClick }: { item: typeof faqs[0], isOpen
 
 export default function FAQSection() {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
+    const [ctaTop, setCtaTop] = useState(100);
+
+    useEffect(() => {
+        const updateTop = () => {
+            const navbar = document.getElementById('navbar');
+            if (navbar) {
+                setCtaTop(navbar.offsetHeight + 24);
+            }
+        };
+        updateTop();
+        window.addEventListener('resize', updateTop);
+        return () => window.removeEventListener('resize', updateTop);
+    }, []);
 
     return (
         <section className={styles.section} id="faq">
             <div className={`container ${styles.inner}`}>
                 <div className={styles.header}>
-                    <span className="tag">❓ PERGUNTAS</span>
+                    <span className="tag">
+                        <HelpCircle size={14} style={{ display: 'inline', marginRight: '6px', verticalAlign: 'middle' }} />
+                        PERGUNTAS
+                    </span>
                     <h2 className={styles.title}>
                         Dúvidas <br />
                         <span className={styles.titleAccent}>frequentes</span>
@@ -60,18 +78,41 @@ export default function FAQSection() {
                 </div>
 
                 <div className={styles.accordionGrid}>
-                    <div className={styles.accordionContainer}>
+                    <motion.div
+                        className={styles.accordionContainer}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true, margin: '-40px' }}
+                        variants={{
+                            hidden: {},
+                            show: { transition: { staggerChildren: 0.1 } },
+                        }}
+                    >
                         {faqs.map((faq, i) => (
-                            <AccordionItem
+                            <motion.div
                                 key={i}
-                                item={faq}
-                                isOpen={openIndex === i}
-                                onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                            />
+                                variants={{
+                                    hidden: { opacity: 0, y: 20 },
+                                    show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
+                                }}
+                            >
+                                <AccordionItem
+                                    item={faq}
+                                    isOpen={openIndex === i}
+                                    onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                                />
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
 
-                    <div className={styles.ctaBox}>
+                    <motion.div
+                        className={styles.ctaBox}
+                        style={{ top: `${ctaTop}px` }}
+                        initial={{ opacity: 0, x: 20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, margin: '-40px' }}
+                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+                    >
                         <div className={styles.ctaCard}>
                             <h4 className={styles.ctaTitle}>Ainda tem dúvidas?</h4>
                             <p className={styles.ctaText}>
@@ -81,7 +122,7 @@ export default function FAQSection() {
                                 Agendar Conversa
                             </a>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
 

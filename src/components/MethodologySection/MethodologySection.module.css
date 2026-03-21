@@ -75,7 +75,7 @@
     line-height: 1.1;
     margin-top: 12px;
     font-weight: 800;
-    color: #fff;
+    color: var(--text-primary);
     letter-spacing: -1.5px;
 }
 
@@ -101,7 +101,7 @@
 .card {
     width: 100%;
     height: 100%;
-    border-radius: 48px;
+    border-radius: var(--radius-xl);
     overflow: hidden;
     position: relative;
     background: rgba(255, 255, 255, 0.015);
@@ -114,7 +114,7 @@
     /* CRITICAL for Next.js Image fill */
     width: 100%;
     height: 100%;
-    background: #000;
+    background: var(--bg-primary);
 }
 
 .sidebar {
@@ -161,6 +161,54 @@
     height: 12px;
     display: flex;
     align-items: center;
+    position: relative;
+}
+
+.stepInfo {
+    position: absolute;
+    left: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    width: 220px;
+    pointer-events: none;
+}
+
+.stepIcon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(81, 217, 254, 0.15);
+    border: 1px solid rgba(81, 217, 254, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.stepIcon svg {
+    color: var(--accent-blue);
+}
+
+.stepText {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.stepTitle {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: 'League Spartan', sans-serif;
+}
+
+.stepDesc {
+    font-size: 11px;
+    color: var(--text-secondary);
+    line-height: 1.4;
 }
 
 .dot {
@@ -168,7 +216,7 @@
     height: 12px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.2);
-    border: 2px solid #000;
+    border: 2px solid var(--bg-primary);
     z-index: 2;
 }
 
@@ -209,5 +257,9 @@
         flex-direction: row;
         margin-left: 0;
         margin-top: -5px;
+    }
+
+    .stepInfo {
+        display: none;
     }
 }

@@ -3,12 +3,14 @@
 import { useScroll, useTransform, motion, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
+import { Search, Brain, Link2, TrendingUp } from 'lucide-react';
 import styles from './MethodologySection.module.css';
+
+const stepIcons = [Search, Brain, Link2, TrendingUp];
 
 const methodologySteps = [
     {
         id: 'diagnostico',
-        icon: '🔍',
         title: 'Diagnóstico',
         description: 'Mapeamos cada gargalo da sua operação atual para identificar onde a automação terá o maior impacto imediato.',
         image: '/assets/methodology/diagnostico_methodology.png',
@@ -16,7 +18,6 @@ const methodologySteps = [
     },
     {
         id: 'arquitetura',
-        icon: '🧠',
         title: 'Arquitetura',
         description: 'Desenhamos a infraestrutura de inteligência artificial sob medida para o seu modelo de negócio e tom de voz.',
         image: '/assets/methodology/arquitetura_methodology.png',
@@ -24,7 +25,6 @@ const methodologySteps = [
     },
     {
         id: 'integracao',
-        icon: '🔗',
         title: 'Integração',
         description: 'Conectamos a IA nativamente ao seu ecossistema: WhatsApp, CRM, Meios de Pagamento e ERPs.',
         image: '/assets/methodology/integracao_methodology.png',
@@ -32,7 +32,6 @@ const methodologySteps = [
     },
     {
         id: 'escala',
-        icon: '📈',
         title: 'Escala & Otimização',
         description: 'Monitoramento em tempo real e evolução contínua dos modelos para garantir que o resultado só cresça.',
         image: '/assets/methodology/escala_methodology.png',
@@ -83,7 +82,10 @@ export default function MethodologySection() {
                 </div>
 
                 <div className={styles.header}>
-                    <span className="tag">⚙️ O MÉTODO</span>
+                    <span className="tag">
+                        <Search size={14} style={{ display: 'inline', marginRight: '6px', verticalAlign: 'middle' }} />
+                        O MÉTODO
+                    </span>
                     <h2 className={styles.title}>
                         Do diagnóstico à <br />
                         <span className={styles.titleAccent}>escala máxima</span>
@@ -105,7 +107,7 @@ export default function MethodologySection() {
                                 <div className={styles.imagePlaceholder}>
                                     <Image
                                         src={methodologySteps[step].image}
-                                        alt={`Step ${step + 1}`}
+                                        alt={`Passo ${step + 1}: ${methodologySteps[step].title}`}
                                         fill
                                         sizes="100vw"
                                         style={{ objectFit: 'cover' }}
@@ -125,7 +127,13 @@ export default function MethodologySection() {
                             />
                             <div className={styles.dotsContainer}>
                                 {[3, 2, 1, 0].map((i) => (
-                                    <Dot key={i} index={i} activeIndex={step} />
+                                    <Dot
+                                        key={i}
+                                        index={i}
+                                        activeIndex={step}
+                                        step={methodologySteps[i]}
+                                        Icon={stepIcons[i]}
+                                    />
                                 ))}
                             </div>
                         </div>
@@ -136,16 +144,50 @@ export default function MethodologySection() {
     );
 }
 
-function Dot({ index, activeIndex }: { index: number, activeIndex: number }) {
+function Dot({
+    index,
+    activeIndex,
+    step,
+    Icon
+}: {
+    index: number;
+    activeIndex: number;
+    step: typeof methodologySteps[0];
+    Icon: typeof stepIcons[0];
+}) {
+    const isActive = activeIndex === index;
+    const isPast = activeIndex > index;
+
     return (
-        <div className={styles.dotWrapper}>
+        <motion.div
+            className={styles.dotWrapper}
+            animate={{ opacity: isActive ? 1 : 0.5 }}
+            transition={{ duration: 0.3 }}
+        >
             <motion.div
-                className={`${styles.dot} ${activeIndex >= index ? styles.dotActive : ''}`}
+                className={`${styles.dot} ${isActive ? styles.dotActive : ''}`}
                 animate={{
-                    scale: activeIndex === index ? 1.5 : 1,
-                    backgroundColor: activeIndex >= index ? 'var(--accent-blue)' : 'rgba(255,255,255,0.2)'
+                    scale: isActive ? 1.5 : 1,
+                    backgroundColor: isPast ? 'var(--accent-blue)' : isActive ? 'var(--accent-blue)' : 'rgba(255,255,255,0.2)'
                 }}
             />
-        </div>
+            <motion.div
+                className={styles.stepInfo}
+                initial={false}
+                animate={{
+                    opacity: isActive ? 1 : 0,
+                    x: isActive ? 0 : -8,
+                }}
+                transition={{ duration: 0.3 }}
+            >
+                <div className={styles.stepIcon}>
+                    <Icon size={16} strokeWidth={2} />
+                </div>
+                <div className={styles.stepText}>
+                    <span className={styles.stepTitle}>{step.title}</span>
+                    <span className={styles.stepDesc}>{step.description}</span>
+                </div>
+            </motion.div>
+        </motion.div>
     );
 }

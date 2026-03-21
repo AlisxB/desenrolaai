@@ -1,12 +1,25 @@
 'use client';
 
 import { useRef, MouseEvent } from 'react';
+import { Monitor, Zap, Brain } from 'lucide-react';
 import styles from './Services.module.css';
 
 const services = [
-    { icon: '💻', title: 'Sistemas Sob Medida', text: 'Softwares que se encaixam no seu jeito de trabalhar. Plataformas web e mobile que integram tudo num só lugar.' },
-    { icon: '⚡', title: 'Automação de Processos', text: 'Robôs fazem o trabalho chato. Seu time inova. Automatizamos tarefas repetitivas como lançar notas e relatórios.' },
-    { icon: '🧠', title: 'Agentes de IA', text: 'Inteligência Artificial que atende, analisa e vende. Assistentes virtuais 24/7 e consultoria estratégica de IA.' },
+    {
+        Icon: Monitor,
+        title: 'Sistemas Sob Medida',
+        text: 'Softwares que se encaixam no seu jeito de trabalhar. Plataformas web e mobile que integram tudo num só lugar.'
+    },
+    {
+        Icon: Zap,
+        title: 'Automação de Processos',
+        text: 'Robôs fazem o trabalho chato. Seu time inova. Automatizamos tarefas repetitivas como lançar notas e relatórios.'
+    },
+    {
+        Icon: Brain,
+        title: 'Agentes de IA',
+        text: 'Inteligência Artificial que atende, analisa e vende. Assistentes virtuais 24/7 e consultoria estratégica de IA.'
+    },
 ];
 
 function ServiceCard({ service, index }: { service: typeof services[0]; index: number }) {
@@ -39,7 +52,9 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
                 transformStyle: 'preserve-3d',
             }}
         >
-            <div className={`card-icon ${styles.icon}`}>{service.icon}</div>
+            <div className={`card-icon ${styles.icon}`}>
+                <service.Icon size={40} strokeWidth={1.5} />
+            </div>
             <h3 className="card-title">{service.title}</h3>
             <p className="card-text">{service.text}</p>
             <div className={styles.cardShine} />

@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
+import { MessageSquare, Users } from 'lucide-react';
 import styles from './Testimonials.module.css';
 
 const testimonials = [
@@ -92,7 +93,10 @@ export default function Testimonials() {
                 {/* Intro Header */}
                 <div className={styles.header}>
                     <div className={styles.headerLeft}>
-                        <span className="tag">📂 NOSSOS CLIENTES</span>
+                        <span className="tag">
+                            <Users size={14} style={{ display: 'inline', marginRight: '6px', verticalAlign: 'middle' }} />
+                            NOSSOS CLIENTES
+                        </span>
                         <h2 className={styles.title}>
                             Cada cliente é um <br />
                             <span className={styles.titleAccent}>parceiro estratégico</span>
@@ -103,7 +107,8 @@ export default function Testimonials() {
                             Grandes estrategistas e experts confiam na DesenrolaAI para automatizar seus processos, centralizar dados e escalar resultados.
                         </p>
                         <button className={styles.talkButton}>
-                            <span>💬 Falar com um consultor</span>
+                            <MessageSquare size={16} />
+                            Falar com um consultor
                         </button>
                     </div>
                 </div>

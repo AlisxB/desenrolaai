@@ -1,55 +1,54 @@
 'use client';
 
 import { useRef, MouseEvent } from 'react';
+import { motion } from 'framer-motion';
+import { Check } from 'lucide-react';
 import styles from './Pricing.module.css';
 
 const plans = [
     {
-        name: 'Starter',
-        tag: 'Para começar',
-        price: 'Sob consulta',
-        priceNote: 'projeto único',
+        level: 'Nível 1',
+        name: 'Começando com IA',
+        description: 'Para empresas que querem explorar o potencial da automação.',
         features: [
             'Diagnóstico de processos',
-            '1 automação personalizada',
-            'Integração com 2 ferramentas',
-            'Suporte por 30 dias',
-            'Entrega em até 3 semanas',
+            'Identificação de oportunidades',
+            'Primeira automação ou agente de IA',
+            'Integração inicial com ferramentas',
+            'Roadmap de automação',
         ],
-        cta: 'Falar com especialista',
+        outcome: 'Clareza sobre onde a IA pode gerar impacto.',
+        cta: 'Agendar diagnóstico',
         highlighted: false,
     },
     {
-        name: 'Pro',
-        tag: '✦ Mais popular',
-        price: 'Sob consulta',
-        priceNote: 'implementação completa',
+        level: 'Nível 2',
+        name: 'Estruturando IA',
+        description: 'Para empresas que querem integrar IA nos processos da operação.',
         features: [
-            'Tudo do Starter',
-            'Automações ilimitadas',
-            'Agente de IA sob medida',
-            'Integrações sem limite',
+            'Implementação de automações',
+            'Agentes de IA personalizados',
+            'Integração com sistemas',
             'Painel de monitoramento',
-            'Suporte por 90 dias',
             'Treinamento do time',
         ],
-        cta: 'Quero o Pro',
+        outcome: 'Processos automatizados e ganhos de eficiência.',
+        cta: 'Quero implementar IA',
         highlighted: true,
     },
     {
-        name: 'Enterprise',
-        tag: 'Para escalar',
-        price: 'Personalizado',
-        priceNote: 'para sua operação',
+        level: 'Nível 3',
+        name: 'Escalando com IA',
+        description: 'Para empresas que querem transformar a operação com IA.',
         features: [
-            'Tudo do Pro',
             'Arquitetura dedicada',
-            'SLA garantido',
-            'Equipe residente',
+            'Novas automações contínuas',
+            'Otimização de processos',
             'Roadmap estratégico',
-            'Suporte 24/7',
+            'Suporte prioritário',
         ],
-        cta: 'Falar com o time',
+        outcome: 'IA integrada à operação e crescimento escalável.',
+        cta: 'Falar com especialista',
         highlighted: false,
     },
 ];
@@ -80,25 +79,29 @@ function PricingCard({ plan, index }: { plan: typeof plans[0]; index: number }) 
             onMouseLeave={handleMouseLeave}
             style={{ animationDelay: `${index * 120}ms` }}
         >
-            {plan.highlighted && <div className={styles.popularBadge}>{plan.tag}</div>}
+            {plan.highlighted && <div className={styles.popularBadge}>Recomendado</div>}
 
             <div className={styles.cardHeader}>
-                {!plan.highlighted && <span className={styles.planTag}>{plan.tag}</span>}
+                <span className={styles.levelTag}>{plan.level}</span>
                 <h3 className={styles.planName}>{plan.name}</h3>
-                <div className={styles.priceBlock}>
-                    <span className={styles.price}>{plan.price}</span>
-                    <span className={styles.priceNote}>{plan.priceNote}</span>
-                </div>
+                <p className={styles.description}>{plan.description}</p>
             </div>
 
             <ul className={styles.featureList}>
                 {plan.features.map((feat, i) => (
                     <li key={i} className={styles.featureItem}>
-                        <span className={styles.checkIcon}>✓</span>
+                        <span className={styles.checkIcon}>
+                            <Check size={14} strokeWidth={3} />
+                        </span>
                         {feat}
                     </li>
                 ))}
             </ul>
+
+            <div className={styles.outcomeBlock}>
+                <span className={styles.outcomeLabel}>Resultado</span>
+                <p className={styles.outcomeText}>{plan.outcome}</p>
+            </div>
 
             <a
                 href="#contato"
@@ -119,18 +122,38 @@ export default function Pricing() {
 
             <div className="container">
                 <div className="section-head">
-                    <span className="tag">Planos & Investimento</span>
-                    <h2 className="section-title">Escolha como a gente vai<br />desenrolar seu negócio</h2>
+                    <span className="tag">Modelos de parceria</span>
+                    <h2 className="section-title">Qual formato faz mais sentido para sua empresa</h2>
                     <p className="section-desc">
-                        Cada projeto é único. Mas nossos modelos de engajamento foram feitos para
-                        se encaixar na sua realidade e no seu momento.
+                        Cada empresa está em um estágio diferente de adoção de IA. Estes são os formatos mais comuns de colaboração com nossos clientes.
                     </p>
                 </div>
 
-                <div className={styles.grid}>
+                <motion.div
+                    className={styles.grid}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, margin: '-40px' }}
+                    variants={{
+                        hidden: {},
+                        show: { transition: { staggerChildren: 0.12 } },
+                    }}
+                >
                     {plans.map((plan, i) => (
-                        <PricingCard key={i} plan={plan} index={i} />
+                        <motion.div
+                            key={i}
+                            variants={{
+                                hidden: { opacity: 0, y: 30 },
+                                show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
+                            }}
+                        >
+                            <PricingCard plan={plan} index={i} />
+                        </motion.div>
                     ))}
+                </motion.div>
+
+                <div className={styles.bottomCta}>
+                    <p className={styles.microcopy}>Todos os projetos são adaptados à realidade de cada empresa.</p>
                 </div>
 
                 <p className={styles.footnote}>
