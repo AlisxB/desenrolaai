@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import styles from './Footer.module.css';
+import CookieSettingsButton from '@/components/CookieConsent/CookieSettingsButton';
 
 export default function Footer() {
     const year = new Date().getFullYear();
@@ -27,6 +28,8 @@ export default function Footer() {
                         <Link href="#contato" className={styles.link}>Contato</Link>
                         <Link href="/termos-de-uso" className={styles.link}>Termos de Uso</Link>
                         <Link href="/politica-de-privacidade" className={styles.link}>Política de Privacidade</Link>
+                        <Link href="/politica-de-privacidade#cookies" className={styles.link}>Cookies</Link>
+                        <CookieSettingsButton />
                     </div>
                     <div>
                         <h4 className={styles.heading}>Social</h4>
