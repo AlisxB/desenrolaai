@@ -37,6 +37,8 @@
   --radius-pill: 100px;
   --radius-lg: 32px;
   --radius-md: 12px;
+  --radius-xl: 48px;
+  --radius-sm: 8px;
 
   /* Elevation */
   --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.5);
@@ -99,7 +101,7 @@ a:hover {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 var(--space-md);
+  padding: 0 var(--space-sm);
 }
 
 /* Buttons */
@@ -395,4 +397,41 @@ a:hover {
   .section-title {
     font-size: 36px;
   }
+}
+
+/* ── Motion: Ripple Effect ─────────────────────────────────────────── */
+@keyframes rippleEffect {
+    0% {
+        transform: scale(0);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
+
+.btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: rgba(255, 255, 255, 0.25);
+    pointer-events: none;
+    transform: scale(0);
+}
+
+.btn:active::after {
+    animation: rippleEffect 0.5s ease-out;
+}
+
+/* ── Magnetic Button ───────────────────────────────────────────────── */
+[data-magnetic] {
+    transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
 }
