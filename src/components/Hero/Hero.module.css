@@ -147,6 +147,105 @@
         inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
+/* Ambient Floating Elements */
+.ambientContainer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.floatElement {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.04;
+}
+
+.floatCircle1 {
+    width: 400px;
+    height: 400px;
+    top: -100px;
+    right: -100px;
+    border: 1px solid var(--accent-blue);
+    animation: floatA 8s ease-in-out infinite;
+}
+
+.floatCircle2 {
+    width: 250px;
+    height: 250px;
+    top: 30%;
+    left: -60px;
+    background: var(--accent-lime);
+    animation: floatB 10s ease-in-out infinite;
+    animation-delay: -3s;
+}
+
+.floatHexagon {
+    width: 180px;
+    height: 180px;
+    top: 55%;
+    right: 8%;
+    border: 1px solid var(--accent-blue);
+    transform: rotate(30deg);
+    border-radius: 0;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    animation: floatC 12s ease-in-out infinite;
+    animation-delay: -5s;
+    opacity: 0.03;
+}
+
+.floatCircle3 {
+    width: 120px;
+    height: 120px;
+    top: 15%;
+    left: 15%;
+    border: 1px solid rgba(81, 217, 254, 0.6);
+    animation: floatA 7s ease-in-out infinite;
+    animation-delay: -2s;
+}
+
+.floatCircle4 {
+    width: 300px;
+    height: 300px;
+    bottom: -80px;
+    left: 30%;
+    background: var(--accent-blue);
+    animation: floatB 14s ease-in-out infinite;
+    animation-delay: -7s;
+    opacity: 0.02;
+}
+
+@keyframes floatA {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-30px) rotate(3deg);
+    }
+}
+
+@keyframes floatB {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-20px) scale(1.02);
+    }
+}
+
+@keyframes floatC {
+    0%, 100% {
+        transform: rotate(30deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(36deg) translateY(-25px);
+    }
+}
+
 /* Responsive */
 @media (max-width: 968px) {
     .heroTitle {
@@ -162,6 +261,10 @@
     .p2,
     .p3,
     .p4 {
+        display: none;
+    }
+
+    .ambientContainer {
         display: none;
     }
 }
