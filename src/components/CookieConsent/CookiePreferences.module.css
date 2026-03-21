@@ -168,6 +168,21 @@
     transform: translateX(20px);
 }
 
+.lockedBadge {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: 100px;
+    background: rgba(81, 217, 254, 0.08);
+    border: 1px solid rgba(81, 217, 254, 0.2);
+    color: var(--accent-blue);
+    font-size: 11px;
+    font-weight: 600;
+    font-family: var(--font-archivo), sans-serif;
+    white-space: nowrap;
+}
+
 .expandBtn {
     display: flex;
     align-items: center;

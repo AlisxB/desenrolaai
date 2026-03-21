@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ShieldCheck, BarChart2, Settings2, Megaphone, X, ChevronDown } from 'lucide-react';
+import { ShieldCheck, BarChart2, Settings2, Megaphone, X, ChevronDown, Lock } from 'lucide-react';
 import styles from './CookiePreferences.module.css';
 import {
     getPreferences,
@@ -15,23 +15,34 @@ interface CookiePreferencesProps {
     onClose: () => void;
 }
 
-const categories = [
+type CategoryKey = keyof CookiePreferences;
+
+interface Category {
+    key: CategoryKey;
+    label: string;
+    icon: typeof Settings2;
+    description: string;
+    locked?: boolean;
+}
+
+const categories: Category[] = [
     {
-        key: 'functional' as const,
+        key: 'functional',
         label: 'Cookies Funcionais',
         icon: Settings2,
+        locked: true,
         description:
-            'Lembram suas preferências, como idioma e configurações, para personalizar sua experiência na plataforma.',
+            'Lembram suas preferências, como idioma e configurações, para personalizar sua experiência na plataforma. Necessários para o funcionamento da plataforma.',
     },
     {
-        key: 'analytics' as const,
+        key: 'analytics',
         label: 'Cookies Analíticos',
         icon: BarChart2,
         description:
             'Nos ajudam a entender como você usa a plataforma, identificar erros e melhorar continuamente nossos serviços. Utilizamos Google Analytics e Hotjar.',
     },
     {
-        key: 'marketing' as const,
+        key: 'marketing',
         label: 'Cookies de Marketing',
         icon: Megaphone,
         description:
@@ -44,7 +55,9 @@ export default function CookiePreferences({ onSave, onClose }: CookiePreferences
     const [prefs, setPrefs] = useState<CookiePreferences>(initial);
     const [expanded, setExpanded] = useState<string | null>(null);
 
-    const toggle = (key: keyof CookiePreferences) => {
+    const toggle = (key: CategoryKey) => {
+        const cat = categories.find((c) => c.key === key);
+        if (cat?.locked) return;
         setPrefs((prev) => ({ ...prev, [key]: !prev[key] }));
     };
 
@@ -73,7 +86,9 @@ export default function CookiePreferences({ onSave, onClose }: CookiePreferences
                 </div>
 
                 <div className={styles.categories}>
-                    {categories.map(({ key, label, icon: Icon, description }) => (
+                    {categories.map((cat) => {
+                        const { key, label, icon: Icon, description } = cat;
+                        return (
                         <div key={key} className={styles.category}>
                             <div className={styles.categoryHeader}>
                                 <div className={styles.categoryLeft}>
@@ -83,16 +98,23 @@ export default function CookiePreferences({ onSave, onClose }: CookiePreferences
                                     <span className={styles.categoryLabel}>{label}</span>
                                 </div>
                                 <div className={styles.categoryRight}>
-                                    <button
-                                        type="button"
-                                        className={`${styles.toggle} ${prefs[key] ? styles.toggleOn : ''}`}
-                                        onClick={() => toggle(key)}
-                                        role="switch"
-                                        aria-checked={prefs[key]}
-                                        aria-label={`${prefs[key] ? 'Desativar' : 'Ativar'} ${label}`}
-                                    >
-                                        <span className={styles.toggleKnob} />
-                                    </button>
+                                    {cat.locked ? (
+                                        <div className={styles.lockedBadge}>
+                                            <Lock size={12} />
+                                            <span>Obrigatório</span>
+                                        </div>
+                                    ) : (
+                                        <button
+                                            type="button"
+                                            className={`${styles.toggle} ${prefs[key] ? styles.toggleOn : ''}`}
+                                            onClick={() => toggle(key)}
+                                            role="switch"
+                                            aria-checked={prefs[key]}
+                                            aria-label={`${prefs[key] ? 'Desativar' : 'Ativar'} ${label}`}
+                                        >
+                                            <span className={styles.toggleKnob} />
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                             <button
@@ -111,12 +133,13 @@ export default function CookiePreferences({ onSave, onClose }: CookiePreferences
                                 <p className={styles.description}>{description}</p>
                             )}
                         </div>
-                    ))}
+                        );
+                    })}
                 </div>
 
                 <div className={styles.footer}>
                     <p className={styles.note}>
-                        Cookies essenciais são sempre ativos e não podem ser desativados.
+                        Cookies essenciais e funcionais são sempre ativos e não podem ser desativados.
                     </p>
                     <div className={styles.footerActions}>
                         <button type="button" className={styles.btnOutline} onClick={onClose}>

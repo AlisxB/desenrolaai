@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { X, Cookie } from 'lucide-react';
 import styles from './CookieConsent.module.css';
 import CookiePreferences from './CookiePreferences';
@@ -14,6 +14,7 @@ import { initAnalytics } from '@/lib/analytics';
 export default function CookieConsent() {
     const [bannerVisible, setBannerVisible] = useState(false);
     const [localPreferences, setLocalPreferences] = useState(false);
+    const wasBannerVisibleRef = useRef(false);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -37,20 +38,28 @@ export default function CookieConsent() {
         setBannerVisible(false);
     };
 
-    const handleSavePreferences = () => {
-        setLocalPreferences(false);
-    };
-
     const handleOpenPreferences = () => {
+        wasBannerVisibleRef.current = bannerVisible;
         setLocalPreferences(true);
         setBannerVisible(false);
+    };
+
+    const handleClosePreferences = () => {
+        setLocalPreferences(false);
+        if (wasBannerVisibleRef.current) {
+            setBannerVisible(true);
+        }
+    };
+
+    const handleSavePreferences = () => {
+        setLocalPreferences(false);
     };
 
     if (localPreferences) {
         return (
             <CookiePreferences
                 onSave={handleSavePreferences}
-                onClose={() => setLocalPreferences(false)}
+                onClose={handleClosePreferences}
             />
         );
     }
