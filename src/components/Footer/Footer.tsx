@@ -2,13 +2,17 @@ import Link from 'next/link';
 import styles from './Footer.module.css';
 
 export default function Footer() {
+    const year = new Date().getFullYear();
     return (
         <footer className={styles.footer}>
             <div className="container">
                 <div className={styles.footerTop}>
                     <div>
                         <div className={styles.logo}>Desenrola<span>AI</span></div>
-                        <p style={{ fontSize: '14px' }}>Tecnologia que descomplica.<br />Soluções sob medida para empresas que visam o futuro.</p>
+                        <p className={styles.tagline}>
+                            Tecnologia que descomplica.<br />
+                            Soluções sob medida para empresas que visam o futuro.
+                        </p>
                     </div>
                     <div>
                         <h4 className={styles.heading}>Plataforma</h4>
@@ -29,7 +33,7 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className={styles.footerBottom}>
-                    <div>© 2025 DesenrolaAI. Todos os direitos reservados.</div>
+                    <div>© {year} DesenrolaAI. Todos os direitos reservados.</div>
                     <div className={styles.legal}>
                         <span>Termos de Uso</span>
                         <span>Privacidade</span>
