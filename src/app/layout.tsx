@@ -1,5 +1,9 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
+import SmoothScroll from '@/components/SmoothScroll/SmoothScroll';
+import CustomCursor from '@/components/CustomCursor/CustomCursor';
+import ScrollProgress from '@/components/ScrollProgress/ScrollProgress';
+import PageTransition from '@/components/PageTransition/PageTransition';
 
 export const metadata: Metadata = {
   title: 'DesenrolaAI | Tecnologia que descomplica sua empresa',
@@ -31,14 +35,16 @@ export const viewport: Viewport = {
   themeColor: '#000000',
 };
 
-import SmoothScroll from '@/components/SmoothScroll/SmoothScroll';
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR">
       <body>
         <SmoothScroll />
-        {children}
+        <CustomCursor />
+        <ScrollProgress />
+        <PageTransition>
+          {children}
+        </PageTransition>
       </body>
     </html>
   );
