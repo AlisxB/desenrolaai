@@ -25,6 +25,8 @@ export default function Footer() {
                         <Link href="#" className={styles.link}>Sobre Nós</Link>
                         <Link href="/blog" className={styles.link}>Blog</Link>
                         <Link href="#contato" className={styles.link}>Contato</Link>
+                        <Link href="/termos-de-uso" className={styles.link}>Termos de Uso</Link>
+                        <Link href="/politica-de-privacidade" className={styles.link}>Política de Privacidade</Link>
                     </div>
                     <div>
                         <h4 className={styles.heading}>Social</h4>
@@ -35,8 +37,8 @@ export default function Footer() {
                 <div className={styles.footerBottom}>
                     <div>© {year} DesenrolaAI. Todos os direitos reservados.</div>
                     <div className={styles.legal}>
-                        <span>Termos de Uso</span>
-                        <span>Privacidade</span>
+                        <Link href="/termos-de-uso" className={styles.legalLink}>Termos de Uso</Link>
+                        <Link href="/politica-de-privacidade" className={styles.legalLink}>Política de Privacidade</Link>
                     </div>
                 </div>
             </div>

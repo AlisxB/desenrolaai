@@ -1,0 +1,75 @@
+.intro {
+    margin-bottom: var(--space-xl);
+    padding: var(--space-md);
+    background: rgba(81, 217, 254, 0.04);
+    border: 1px solid rgba(81, 217, 254, 0.12);
+    border-radius: var(--radius-md);
+}
+
+.intro p {
+    margin-bottom: var(--space-sm);
+    line-height: 1.7;
+    color: var(--text-secondary);
+    font-size: 16px;
+}
+
+.intro p:last-child {
+    margin-bottom: 0;
+}
+
+.intro strong {
+    color: var(--text-primary);
+}
+
+:global(section) {
+    margin-bottom: var(--space-xl);
+    padding-top: var(--space-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+:global(section) h2 {
+    font-family: var(--font-heading);
+    font-size: var(--font-h2);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+    line-height: 1.2;
+    scroll-margin-top: 100px;
+}
+
+:global(section) p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-sm);
+}
+
+:global(section) ul {
+    padding-left: var(--space-md);
+    margin-bottom: var(--space-sm);
+}
+
+:global(section) ul li {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+}
+
+:global(section) strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+:global(section) em {
+    font-style: italic;
+}
+
+:global(section) a {
+    color: var(--accent-blue);
+    text-decoration: none;
+}
+
+:global(section) a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,131 @@
+.main {
+    padding-top: 120px;
+    padding-bottom: var(--space-2xl);
+    background: var(--bg-primary);
+    min-height: 100vh;
+}
+
+.header {
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.title {
+    font-family: var(--font-heading);
+    font-size: var(--font-h1);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.1;
+    margin-bottom: var(--space-sm);
+    background: linear-gradient(135deg, #ffffff 0%, var(--accent-blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.lastUpdated {
+    font-size: var(--font-small);
+    color: var(--text-secondary);
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: var(--space-xl);
+    align-items: start;
+}
+
+.sidebar {
+    position: sticky;
+    top: 120px;
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
+    padding-right: var(--space-sm);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(81, 217, 254, 0.3) transparent;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: rgba(81, 217, 254, 0.3);
+    border-radius: 2px;
+}
+
+.navTitle {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-sm);
+}
+
+.navList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.navLink {
+    display: block;
+    width: 100%;
+    padding: 6px 8px;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 14px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: color 200ms ease, background 200ms ease;
+    line-height: 1.4;
+}
+
+.navLink:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.navLink.active {
+    color: var(--accent-blue);
+    background: rgba(81, 217, 254, 0.08);
+}
+
+.content {
+    min-width: 0;
+}
+
+@media (max-width: 1024px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        position: static;
+        max-height: none;
+        border-left: 2px solid rgba(81, 217, 254, 0.15);
+        padding-left: var(--space-sm);
+        margin-bottom: var(--space-lg);
+    }
+
+    .navList {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .navLink {
+        font-size: 13px;
+    }
+}

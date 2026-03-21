@@ -65,6 +65,17 @@
     gap: 24px;
 }
 
+.legalLink {
+    color: var(--text-secondary);
+    font-size: 12px;
+    text-decoration: none;
+    transition: color 200ms ease;
+}
+
+.legalLink:hover {
+    color: var(--accent-blue);
+}
+
 @media (max-width: 968px) {
     .footerTop {
         grid-template-columns: 1fr 1fr;
