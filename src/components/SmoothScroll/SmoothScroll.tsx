@@ -33,12 +33,9 @@ export default function SmoothScroll() {
 
         lenisRef.current = lenis;
 
-        lenis.on('scroll', ({ scroll }: { scroll: number }) => {
-            scrollCallbacks.forEach((cb) => cb(scroll));
-        });
-
         const unsubscribe = Tempus.add((time: number) => {
             lenis.raf(time);
+            scrollCallbacks.forEach((cb) => cb(lenis.scroll));
         });
 
         const handleAnchorClick = (e: MouseEvent) => {
