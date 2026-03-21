@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import Lenis from 'lenis';
 import Tempus from 'tempus';
 
@@ -17,8 +17,6 @@ export const onLenisScroll = (callback: ScrollCallback): (() => void) => {
 };
 
 export default function SmoothScroll() {
-    const lenisRef = useRef<Lenis | null>(null);
-
     useEffect(() => {
         const lenis = new Lenis({
             duration: 1.2,
@@ -31,12 +29,17 @@ export default function SmoothScroll() {
             infinite: false,
         });
 
-        lenisRef.current = lenis;
-
-        const unsubscribe = Tempus.add((time: number) => {
+        Tempus.add((time: number) => {
             lenis.raf(time);
-            scrollCallbacks.forEach((cb) => cb(lenis.scroll));
         });
+
+        let rafRunning = true;
+        const rafLoop = () => {
+            if (!rafRunning) return;
+            scrollCallbacks.forEach((cb) => cb(lenis.animatedScroll));
+            requestAnimationFrame(rafLoop);
+        };
+        requestAnimationFrame(rafLoop);
 
         const handleAnchorClick = (e: MouseEvent) => {
             const target = e.target as HTMLElement;
@@ -57,7 +60,7 @@ export default function SmoothScroll() {
         document.addEventListener('click', handleAnchorClick);
 
         return () => {
-            unsubscribe?.();
+            rafRunning = false;
             lenis.destroy();
             document.removeEventListener('click', handleAnchorClick);
         };
