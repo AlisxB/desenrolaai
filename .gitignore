@@ -44,6 +44,8 @@ next-env.d.ts
 .context/
 AGENTS.md
 Obsidian Aura Design System
+.opencode/
+.cursor/
 
 # IDEs
 .vscode/
