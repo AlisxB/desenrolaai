@@ -4,11 +4,12 @@ import { useEffect, useRef } from 'react';
 import Lenis from 'lenis';
 import Tempus from 'tempus';
 
+export let lenisInstance: Lenis | null = null;
+
 export default function SmoothScroll() {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    // Initialize Lenis
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -21,6 +22,7 @@ export default function SmoothScroll() {
     });
 
     lenisRef.current = lenis;
+    lenisInstance = lenis;
 
     // Connect Lenis to Tempus for optimized frame synchronization
     const unsubscribe = Tempus.add((time: number) => {
