@@ -16,15 +16,12 @@
     background: linear-gradient(
         90deg,
         transparent 0%,
-        rgba(81, 217, 254, 0.6) 20%,
-        rgba(81, 217, 254, 0.9) 50%,
-        rgba(81, 217, 254, 0.6) 80%,
+        rgba(81, 217, 254, 0.8) 20%,
+        rgba(81, 217, 254, 1) 50%,
+        rgba(81, 217, 254, 0.8) 80%,
         transparent 100%
     );
     animation: scanDown 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-    box-shadow:
-        0 0 8px rgba(81, 217, 254, 0.6),
-        0 0 20px rgba(81, 217, 254, 0.3);
 }
 
 .scanGlow {
