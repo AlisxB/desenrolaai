@@ -31,15 +31,8 @@ export default function SmoothScroll() {
 
         Tempus.add((time: number) => {
             lenis.raf(time);
-        });
-
-        let rafRunning = true;
-        const rafLoop = () => {
-            if (!rafRunning) return;
             scrollCallbacks.forEach((cb) => cb(lenis.animatedScroll));
-            requestAnimationFrame(rafLoop);
-        };
-        requestAnimationFrame(rafLoop);
+        });
 
         const handleAnchorClick = (e: MouseEvent) => {
             const target = e.target as HTMLElement;
@@ -60,7 +53,6 @@ export default function SmoothScroll() {
         document.addEventListener('click', handleAnchorClick);
 
         return () => {
-            rafRunning = false;
             lenis.destroy();
             document.removeEventListener('click', handleAnchorClick);
         };
