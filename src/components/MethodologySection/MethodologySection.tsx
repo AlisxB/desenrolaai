@@ -83,7 +83,7 @@ export default function MethodologySection() {
 
                 <div className={styles.header}>
                     <span className="tag">
-                        <Search size={14} style={{ display: 'inline', marginRight: '6px', verticalAlign: 'middle' }} />
+                        <Search size={14} />
                         O MÉTODO
                     </span>
                     <h2 className={styles.title}>
