@@ -12,13 +12,13 @@ export function initAnalytics(): void {
     if (typeof window === 'undefined') return;
 
     if (hasCategoryConsent('analytics')) {
-        initGoogleAnalytics();
-        initHotjar();
+        initGoogleAnalytics(process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID);
+        initHotjar(process.env.NEXT_PUBLIC_HOTJAR_SITE_ID);
     }
 
     if (hasCategoryConsent('marketing')) {
-        initMetaPixel();
-        initGoogleAds();
+        initMetaPixel(process.env.NEXT_PUBLIC_META_PIXEL_ID);
+        initGoogleAds(process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID);
     }
 }
 
