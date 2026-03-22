@@ -1,41 +1,42 @@
 'use client';
 
 import { useRef, useState, useEffect, useCallback } from 'react';
+import { ShoppingCart, Stethoscope, Code2, Heart, Building2, Briefcase } from 'lucide-react';
 import styles from './CasesCarousel.module.css';
 
 const cases = [
     {
         segment: 'E-commerce',
-        emoji: '🛍️',
+        Icon: ShoppingCart,
         accent: '#51D9FE',
         tag: 'Automação de Vendas',
         title: 'Recuperação de Carrinho via WhatsApp',
     },
     {
         segment: 'Clínicas & Saúde',
-        emoji: '🏥',
-        accent: '#BCCF1C',
+        Icon: Stethoscope,
+        accent: '#51D9FE',
         tag: 'Gestão de Pacientes',
         title: 'Follow-up de Consultas Automatizado',
     },
     {
         segment: 'SaaS & Tech',
-        emoji: '💻',
-        accent: '#A78BFA',
+        Icon: Code2,
+        accent: '#51D9FE',
         tag: 'Automação de Processos',
         title: 'Onboarding de Clientes Escalável',
     },
     {
         segment: 'Pet Shops',
-        emoji: '🐾',
-        accent: '#FB923C',
+        Icon: Heart,
+        accent: '#51D9FE',
         tag: 'Fidelização',
         title: 'Reativação de Clientes Inativos',
     },
     {
         segment: 'Imobiliárias',
-        emoji: '🏠',
-        accent: '#34D399',
+        Icon: Building2,
+        accent: '#51D9FE',
         tag: 'Qualificação de Leads',
         title: 'Qualificação 24/7 com IA',
     },
@@ -157,7 +158,10 @@ export default function CasesCarousel() {
 
                 {/* Header */}
                 <div className={`container ${styles.header}`}>
-                    <span className="tag">📂 Cases Reais</span>
+                    <span className="tag">
+                        <Briefcase size={14} />
+                        Cases Reais
+                    </span>
                     <h2 className={styles.title}>
                         Resultado de verdade,<br />
                         <span className={styles.titleAccent}>em cada segmento</span>
@@ -212,7 +216,7 @@ export default function CasesCarousel() {
                                 {/* Visual Placeholder / Image Area */}
                                 <div className={styles.imageArea}>
                                     <div className={styles.imagePlaceholder}>
-                                        <div className={styles.placeholderIcon}>{c.emoji}</div>
+                                        <c.Icon size={48} strokeWidth={1.5} className={styles.placeholderIcon} />
                                         <span className={styles.placeholderText}>Espaço para imagem</span>
                                     </div>
                                     <div className={styles.imageOverlay}>
@@ -240,7 +244,7 @@ export default function CasesCarousel() {
                             className={styles.progressFill}
                             style={{
                                 width: `${((activeFloat) / (cases.length - 1)) * 100}%`,
-                                background: `linear-gradient(90deg, var(--accent-blue), ${currentCase.accent})`,
+                                background: 'var(--accent-blue)',
                                 transition: 'background 600ms ease',
                             }}
                         />
