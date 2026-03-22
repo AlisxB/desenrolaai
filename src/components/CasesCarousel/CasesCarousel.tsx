@@ -252,11 +252,9 @@ export default function CasesCarousel() {
                                 key={i}
                                 className={`${styles.dot} ${i === active ? styles.dotActive : ''}`}
                                 onClick={() => goTo(i)}
-                                aria-label={`Ir para case ${c.segment}`}
+                                aria-label={`Ir para case ${i + 1}`}
                                 style={{ '--dot-accent': c.accent } as React.CSSProperties}
-                            >
-                                <span className={styles.dotLabel}>{c.segment}</span>
-                            </button>
+                            />
                         ))}
                     </div>
 

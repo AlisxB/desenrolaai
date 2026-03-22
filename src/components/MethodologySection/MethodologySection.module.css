@@ -199,16 +199,17 @@
 }
 
 .stepTitle {
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 700;
     color: var(--text-primary);
-    font-family: var(--font-league-spartan), sans-serif;
+    font-family: var(--font-heading);
 }
 
 .stepDesc {
-    font-size: 11px;
+    font-size: 14px;
     color: var(--text-secondary);
     line-height: 1.4;
+    font-family: var(--font-archivo);
 }
 
 .dot {
