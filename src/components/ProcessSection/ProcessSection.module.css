@@ -2,7 +2,7 @@
     position: relative;
     padding: var(--space-3xl) 0;
     overflow: hidden;
-    background: #000;
+    background: var(--bg-primary);
 }
 
 .inner {

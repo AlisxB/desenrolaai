@@ -227,7 +227,29 @@ a:hover {
 
 /* Sections */
 .section {
+  position: relative;
   padding: var(--space-xl) 0;
+}
+
+.section::before,
+.section::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 60px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.section::before {
+  top: 0;
+  background: linear-gradient(to bottom, rgba(0, 4, 10, 0.6) 0%, rgba(0, 4, 10, 0) 100%);
+}
+
+.section::after {
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0, 4, 10, 0.6) 0%, rgba(0, 4, 10, 0) 100%);
 }
 
 .section-head {
