@@ -24,7 +24,7 @@ export default function Footer() {
                     <div>
                         <h4 className={styles.heading}>Empresa</h4>
                         <Link href="#" className={styles.link}>Sobre Nós</Link>
-                        <Link href="/blog" className={styles.link}>Blog</Link>
+
                         <Link href="#contato" className={styles.link}>Contato</Link>
                         <Link href="/termos-de-uso" className={styles.link}>Termos de Uso</Link>
                         <Link href="/politica-de-privacidade" className={styles.link}>Política de Privacidade</Link>

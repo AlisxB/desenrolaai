@@ -4,6 +4,8 @@ import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Zap } from 'lucide-react';
 import styles from './Hero.module.css';
+import NeuralPulse from './NeuralPulse';
+import HolographicScanner from './HoloScanner';
 import { onLenisScroll } from '@/components/SmoothScroll/SmoothScroll';
 
 export default function Hero() {
@@ -74,6 +76,12 @@ export default function Hero() {
 
     return (
         <header className={styles.hero}>
+            {/* Neural Pulse */}
+            <NeuralPulse />
+
+            {/* Holographic Scanner */}
+            <HolographicScanner />
+
             {/* Ambient Floating Elements */}
             <div className={styles.ambientContainer} aria-hidden="true">
                 <div className={`${styles.floatElement} ${styles.floatCircle1}`} />

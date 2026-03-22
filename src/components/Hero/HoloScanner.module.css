@@ -1,0 +1,104 @@
+.container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    overflow: hidden;
+    contain: layout;
+}
+
+.scanLine {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(81, 217, 254, 0.6) 20%,
+        rgba(81, 217, 254, 0.9) 50%,
+        rgba(81, 217, 254, 0.6) 80%,
+        transparent 100%
+    );
+    animation: scanDown 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    box-shadow:
+        0 0 8px rgba(81, 217, 254, 0.6),
+        0 0 20px rgba(81, 217, 254, 0.3);
+}
+
+.scanGlow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(
+        180deg,
+        rgba(81, 217, 254, 0.06) 0%,
+        transparent 100%
+    );
+    animation: scanDown 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    pointer-events: none;
+}
+
+.reflection {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        transparent 3px,
+        rgba(81, 217, 254, 0.012) 3px,
+        rgba(81, 217, 254, 0.012) 4px
+    );
+    pointer-events: none;
+    animation: flicker 8s ease-in-out infinite;
+}
+
+@keyframes scanDown {
+    0% {
+        transform: translateY(-2px);
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    85% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(calc(100vh + 2px));
+        opacity: 0;
+    }
+}
+
+@keyframes flicker {
+    0%, 100% {
+        opacity: 1;
+    }
+    92% {
+        opacity: 1;
+    }
+    93% {
+        opacity: 0.3;
+    }
+    94% {
+        opacity: 1;
+    }
+    96% {
+        opacity: 0.5;
+    }
+    97% {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 968px) {
+    .container {
+        display: none;
+    }
+}

@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
-import { X, Users, Zap, BarChart3, Star, BookOpen } from 'lucide-react';
+import { X, Users, Zap, BarChart3, Star } from 'lucide-react';
 import styles from './MobileMenu.module.css';
 
 interface MobileMenuProps {
@@ -15,7 +15,7 @@ const navItems = [
   { href: '#solucoes', label: 'Soluções', icon: Zap },
   { href: '#diferenciais', label: 'Diferenciais', icon: BarChart3 },
   { href: '#resultados', label: 'Resultados', icon: Star },
-  { href: '/blog', label: 'Blog', icon: BookOpen },
+
 ];
 
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {

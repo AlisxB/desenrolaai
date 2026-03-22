@@ -12,7 +12,7 @@ const navItems = [
     { href: '#solucoes', label: 'Soluções' },
     { href: '#diferenciais', label: 'Diferenciais' },
     { href: '#resultados', label: 'Resultados' },
-    { href: '/blog', label: 'Blog' },
+
 ];
 
 export default function Navbar() {

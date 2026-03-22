@@ -1,0 +1,61 @@
+.container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    overflow: hidden;
+    contain: layout;
+}
+
+.svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.pulse {
+    opacity: 0;
+    animation: pulseTravel ease-in-out infinite;
+}
+
+@keyframes pulseTravel {
+    0% {
+        opacity: 0;
+    }
+    8% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 1;
+    }
+    92% {
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.node {
+    opacity: 0;
+    animation: nodeGlow ease-in-out infinite;
+}
+
+@keyframes nodeGlow {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(0.8);
+        transform-origin: center;
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.4);
+    }
+}
+
+@media (max-width: 968px) {
+    .container {
+        display: none;
+    }
+}
