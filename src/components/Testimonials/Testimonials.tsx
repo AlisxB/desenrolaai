@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { MessageSquare, Users } from 'lucide-react';
 import styles from './Testimonials.module.css';
@@ -75,17 +75,28 @@ const testimonials = [
 
 export default function Testimonials() {
     const [active, setActive] = useState(0);
-    const [isExiting, setIsExiting] = useState(false);
+    const [leaving, setLeaving] = useState(false);
+    const [contentKey, setContentKey] = useState(0);
+    const isPausedRef = useRef(false);
     const hero = testimonials[active];
 
     const handleSwitch = (index: number) => {
-        if (index === active) return;
-        setIsExiting(true);
+        if (index === active || leaving) return;
+        setLeaving(true);
         setTimeout(() => {
             setActive(index);
-            setIsExiting(false);
-        }, 300);
+            setContentKey((k) => k + 1);
+            setLeaving(false);
+        }, 450);
     };
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (isPausedRef.current) return;
+            handleSwitch((active + 1) % testimonials.length);
+        }, 8000);
+        return () => clearInterval(interval);
+    }, [active, leaving]);
 
     return (
         <section className={styles.section} id="depoimentos">
@@ -114,14 +125,18 @@ export default function Testimonials() {
                 </div>
 
                 {/* Main Hero Showcase */}
-                <div className={`${styles.showcase} ${isExiting ? styles.fadeOut : styles.fadeIn}`}>
-                    <div className={styles.showcaseContent}>
-                        <div className={styles.tagBadge} style={{ '--accent': hero.accent } as React.CSSProperties}>
+                <div
+                    className={`${styles.showcase} ${leaving ? styles.leaving : ''}`}
+                    onMouseEnter={() => { isPausedRef.current = true; }}
+                    onMouseLeave={() => { isPausedRef.current = false; }}
+                >
+                    <div className={`${styles.showcaseContent} ${leaving ? styles.contentLeaving : styles.contentEnter}`} key={contentKey}>
+                        <div className={`${styles.tagBadge} ${leaving ? styles.tagLeaving : ''}`} style={{ '--accent': hero.accent } as React.CSSProperties}>
                             {hero.tag}
                         </div>
-                        <h3 className={styles.heroQuote}>{hero.quote}</h3>
+                        <h3 className={`${styles.heroQuote} ${leaving ? styles.quoteLeaving : ''}`}>{hero.quote}</h3>
 
-                        <div className={styles.heroFooter}>
+                        <div className={`${styles.heroFooter} ${leaving ? styles.footerLeaving : ''}`}>
                             <div className={styles.authorInfo}>
                                 <strong className={styles.authorName}>{hero.name}</strong>
                                 <span className={styles.authorRole}>{hero.role}</span>
@@ -130,7 +145,7 @@ export default function Testimonials() {
                         </div>
                     </div>
 
-                    <div className={styles.showcaseImage}>
+                    <div className={`${styles.showcaseImage} ${leaving ? styles.imageLeaving : styles.imageEnter}`} key={`img-${contentKey}`}>
                         <Image
                             src={hero.image}
                             alt={hero.name}

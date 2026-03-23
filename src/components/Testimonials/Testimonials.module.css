@@ -240,19 +240,65 @@
     opacity: 0.7;
 }
 
-/* ── States & Animations ────────────────────────────────────────────────── */
-.fadeIn {
-    animation: fadeIn 0.4s ease forwards;
+/* ── Transition States ─────────────────────────────────────────────────── */
+.showcaseContent,
+.showcaseImage,
+.tagBadge,
+.heroQuote,
+.heroFooter {
+    transition: none;
 }
 
-.fadeOut {
-    animation: fadeOut 0.3s ease forwards;
+/* Enter animations (play when component mounts or content swaps) */
+.contentEnter {
+    animation: contentFadeIn 0.45s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
 }
 
-@keyframes fadeIn {
+.imageEnter {
+    animation: imageFadeIn 0.45s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.tagBadge:not(.tagLeaving) {
+    animation: contentFadeIn 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0.25s both;
+}
+
+.heroQuote:not(.quoteLeaving) {
+    animation: contentFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.35s both;
+}
+
+.heroFooter:not(.footerLeaving) {
+    animation: contentFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.15s both;
+}
+
+/* Leaving animations — staggered out via animation-delay */
+.leaving {
+    animation: none;
+}
+
+.contentLeaving {
+    animation: contentFadeOut 0.25s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.imageLeaving {
+    animation: imageFadeOut 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.1s both;
+}
+
+.tagLeaving {
+    animation: contentFadeOut 0.2s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.quoteLeaving {
+    animation: contentFadeOut 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0.06s both;
+}
+
+.footerLeaving {
+    animation: contentFadeOut 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0.14s both;
+}
+
+@keyframes contentFadeIn {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(12px);
     }
 
     to {
@@ -261,7 +307,19 @@
     }
 }
 
-@keyframes fadeOut {
+@keyframes imageFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(1.04);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes contentFadeOut {
     from {
         opacity: 1;
         transform: translateY(0);
@@ -269,7 +327,19 @@
 
     to {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes imageFadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.97);
     }
 }
 
