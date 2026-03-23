@@ -41,6 +41,9 @@ const methodologySteps = [
 
 export default function MethodologySection() {
     const containerRef = useRef<HTMLElement>(null);
+    const [isMobile, setIsMobile] = useState(false);
+    const [activeStep, setActiveStep] = useState(0);
+    const [desktopStep, setDesktopStep] = useState(0);
 
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -54,14 +57,45 @@ export default function MethodologySection() {
         return 3;
     });
 
-    const [step, setStep] = useState(0);
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 769);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     useEffect(() => {
-        const unsubscribe = activeIndex.on('change', (latest) => {
-            setStep(latest);
-        });
-        return () => unsubscribe();
-    }, [activeIndex]);
+        if (!isMobile) {
+            const unsubscribe = activeIndex.on('change', (latest) => {
+                setDesktopStep(Math.round(latest));
+            });
+            return () => unsubscribe();
+        }
+    }, [activeIndex, isMobile]);
+
+    useEffect(() => {
+        if (!isMobile || !containerRef.current) return;
+
+        const container = containerRef.current;
+        const scrollHandler = () => {
+            const rect = container.getBoundingClientRect();
+            const scrollableHeight = rect.height - window.innerHeight;
+            const scrolled = -rect.top;
+            
+            if (scrollableHeight <= 0) return;
+            
+            const progress = Math.max(0, Math.min(1, scrolled / scrollableHeight));
+            const step = Math.floor(progress * methodologySteps.length);
+            const clampedStep = Math.min(step, methodologySteps.length - 1);
+            
+            setActiveStep(clampedStep);
+        };
+
+        window.addEventListener('scroll', scrollHandler, { passive: true });
+        scrollHandler();
+
+        return () => window.removeEventListener('scroll', scrollHandler);
+    }, [isMobile]);
 
     const bgColor = useTransform(
         scrollYProgress,
@@ -69,10 +103,11 @@ export default function MethodologySection() {
         methodologySteps.map(s => s.color)
     );
 
+    const barHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
+
     return (
         <section ref={containerRef} className={styles.section} id="metodo">
             <div className={styles.stickyContainer}>
-                {/* Background Effects */}
                 <div className={styles.backgroundEffects}>
                     <div className={styles.grid} />
                     <motion.div
@@ -93,50 +128,91 @@ export default function MethodologySection() {
                 </div>
 
                 <div className={`container ${styles.inner}`}>
-                    {/* Main Image Card */}
                     <div className={styles.cardContainer}>
-                        <AnimatePresence mode="wait">
-                            <motion.div
-                                key={step}
-                                className={styles.card}
-                                initial={{ opacity: 0, scale: 0.9, filter: 'blur(10px)' }}
-                                animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-                                exit={{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }}
-                                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                            >
-                                <div className={styles.imagePlaceholder}>
-                                    <Image
-                                        src={methodologySteps[step].image}
-                                        alt={`Passo ${step + 1}: ${methodologySteps[step].title}`}
-                                        fill
-                                        sizes="100vw"
-                                        style={{ objectFit: 'cover' }}
-                                        priority
-                                    />
-                                </div>
-                            </motion.div>
-                        </AnimatePresence>
+                        {isMobile ? (
+                            <div className={styles.cardsWrapper}>
+                                {methodologySteps.map((s, i) => {
+                                    const isActive = i === activeStep;
+                                    const isPast = i < activeStep;
+                                    
+                                    return (
+                                        <div
+                                            key={s.id}
+                                            className={`${styles.cardItem} ${isActive ? styles.cardActive : ''} ${isPast ? styles.cardPast : ''}`}
+                                            style={{
+                                                '--card-index': i,
+                                            } as React.CSSProperties}
+                                        >
+                                            <div className={styles.cardContent}>
+                                                <div className={styles.imageWrapper}>
+                                                    <Image
+                                                        src={s.image}
+                                                        alt={`Passo ${i + 1}: ${s.title}`}
+                                                        fill
+                                                        sizes="100vw"
+                                                        style={{ objectFit: 'cover' }}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        ) : (
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={desktopStep}
+                                    className={styles.card}
+                                    initial={{ opacity: 0, scale: 0.9, filter: 'blur(10px)' }}
+                                    animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                                    exit={{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }}
+                                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                                >
+                                    <div className={styles.imagePlaceholder}>
+                                        <Image
+                                            src={methodologySteps[desktopStep].image}
+                                            alt={`Passo ${desktopStep + 1}: ${methodologySteps[desktopStep].title}`}
+                                            fill
+                                            sizes="100vw"
+                                            style={{ objectFit: 'cover' }}
+                                            priority
+                                        />
+                                    </div>
+                                </motion.div>
+                            </AnimatePresence>
+                        )}
                     </div>
 
-                    {/* Vertical Steps Sidebar */}
                     <div className={styles.sidebar}>
-                        <div className={styles.verticalProgress}>
-                            <motion.div
-                                className={styles.verticalBar}
-                                style={{ height: useTransform(scrollYProgress, [0, 1], ['0%', '100%']) }}
-                            />
+                        {isMobile ? (
                             <div className={styles.dotsContainer}>
-                                {[3, 2, 1, 0].map((i) => (
-                                    <Dot
-                                        key={i}
-                                        index={i}
-                                        activeIndex={step}
-                                        step={methodologySteps[i]}
-                                        Icon={stepIcons[i]}
+                                {methodologySteps.map((s, i) => (
+                                    <div
+                                        key={s.id}
+                                        className={`${styles.dot} ${i === activeStep ? styles.dotActive : ''}`}
+                                        aria-label={`Passo ${i + 1}: ${s.title}`}
                                     />
                                 ))}
                             </div>
-                        </div>
+                        ) : (
+                            <div className={styles.verticalProgress}>
+                                <motion.div
+                                    className={styles.verticalBar}
+                                    style={{ height: barHeight }}
+                                />
+                                <div className={styles.dotsContainer}>
+                                    {[3, 2, 1, 0].map((i) => (
+                                        <Dot
+                                            key={i}
+                                            index={i}
+                                            activeIndex={desktopStep}
+                                            step={methodologySteps[i]}
+                                            Icon={stepIcons[i]}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
