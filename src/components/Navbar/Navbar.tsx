@@ -9,10 +9,9 @@ import MobileMenu from '@/components/MobileMenu/MobileMenu';
 
 const navItems = [
     { href: '#fundadores', label: 'Fundadores' },
-    { href: '#solucoes', label: 'Soluções' },
-    { href: '#diferenciais', label: 'Diferenciais' },
-    { href: '#resultados', label: 'Resultados' },
-
+    { href: '/servicos', label: 'Soluções' },
+    { href: '/portfolio', label: 'Portfólio' },
+    { href: '/sobre', label: 'Sobre' },
 ];
 
 export default function Navbar() {
@@ -67,7 +66,7 @@ export default function Navbar() {
                         ))}
                     </div>
                     <Link
-                        href="#contato"
+                        href="/contato"
                         className={`btn btn-primary ${styles.navCta}`}
                         data-cursor="pointer"
                     >
@@ -83,7 +82,7 @@ export default function Navbar() {
                     </button>
                 </div>
             </nav>
-            <MobileMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
+            <MobileMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} navItems={navItems} ctaHref="/contato" ctaLabel="Fale Conosco" />
         </>
     );
 }

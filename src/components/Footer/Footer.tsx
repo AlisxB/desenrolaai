@@ -17,15 +17,17 @@ export default function Footer() {
                     </div>
                     <div>
                         <h4 className={styles.heading}>Plataforma</h4>
-                        <Link href="#solucoes" className={styles.link}>Soluções</Link>
+                        <Link href="/servicos" className={styles.link}>Serviços</Link>
+                        <Link href="/portfolio" className={styles.link}>Portfólio</Link>
                         <Link href="#diferenciais" className={styles.link}>Diferenciais</Link>
-                        <Link href="#resultados" className={styles.link}>Resultados</Link>
                     </div>
                     <div>
                         <h4 className={styles.heading}>Empresa</h4>
-                        <Link href="#" className={styles.link}>Sobre Nós</Link>
-
-                        <Link href="#contato" className={styles.link}>Contato</Link>
+                        <Link href="/sobre" className={styles.link}>Sobre Nós</Link>
+                        <Link href="/contato" className={styles.link}>Contato</Link>
+                    </div>
+                    <div>
+                        <h4 className={styles.heading}>Legal</h4>
                         <Link href="/termos-de-uso" className={styles.link}>Termos de Uso</Link>
                         <Link href="/politica-de-privacidade" className={styles.link}>Política de Privacidade</Link>
                         <Link href="/politica-de-privacidade#cookies" className={styles.link}>Cookies</Link>
@@ -38,7 +40,7 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className={styles.footerBottom}>
-                    <div>© {year} DesenrolaAI. Todos os direitos reservados.</div>
+                    <div>© {year} DesenrolaAI Soluções Inteligentes LTDA. Todos os direitos reservados.</div>
                     <div className={styles.legal}>
                         <Link href="/termos-de-uso" className={styles.legalLink}>Termos de Uso</Link>
                         <Link href="/politica-de-privacidade" className={styles.legalLink}>Política de Privacidade</Link>
