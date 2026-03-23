@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Linkedin, Instagram } from 'lucide-react';
 import styles from './Footer.module.css';
 import CookieSettingsButton from '@/components/CookieConsent/CookieSettingsButton';
 
@@ -14,6 +15,14 @@ export default function Footer() {
                             Tecnologia que descomplica.<br />
                             Soluções sob medida para empresas que visam o futuro.
                         </p>
+                        <div className={styles.social}>
+                            <a href="#" className={styles.socialLink} aria-label="LinkedIn">
+                                <Linkedin size={18} />
+                            </a>
+                            <a href="#" className={styles.socialLink} aria-label="Instagram">
+                                <Instagram size={18} />
+                            </a>
+                        </div>
                     </div>
                     <div>
                         <h4 className={styles.heading}>Plataforma</h4>
@@ -32,11 +41,6 @@ export default function Footer() {
                         <Link href="/politica-de-privacidade" className={styles.link}>Política de Privacidade</Link>
                         <Link href="/politica-de-privacidade#cookies" className={styles.link}>Cookies</Link>
                         <CookieSettingsButton />
-                    </div>
-                    <div>
-                        <h4 className={styles.heading}>Social</h4>
-                        <a href="#" className={styles.link}>LinkedIn</a>
-                        <a href="#" className={styles.link}>Instagram</a>
                     </div>
                 </div>
                 <div className={styles.footerBottom}>
