@@ -1,0 +1,143 @@
+.section {
+    padding: var(--space-2xl) 0;
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.filterBtn {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-secondary);
+    padding: 10px 20px;
+    border-radius: var(--radius-pill);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: var(--font-archivo), sans-serif;
+}
+
+.filterBtn:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    color: var(--text-primary);
+}
+
+.filterActive {
+    background: rgba(81, 217, 254, 0.1);
+    border-color: rgba(81, 217, 254, 0.3);
+    color: var(--accent-blue);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.card {
+    background: var(--bg-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    cursor: default;
+}
+
+.card:hover {
+    border-color: rgba(81, 217, 254, 0.2);
+    box-shadow: var(--glow-cyan);
+    transform: translateY(-4px);
+}
+
+.imageWrapper {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+}
+
+.image {
+    object-fit: cover;
+    object-position: center top;
+    transition: transform 0.4s ease;
+}
+
+.card:hover .image {
+    transform: scale(1.04);
+}
+
+.imageOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(0, 4, 10, 0.9) 0%, rgba(0, 4, 10, 0.3) 50%, transparent 100%);
+    z-index: 1;
+}
+
+.category {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    background: rgba(0, 4, 10, 0.7);
+    backdrop-filter: blur(8px);
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+.content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.result {
+    font-size: 20px;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    letter-spacing: -0.5px;
+}
+
+.client {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+}
+
+.description {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 1200px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
