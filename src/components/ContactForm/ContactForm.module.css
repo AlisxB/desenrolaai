@@ -133,4 +133,29 @@
     .row {
         grid-template-columns: 1fr;
     }
+
+    .input,
+    .select,
+    .textarea {
+        font-size: 16px;
+        padding: 12px 14px;
+    }
+
+    .textarea {
+        min-height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .input,
+    .select,
+    .textarea {
+        font-size: 15px;
+        padding: 12px;
+    }
+
+    .submit {
+        width: 100%;
+        padding: 16px;
+    }
 }

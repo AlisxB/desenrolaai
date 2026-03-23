@@ -15,7 +15,6 @@ const testimonials = [
         shortQuote: 'Agenda sempre cheia sem esforço manual',
         result: '+R$22k/mês',
         category: 'Clínica & Saúde',
-        accent: '#51D9FE',
         image: '/testimonials/rafael.png',
         tag: 'Destaque do Mês'
     },
@@ -28,7 +27,6 @@ const testimonials = [
         shortQuote: 'R$14k recuperados em tempo recorde',
         result: 'ROI de 8x',
         category: 'E-commerce',
-        accent: '#BCCF1C',
         image: '/testimonials/camila.png',
         tag: 'Sucesso em Vendas'
     },
@@ -41,7 +39,6 @@ const testimonials = [
         shortQuote: 'Atendimento 24/7 sem intervenção humana',
         result: '3x mais leads',
         category: 'Marketing',
-        accent: '#A78BFA',
         image: '/testimonials/diego.png',
         tag: 'Inovação Digital'
     },
@@ -54,7 +51,6 @@ const testimonials = [
         shortQuote: 'Processos 100% automatizados',
         result: '-4h/dia',
         category: 'Serviços',
-        accent: '#FB923C',
         image: '/testimonials/patricia.png',
         tag: 'Eficiência Operacional'
     },
@@ -67,7 +63,6 @@ const testimonials = [
         shortQuote: 'Onboarding de 5h para 15 minutos',
         result: 'Churn -22%',
         category: 'SaaS',
-        accent: '#34D399',
         image: '/testimonials/lucas.png',
         tag: 'Escalabilidade'
     },
@@ -131,7 +126,7 @@ export default function Testimonials() {
                     onMouseLeave={() => { isPausedRef.current = false; }}
                 >
                     <div className={`${styles.showcaseContent} ${leaving ? styles.contentLeaving : styles.contentEnter}`} key={contentKey}>
-                        <div className={`${styles.tagBadge} ${leaving ? styles.tagLeaving : ''}`} style={{ '--accent': hero.accent } as React.CSSProperties}>
+                        <div className={`${styles.tagBadge} ${leaving ? styles.tagLeaving : ''}`}>
                             {hero.tag}
                         </div>
                         <h3 className={`${styles.heroQuote} ${leaving ? styles.quoteLeaving : ''}`}>{hero.quote}</h3>
@@ -190,7 +185,7 @@ export default function Testimonials() {
             </div>
 
             {/* Background elements */}
-            <div className={styles.ambientGlow} style={{ '--accent': hero.accent } as React.CSSProperties} />
+            <div className={styles.ambientGlow} />
         </section>
     );
 }

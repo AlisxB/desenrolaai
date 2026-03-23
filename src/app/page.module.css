@@ -13,10 +13,16 @@
 }
 
 .introTitle {
-  font-size: var(--font-h2);
+  font-size: clamp(24px, 4vw, var(--font-h2));
   margin-bottom: var(--space-sm);
 }
 
 .introDesc {
   composes: section-desc from global;
+}
+
+@media (max-width: 640px) {
+  .introCard {
+    padding: var(--space-md);
+  }
 }

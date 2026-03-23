@@ -44,36 +44,41 @@
     border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: var(--radius-lg);
     overflow: hidden;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: default;
 }
 
 .card:hover {
-    border-color: rgba(81, 217, 254, 0.2);
-    box-shadow: var(--glow-cyan);
+    border-color: rgba(81, 217, 254, 0.25);
     transform: translateY(-4px);
+    box-shadow: var(--glow-cyan);
 }
 
 .imageWrapper {
     position: relative;
     height: 220px;
     overflow: hidden;
+    background: linear-gradient(135deg, rgba(81, 217, 254, 0.05) 0%, rgba(0, 4, 10, 0.5) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.image {
-    object-fit: cover;
-    object-position: center top;
-    transition: transform 0.4s ease;
+.imagePlaceholder {
+    color: var(--accent-blue);
+    opacity: 0.4;
+    transition: all 0.3s ease;
 }
 
-.card:hover .image {
-    transform: scale(1.04);
+.card:hover .imagePlaceholder {
+    opacity: 0.7;
+    transform: scale(1.1);
 }
 
 .imageOverlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(0deg, rgba(0, 4, 10, 0.9) 0%, rgba(0, 4, 10, 0.3) 50%, transparent 100%);
+    background: linear-gradient(0deg, rgba(0, 4, 10, 0.85) 0%, rgba(0, 4, 10, 0.2) 50%, transparent 100%);
     z-index: 1;
 }
 
@@ -89,12 +94,12 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: var(--accent);
+    color: var(--accent-blue);
     background: rgba(0, 4, 10, 0.7);
     backdrop-filter: blur(8px);
     padding: 6px 14px;
     border-radius: var(--radius-pill);
-    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+    border: 1px solid rgba(81, 217, 254, 0.2);
 }
 
 .content {
@@ -115,6 +120,7 @@
     font-weight: 800;
     font-family: var(--font-heading);
     letter-spacing: -0.5px;
+    color: var(--accent-blue);
 }
 
 .client {

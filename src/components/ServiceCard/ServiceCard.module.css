@@ -122,3 +122,13 @@
         grid-template-columns: 1fr;
     }
 }
+
+@media (max-width: 640px) {
+    .card {
+        padding: 24px;
+    }
+
+    .title {
+        font-size: clamp(18px, 2vw, 24px);
+    }
+}
