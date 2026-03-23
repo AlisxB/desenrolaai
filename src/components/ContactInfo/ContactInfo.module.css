@@ -28,6 +28,13 @@
     justify-content: center;
     color: var(--accent-blue);
     flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.item:hover .iconWrapper {
+    background: rgba(81, 217, 254, 0.15);
+    border-color: rgba(81, 217, 254, 0.3);
+    transform: scale(1.05);
 }
 
 .label {
@@ -43,6 +50,11 @@
     font-size: 16px;
     font-weight: 600;
     color: var(--text-primary);
+    transition: color 0.2s ease;
+}
+
+.item:hover .value {
+    color: var(--accent-blue);
 }
 
 .sub {
@@ -75,6 +87,7 @@
     background: rgba(81, 217, 254, 0.1);
     border-color: rgba(81, 217, 254, 0.3);
     color: var(--accent-blue);
+    transform: translateY(-2px);
 }
 
 .mapWrapper {
@@ -83,6 +96,12 @@
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.06);
     height: 360px;
+    transition: all 0.3s ease;
+}
+
+.mapWrapper:hover {
+    border-color: rgba(81, 217, 254, 0.25);
+    box-shadow: 0 0 30px rgba(81, 217, 254, 0.1);
 }
 
 .map {
@@ -91,6 +110,12 @@
     border: none;
     filter: grayscale(0.8) invert(1) contrast(0.9) brightness(0.85);
     opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.mapWrapper:hover .map {
+    opacity: 0.85;
+    transform: scale(1.02);
 }
 
 .mapOverlay {
@@ -98,6 +123,35 @@
     inset: 0;
     background: linear-gradient(135deg, rgba(0, 4, 10, 0.3) 0%, transparent 60%);
     pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.mapWrapper:hover .mapOverlay {
+    opacity: 0;
+}
+
+.mapPulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(81, 217, 254, 0.3);
+    animation: pulse 2s infinite;
+    pointer-events: none;
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(3);
+        opacity: 0;
+    }
 }
 
 @media (max-width: 1024px) {

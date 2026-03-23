@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
 import ServicesHero from './ServicesHero';
 import ServiceCards from '@/components/ServiceCard/ServiceCard';
 import ServiceProcess from '@/components/ServiceProcess/ServiceProcess';
 import ServiceFAQ from '@/components/ServiceFAQ/ServiceFAQ';
+import AnimatedCTA from '@/components/AnimatedCTA/AnimatedCTA';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
@@ -23,25 +22,29 @@ export default function ServicosPage() {
     return (
         <>
             <ServicesHero />
+            
+            <section className={styles.servicesSection}>
+                <div className="container">
+                    <div className={styles.sectionHeader}>
+                        <span className="tag">O que fazemos</span>
+                        <h2 className={styles.sectionTitle}>Soluções completas para o seu crescimento</h2>
+                        <p className={styles.sectionDesc}>
+                            Cada negócio é único. Por isso, cada solução é desenvolvida sob medida,
+                            com tecnologia de ponta e foco em resultado mensurável.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
             <ServiceCards />
             <ServiceProcess />
             <ServiceFAQ />
 
-            <section className={styles.cta}>
-                <div className="container">
-                    <div className={styles.ctaInner}>
-                        <h2 className={styles.ctaTitle}>Pronto para automatizar o seu negócio?</h2>
-                        <p className={styles.ctaDesc}>
-                            Agende uma conversa sem compromisso e descubra como a DesenrolaAI pode
-                            acelerar os seus resultados com tecnologia.
-                        </p>
-                        <Link href="/contato" className={`btn btn-primary ${styles.ctaBtn}`}>
-                            Solicitar diagnóstico gratuito
-                            <ArrowRight size={16} />
-                        </Link>
-                    </div>
-                </div>
-            </section>
+            <AnimatedCTA
+                title="Pronto para automatizar o seu negócio?"
+                description="Agende uma conversa sem compromisso e descubra como a DesenrolaAI pode acelerar os seus resultados com tecnologia."
+                buttonText="Solicitar diagnóstico gratuito"
+            />
         </>
     );
 }

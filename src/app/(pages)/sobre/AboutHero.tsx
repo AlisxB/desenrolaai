@@ -29,6 +29,13 @@ export default function AboutHero() {
                     </p>
                 </motion.div>
             </div>
+            <div className={styles.floatingElements}>
+                <div className={`${styles.floatCircle} ${styles.floatCircle1}`} />
+                <div className={`${styles.floatCircle} ${styles.floatCircle2}`} />
+                <div className={`${styles.floatDot} ${styles.floatDot1}`} />
+                <div className={`${styles.floatDot} ${styles.floatDot2}`} />
+                <div className={`${styles.floatDot} ${styles.floatDot3}`} />
+            </div>
             <div className={styles.heroGlow} />
         </section>
     );

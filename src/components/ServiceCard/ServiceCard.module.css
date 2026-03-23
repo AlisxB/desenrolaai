@@ -16,12 +16,33 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(81, 217, 254, 0.3), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .card:hover {
     border-color: rgba(81, 217, 254, 0.25);
-    box-shadow: var(--glow-cyan);
+    transform: translateY(-4px);
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.3),
+        0 0 30px rgba(81, 217, 254, 0.1);
+}
+
+.card:hover::before {
+    opacity: 1;
 }
 
 .iconWrapper {
@@ -34,6 +55,13 @@
     align-items: center;
     justify-content: center;
     color: var(--accent-blue);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover .iconWrapper {
+    background: rgba(81, 217, 254, 0.15);
+    border-color: rgba(81, 217, 254, 0.3);
+    transform: scale(1.05);
 }
 
 .title {
@@ -42,6 +70,11 @@
     color: var(--text-primary);
     font-family: var(--font-heading);
     letter-spacing: -0.5px;
+    transition: color 0.3s ease;
+}
+
+.card:hover .title {
+    color: var(--accent-blue);
 }
 
 .description {
@@ -64,6 +97,11 @@
     gap: 10px;
     font-size: 14px;
     color: var(--text-secondary);
+    transition: color 0.2s ease;
+}
+
+.card:hover .feature {
+    color: var(--text-primary);
 }
 
 .featureDot {
@@ -72,6 +110,11 @@
     border-radius: 50%;
     background: var(--accent-blue);
     flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.card:hover .featureDot {
+    transform: scale(1.3);
 }
 
 @media (max-width: 1024px) {

@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
 import PortfolioHero from './PortfolioHero';
 import PortfolioGrid from '@/components/PortfolioGrid/PortfolioGrid';
+import AnimatedCTA from '@/components/AnimatedCTA/AnimatedCTA';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
@@ -21,23 +20,27 @@ export default function PortfolioPage() {
     return (
         <>
             <PortfolioHero />
-            <PortfolioGrid />
 
-            <section className={styles.cta}>
+            <section className={styles.portfolioSection}>
                 <div className="container">
-                    <div className={styles.ctaInner}>
-                        <h2 className={styles.ctaTitle}>Seu negócio pode ser o próximo case de sucesso</h2>
-                        <p className={styles.ctaDesc}>
-                            Deixe-nos analisar o seu processo e apresentar uma proposta personalizada.
-                            Sem compromisso.
+                    <div className={styles.sectionHeader}>
+                        <span className="tag">Nossos resultados</span>
+                        <h2 className={styles.sectionTitle}>Projetos que fizeram diferença</h2>
+                        <p className={styles.sectionDesc}>
+                            Cada case representa um negócio transformado. Veja como empresas brasileiras
+                            estão economizando tempo, aumentando faturamento e crescendo com tecnologia.
                         </p>
-                        <Link href="/contato" className={`btn btn-primary ${styles.ctaBtn}`}>
-                            Quero ser o próximo
-                            <ArrowRight size={16} />
-                        </Link>
                     </div>
                 </div>
             </section>
+
+            <PortfolioGrid />
+
+            <AnimatedCTA
+                title="Seu negócio pode ser o próximo case de sucesso"
+                description="Deixe-nos analisar o seu processo e apresentar uma proposta personalizada. Sem compromisso."
+                buttonText="Quero ser o próximo"
+            />
         </>
     );
 }

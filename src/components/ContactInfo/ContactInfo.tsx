@@ -75,6 +75,7 @@ export default function ContactInfo() {
                     title="Localização DesenrolaAI"
                 />
                 <div className={styles.mapOverlay} />
+                <div className={styles.mapPulse} />
             </div>
         </div>
     );

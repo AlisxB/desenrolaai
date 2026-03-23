@@ -1,3 +1,31 @@
+.portfolioSection {
+    padding: 0 0 var(--space-lg);
+}
+
+.sectionHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.sectionTitle {
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -1px;
+    line-height: 1.15;
+}
+
+.sectionDesc {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
 .cta {
     padding: var(--space-2xl) 0;
     border-top: 1px solid rgba(255, 255, 255, 0.05);

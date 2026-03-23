@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ShoppingCart, Stethoscope, Code2, Heart, Building2, Briefcase } from 'lucide-react';
 import Image from 'next/image';
-import styles from './PortfolioCard.module.css';
+import styles from './PortfolioGrid.module.css';
 
 interface PortfolioCardProps {
     client: string;

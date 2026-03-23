@@ -47,3 +47,83 @@
     pointer-events: none;
     z-index: 1;
 }
+
+.floatingElements {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.floatCircle {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(81, 217, 254, 0.15);
+    animation: float 8s ease-in-out infinite;
+}
+
+.floatCircle1 {
+    width: 300px;
+    height: 300px;
+    top: 10%;
+    right: 5%;
+    animation-delay: 0s;
+}
+
+.floatCircle2 {
+    width: 150px;
+    height: 150px;
+    bottom: 20%;
+    right: 20%;
+    background: rgba(81, 217, 254, 0.03);
+    animation-delay: 2s;
+}
+
+.floatDot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--accent-blue);
+    border-radius: 50%;
+    opacity: 0.4;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.floatDot1 {
+    top: 30%;
+    right: 15%;
+    animation-delay: 0.5s;
+}
+
+.floatDot2 {
+    bottom: 40%;
+    right: 30%;
+    animation-delay: 1.5s;
+}
+
+.floatDot3 {
+    top: 50%;
+    right: 10%;
+    animation-delay: 2.5s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.5);
+    }
+}
