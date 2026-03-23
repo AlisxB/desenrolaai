@@ -272,11 +272,17 @@
 
 @media (max-width: 768px) {
     .hero {
-        padding-top: 100px;
+        padding-top: 80px;
+        overflow: hidden;
+    }
+
+    .heroVisual {
+        margin-top: var(--space-md);
     }
 
     .dashboardPerspective {
         transform: none;
+        margin-top: var(--space-sm);
     }
 }
 

@@ -93,4 +93,8 @@
     .bannerWrapper {
         max-height: 240px;
     }
+
+    .bannerSection {
+        margin-top: 0;
+    }
 }
