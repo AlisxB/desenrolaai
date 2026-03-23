@@ -12,7 +12,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Push everything from top */
+    justify-content: flex-start;
     overflow: hidden;
     padding: var(--space-xl) var(--space-md);
     gap: var(--space-lg);
@@ -53,14 +53,12 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    /* Horizontal layout: Card | Sidebar */
     align-items: center;
     justify-content: center;
     gap: var(--space-2xl);
-    flex: 1; /* Take remaining space */
+    flex: 1;
 }
 
-/* ── Header ─────────────────────────────────────────────────────────────── */
 .header {
     text-align: center;
     max-width: 600px;
@@ -90,8 +88,8 @@
     flex: 1;
     width: 100%;
     max-width: 1100px;
-    height: 100%; /* Fill flex:1 inner */
-    max-height: 550px; /* Cap it to leave room for title */
+    height: 100%;
+    max-height: 550px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -111,7 +109,6 @@
 
 .imagePlaceholder {
     position: relative;
-    /* CRITICAL for Next.js Image fill */
     width: 100%;
     height: 100%;
     background: var(--bg-primary);
@@ -135,7 +132,6 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    /* Progress fills from bottom to top */
 }
 
 .verticalBar {
@@ -154,7 +150,6 @@
     justify-content: space-between;
     height: 100%;
     margin-left: -5px;
-    /* Center with the bar */
 }
 
 .dotWrapper {
@@ -225,42 +220,144 @@
     box-shadow: 0 0 15px var(--accent-blue);
 }
 
-@media (max-width: 768px) {
+    /* ──────────────────────────────────────────────── */
+    /* MOBILE STACK CARD EFFECT */
+    /* ──────────────────────────────────────────────── */
+
+    @media (max-width: 768px) {
+    .section {
+        height: 190vh;
+    }
+
+    .stickyContainer {
+        position: relative;
+        height: auto;
+        padding: 0;
+        overflow: visible;
+    }
+
+    .backgroundEffects {
+        display: none;
+    }
+
+    .header {
+        position: relative;
+        z-index: 5;
+        background: var(--bg-primary);
+        padding: var(--space-xl) var(--space-md) var(--space-lg);
+        padding-top: calc(var(--space-xl) + env(safe-area-inset-top, 0px));
+    }
+
     .inner {
         flex-direction: column;
-        padding: var(--space-lg);
+        gap: 0;
+        padding: 0;
+        position: relative;
+        z-index: 10;
     }
 
     .cardContainer {
-        height: 60vh;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 0 var(--space-md);
     }
 
-    .sidebar {
-        height: 200px;
+    /* Stack container com altura total */
+    .cardsWrapper {
+        position: relative;
         width: 100%;
+    }
+
+    /* Cada card é sticky e empilha */
+    .cardItem {
+        position: sticky;
+        top: 240px;
+        width: 100%;
+        height: 300px;
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        background: var(--bg-secondary);
+        border: 2px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 16px 50px -15px rgba(0, 0, 0, 0.6);
+        margin-bottom: -160px;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Z-index: card 4 no topo, card 1 na base */
+    .cardItem:nth-child(1) { z-index: 1; margin-top: 500px; }
+    .cardItem:nth-child(2) { z-index: 2; margin-top: 200px; }
+    .cardItem:nth-child(3) { z-index: 3; margin-top: 200px; }
+    .cardItem:nth-child(4) { z-index: 4; margin-top: 200px; }
+
+    /* Card ativo: borda cyan */
+    .cardItem.cardActive {
+        border-color: rgba(81, 217, 254, 0.5);
+        box-shadow: 0 24px 80px -20px rgba(0, 0, 0, 0.8), 0 0 60px rgba(81, 217, 254, 0.2);
+    }
+
+    .cardContent {
+        width: 100%;
+        height: 100%;
+    }
+
+    .imageWrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Sidebar: dots de navegação */
+    .sidebar {
+        display: none;
+    }
+
+    .dotsContainer {
+        position: static;
         flex-direction: row;
+        justify-content: center;
+        gap: 8px;
+        height: auto;
+        margin-left: 0;
+    }
+
+    .dotWrapper {
+        height: auto;
+        display: flex;
+        align-items: center;
         justify-content: center;
     }
 
     .verticalProgress {
-        width: 100%;
-        height: 3px;
-        flex-direction: row;
-        justify-content: flex-start;
-    }
-
-    .verticalBar {
-        height: 100%;
-        transform-origin: left;
-    }
-
-    .dotsContainer {
-        flex-direction: row;
-        margin-left: 0;
-        margin-top: -5px;
-    }
-
-    .stepInfo {
         display: none;
+    }
+
+    .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        transition: all 0.3s ease;
+    }
+
+    .dotActive {
+        background: var(--accent-blue);
+        width: 24px;
+        border-radius: 4px;
+        box-shadow: 0 0 8px var(--accent-blue);
+    }
+
+    .stepInfo,
+    .stepIcon,
+    .stepText {
+        display: none;
+    }
+}
+
+/* Safe area para notch */
+@media (max-width: 768px) and (max-height: 500px) {
+    .header {
+        padding-top: var(--space-lg);
     }
 }
