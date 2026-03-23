@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import ContactHero from './ContatoHero';
 import ContactInfo from '@/components/ContactInfo/ContactInfo';
 import ContactForm from '@/components/ContactForm/ContactForm';
+import ContactMap from '@/components/ContactMap/ContactMap';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
@@ -22,9 +23,12 @@ export default function ContatoPage() {
             <ContactHero />
             <section className={styles.content}>
                 <div className="container">
-                    <div className={styles.grid}>
+                    <div className={styles.topRow}>
                         <ContactForm />
                         <ContactInfo />
+                    </div>
+                    <div className={styles.mapRow}>
+                        <ContactMap />
                     </div>
                 </div>
             </section>

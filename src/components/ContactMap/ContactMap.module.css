@@ -1,0 +1,77 @@
+.mapWrapper {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    height: 500px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.mapHovered {
+    border-color: rgba(81, 217, 254, 0.25);
+    box-shadow: 0 0 30px rgba(81, 217, 254, 0.1);
+}
+
+.map {
+    width: 100%;
+    height: 100%;
+    border: none;
+    filter: grayscale(0.8) invert(1) contrast(0.9) brightness(0.85);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.mapHovered .map {
+    opacity: 0.85;
+    transform: scale(1.02);
+}
+
+.mapOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0, 4, 10, 0.3) 0%, transparent 60%);
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.mapOverlayHidden {
+    opacity: 0;
+}
+
+.mapPulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(81, 217, 254, 0.3);
+    animation: pulse 2s infinite;
+    pointer-events: none;
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(3);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 1024px) {
+    .mapWrapper {
+        height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mapWrapper {
+        height: 300px;
+    }
+}
