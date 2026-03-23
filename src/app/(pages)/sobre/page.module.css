@@ -1,0 +1,84 @@
+.story {
+    padding: var(--space-2xl) 0;
+}
+
+.storyGrid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: start;
+}
+
+.storyLeft {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: sticky;
+    top: 120px;
+}
+
+.storyTitle {
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--text-primary);
+    letter-spacing: -1px;
+}
+
+.storyRight {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.storyRight p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+.ctaBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.cta {
+    padding: var(--space-2xl) 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ctaInner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+.ctaTitle {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -1px;
+}
+
+.ctaDesc {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 1024px) {
+    .storyGrid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .storyLeft {
+        position: static;
+    }
+}
