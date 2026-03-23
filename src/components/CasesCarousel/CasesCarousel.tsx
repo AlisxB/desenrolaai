@@ -42,26 +42,119 @@ const cases = [
     },
 ];
 
-// Extra scroll height consumed per slide (in vh). Higher = more scroll room = slower feel.
 const SCROLL_PER_SLIDE = 100;
-
-// Lerp factor: lower = smoother/lazier, higher = snappier. 0.07 = silky.
 const LERP_FACTOR = 0.12;
 
+function MobileCarousel() {
+    const trackRef = useRef<HTMLDivElement>(null);
+    const [activeSlide, setActiveSlide] = useState(0);
+
+    const updateActiveSlide = useCallback(() => {
+        const track = trackRef.current;
+        if (!track) return;
+        const scrollLeft = track.scrollLeft;
+        const cardWidth = track.firstElementChild?.clientWidth ?? 300;
+        const gap = 16;
+        const index = Math.round(scrollLeft / (cardWidth + gap));
+        setActiveSlide(index);
+    }, []);
+
+    useEffect(() => {
+        const track = trackRef.current;
+        if (!track) return;
+        track.addEventListener('scroll', updateActiveSlide, { passive: true });
+        return () => track.removeEventListener('scroll', updateActiveSlide);
+    }, [updateActiveSlide]);
+
+    const goTo = (index: number) => {
+        const track = trackRef.current;
+        if (!track) return;
+        const cardWidth = track.firstElementChild?.clientWidth ?? 300;
+        const gap = 16;
+        track.scrollTo({ left: index * (cardWidth + gap), behavior: 'smooth' });
+    };
+
+    return (
+        <div className={styles.stickyPanel}>
+            <div
+                className={styles.bgGlow}
+                style={{ '--glow-color': cases[activeSlide].accent } as React.CSSProperties}
+            />
+
+            <div className={`container ${styles.header}`}>
+                <span className="tag">
+                    <Briefcase size={14} />
+                    Cases Reais
+                </span>
+                <h2 className={styles.title}>
+                    Resultado de verdade,<br />
+                    <span className={styles.titleAccent}>em cada segmento</span>
+                </h2>
+                <p className={styles.subtitle}>
+                    Explore como transformamos negócios através da inteligência artificial.
+                </p>
+            </div>
+
+            <div ref={trackRef} className={styles.track}>
+                {cases.map((c, i) => (
+                    <div
+                        key={i}
+                        className={styles.card}
+                        style={{ '--card-accent': c.accent } as React.CSSProperties}
+                    >
+                        <div className={styles.imageArea}>
+                            <div className={styles.imagePlaceholder}>
+                                <c.Icon size={48} strokeWidth={1.5} className={styles.placeholderIcon} />
+                                <span className={styles.placeholderText}>Espaço para imagem</span>
+                            </div>
+                            <div className={styles.imageOverlay}>
+                                <div className={styles.cardHeader}>
+                                    <div className={styles.segmentBadge}>
+                                        <span>{c.segment}</span>
+                                    </div>
+                                    <span className={styles.tagBadge}>{c.tag}</span>
+                                </div>
+                                <h3 className={styles.cardTitle}>{c.title}</h3>
+                            </div>
+                        </div>
+                        <div className={styles.cardGlow} />
+                    </div>
+                ))}
+            </div>
+
+            <div className={`container ${styles.progressWrap}`}>
+                <div className={styles.dots}>
+                    {cases.map((c, i) => (
+                        <button
+                            key={i}
+                            className={`${styles.dot} ${i === activeSlide ? styles.dotActive : ''}`}
+                            onClick={() => goTo(i)}
+                            aria-label={`Ir para case ${i + 1}`}
+                            style={{ '--dot-accent': c.accent } as React.CSSProperties}
+                        />
+                    ))}
+                </div>
+
+                <div className={styles.ctaWrap} style={{ position: 'static', transform: 'none' }}>
+                    <a href="/portfolio" className="btn btn-primary">
+                        Ver todos os cases
+                    </a>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 export default function CasesCarousel() {
-    // `active` (rounded) drives UI state (dots, progress bar, accent color, CTA)
+    const [isMobile, setIsMobile] = useState(false);
     const [active, setActive] = useState(0);
-    // `activeFloat` drives card positions for smooth continuous movement
     const [activeFloat, setActiveFloat] = useState(0);
 
     const wrapperRef = useRef<HTMLDivElement>(null);
-
-    // Refs for the lerp loop — avoids stale closures
-    const targetRef = useRef(0);          // raw scroll target (float)
-    const currentRef = useRef(0);         // current lerped value
+    const targetRef = useRef(0);
+    const currentRef = useRef(0);
     const rafRef = useRef<number>(0);
 
-    // Drag / swipe
     const [isDragging, setIsDragging] = useState(false);
     const dragStart = useRef<number | null>(null);
     const dragDelta = useRef(0);
@@ -72,60 +165,61 @@ export default function CasesCarousel() {
         setActive(clamped);
     }, []);
 
-    // ── Lerp animation loop ─────────────────────────────────────────────────
     useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 769);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    useEffect(() => {
+        if (isMobile) return;
+
         const animate = () => {
             const target = targetRef.current;
             const curr = currentRef.current;
             const next = curr + (target - curr) * LERP_FACTOR;
-
-            // Snap when close enough to avoid infinite micro-updates
             const settled = Math.abs(next - target) < 0.0005;
             currentRef.current = settled ? target : next;
-
             setActiveFloat(currentRef.current);
             setActive(Math.round(currentRef.current));
-
             rafRef.current = requestAnimationFrame(animate);
         };
 
         rafRef.current = requestAnimationFrame(animate);
         return () => cancelAnimationFrame(rafRef.current);
-    }, []);
+    }, [isMobile]);
 
-    // ── Scroll-driven: update target only, lerp loop does the animation ─────
     useEffect(() => {
+        if (isMobile) return;
+
         const handleScroll = () => {
             if (!wrapperRef.current) return;
-
             const rect = wrapperRef.current.getBoundingClientRect();
             const totalScrollable = wrapperRef.current.offsetHeight - window.innerHeight;
             if (totalScrollable <= 0) return;
-
             const scrolled = Math.max(0, Math.min(totalScrollable, -rect.top));
-            const progress = scrolled / totalScrollable; // 0..1
-
-            // Map progress to slide index (float)
+            const progress = scrolled / totalScrollable;
             targetRef.current = progress * (cases.length - 1);
         };
 
         window.addEventListener('scroll', handleScroll, { passive: true });
         handleScroll();
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [isMobile]);
 
-    // ── Keyboard navigation ─────────────────────────────────────────────────
     useEffect(() => {
+        if (isMobile) return;
         const handler = (e: KeyboardEvent) => {
             if (e.key === 'ArrowLeft') goTo(Math.round(targetRef.current) - 1);
             if (e.key === 'ArrowRight') goTo(Math.round(targetRef.current) + 1);
         };
         window.addEventListener('keydown', handler);
         return () => window.removeEventListener('keydown', handler);
-    }, [goTo]);
+    }, [goTo, isMobile]);
 
-    // ── Drag / swipe ────────────────────────────────────────────────────────
     const onPointerDown = (e: React.PointerEvent) => {
+        if (isMobile) return;
         dragStart.current = e.clientX;
         dragDelta.current = 0;
         setIsDragging(true);
@@ -147,16 +241,22 @@ export default function CasesCarousel() {
     const currentCase = cases[active];
     const wrapperHeight = `calc(100vh + ${(cases.length - 1) * SCROLL_PER_SLIDE}vh)`;
 
+    if (isMobile) {
+        return (
+            <div id="cases">
+                <MobileCarousel />
+            </div>
+        );
+    }
+
     return (
         <div ref={wrapperRef} style={{ height: wrapperHeight }} id="cases">
             <div className={styles.stickyPanel}>
-                {/* Ambient glow — colour follows active slide */}
                 <div
                     className={styles.bgGlow}
                     style={{ '--glow-color': currentCase.accent } as React.CSSProperties}
                 />
 
-                {/* Header */}
                 <div className={`container ${styles.header}`}>
                     <span className="tag">
                         <Briefcase size={14} />
@@ -171,7 +271,6 @@ export default function CasesCarousel() {
                     </p>
                 </div>
 
-                {/* Carousel track */}
                 <div
                     className={`${styles.track} ${isDragging ? styles.dragging : ''}`}
                     onPointerDown={onPointerDown}
@@ -180,14 +279,11 @@ export default function CasesCarousel() {
                     onPointerCancel={onPointerUp}
                 >
                     {cases.map((c, i) => {
-                        // Use the float offset for smooth positioning
                         const offset = i - activeFloat;
                         const absOffset = Math.abs(offset);
 
-                        // Hide cards that are too far away
                         if (absOffset > 2.5) return null;
 
-                        // Smooth scale & opacity interpolated from float offset
                         const scale = 1 - Math.min(absOffset, 1) * 0.13;
                         const opacity = absOffset < 0.5
                             ? 1
@@ -203,17 +299,14 @@ export default function CasesCarousel() {
                                 className={`${styles.card} ${isActive ? styles.cardActive : ''}`}
                                 style={{
                                     '--card-accent': c.accent,
-                                    // translateX uses the float offset — no discrete jumps
                                     transform: `translateX(calc(${offset} * var(--card-gap))) scale(${scale})`,
                                     opacity,
                                     zIndex: Math.round(10 - absOffset * 3),
                                     pointerEvents: isActive ? 'auto' : 'none',
-                                    // No CSS transition on transform — the RAF lerp handles it
                                     transition: 'opacity 300ms ease, box-shadow 400ms ease, border-color 400ms ease',
                                 } as React.CSSProperties}
                                 onClick={() => !isActive && goTo(i)}
                             >
-                                {/* Visual Placeholder / Image Area */}
                                 <div className={styles.imageArea}>
                                     <div className={styles.imagePlaceholder}>
                                         <c.Icon size={48} strokeWidth={1.5} className={styles.placeholderIcon} />
@@ -236,9 +329,7 @@ export default function CasesCarousel() {
                     })}
                 </div>
 
-                {/* Progress + dots + arrows */}
                 <div className={`container ${styles.progressWrap}`}>
-                    {/* Smooth continuous progress bar using activeFloat */}
                     <div className={styles.progressTrack}>
                         <div
                             className={styles.progressFill}
@@ -261,11 +352,8 @@ export default function CasesCarousel() {
                             />
                         ))}
                     </div>
-
-
                 </div>
 
-                {/* Scroll hint — first slide */}
                 {active === 0 && (
                     <div className={styles.scrollHint}>
                         <div className={styles.scrollMouse}>
@@ -275,10 +363,9 @@ export default function CasesCarousel() {
                     </div>
                 )}
 
-                {/* CTA — last slide */}
                 {active === cases.length - 1 && (
                     <div className={styles.ctaWrap}>
-                        <a href="#contato" className="btn btn-primary">
+                        <a href="/portfolio" className="btn btn-primary">
                             Quero um case como esse
                         </a>
                     </div>

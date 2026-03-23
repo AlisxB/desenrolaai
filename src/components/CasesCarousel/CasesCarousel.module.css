@@ -341,44 +341,108 @@
 
 /* ── Responsive ─────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
+    /* Mobile: scroll horizontal com snap — o wrapper pai não é mais sticky */
+    .stickyPanel {
+        position: static;
+        height: auto;
+        padding: var(--space-lg) 0 var(--space-xl);
+        overflow: hidden;
+    }
+
+    .bgGlow {
+        width: 100%;
+        height: 400px;
+        top: 10%;
+    }
+
+    .header {
+        padding: 0 var(--space-sm);
+    }
+
+    /* Track: flex horizontal com scroll-snap — alinhado à esquerda */
     .track {
-        --card-gap: 440px;
-        height: 500px;
+        position: static;
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: var(--space-md);
+        padding: var(--space-md) var(--space-sm);
+        padding-left: max(var(--space-sm), env(safe-area-inset-left));
+        height: auto;
+        --card-gap: 0;
+        cursor: default;
+        user-select: auto;
     }
 
+    .track::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Cards: flex items com scroll-snap start para não cortar bordas */
     .card {
-        padding: var(--space-sm);
-        gap: 10px;
+        position: static;
+        flex: 0 0 82vw;
+        max-width: 320px;
+        height: 420px;
+        scroll-snap-align: start;
+        transform: none !important;
+        opacity: 1 !important;
+        pointer-events: auto;
+        transition:
+            box-shadow 300ms ease,
+            border-color 300ms ease;
     }
 
-    .title {
-        font-size: 28px;
+    /* Progress bar: hide on mobile */
+    .progressTrack {
+        display: none;
     }
 
-    .detailsRow {
-        flex-wrap: wrap;
+    .progressWrap {
+        margin-top: var(--space-md);
     }
 
-    .detailItem {
-        min-width: calc(50% - 4px);
+    .scrollHint {
+        display: none;
+    }
+
+    .ctaWrap {
+        display: none;
+    }
+
+    .cardGlow {
+        bottom: -40px;
+        width: 60%;
     }
 }
 
 @media (max-width: 480px) {
+    .stickyPanel {
+        padding: var(--space-md) 0 var(--space-lg);
+    }
+
     .track {
-        --card-gap: 360px;
-        height: 520px;
+        padding: var(--space-sm);
+        padding-left: max(var(--space-sm), env(safe-area-inset-left));
+        gap: var(--space-sm);
     }
 
     .card {
-        width: 88vw;
+        flex: 0 0 85vw;
+        max-width: 300px;
+        height: 380px;
+        scroll-snap-align: start;
     }
 
-    .navArrows {
-        display: none;
+    .title {
+        font-size: clamp(18px, 4vw, 28px);
     }
+}
 
-    .dotLabel {
+@media (min-width: 769px) {
+    /* Desktop: carrossel swipeável escondido */
+    .mobileTrack {
         display: none;
     }
 }
