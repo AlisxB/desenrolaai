@@ -1,0 +1,107 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.iconWrapper {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    background: rgba(81, 217, 254, 0.08);
+    border: 1px solid rgba(81, 217, 254, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-blue);
+    flex-shrink: 0;
+}
+
+.label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent-blue);
+    margin-bottom: 4px;
+}
+
+.value {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.sub {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+}
+
+.social {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.socialLink {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.socialLink:hover {
+    background: rgba(81, 217, 254, 0.1);
+    border-color: rgba(81, 217, 254, 0.3);
+    color: var(--accent-blue);
+}
+
+.mapWrapper {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    height: 360px;
+}
+
+.map {
+    width: 100%;
+    height: 100%;
+    border: none;
+    filter: grayscale(0.8) invert(1) contrast(0.9) brightness(0.85);
+    opacity: 0.7;
+}
+
+.mapOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0, 4, 10, 0.3) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+    .wrapper {
+        grid-template-columns: 1fr;
+    }
+}
