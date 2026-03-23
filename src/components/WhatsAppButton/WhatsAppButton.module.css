@@ -29,6 +29,7 @@
     transition: transform 200ms ease, box-shadow 200ms ease;
     animation: pulse 2s infinite;
     text-decoration: none;
+    transform: translateZ(0);
 }
 
 .whatsappBtn:hover {
@@ -75,8 +76,8 @@
     .whatsappBtn {
         width: 52px;
         height: 52px;
-        bottom: var(--space-md);
-        right: var(--space-md);
+        bottom: max(16px, env(safe-area-inset-bottom));
+        right: max(16px, env(safe-area-inset-right));
     }
 
     .icon {

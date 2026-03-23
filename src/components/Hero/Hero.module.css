@@ -249,12 +249,13 @@
 /* Responsive */
 @media (max-width: 968px) {
     .heroTitle {
-        font-size: 40px;
+        font-size: clamp(36px, 8vw, 56px);
     }
 
     .heroButtons {
         flex-direction: column;
         align-items: center;
+        gap: var(--space-sm);
     }
 
     .p1,
@@ -266,5 +267,21 @@
 
     .ambientContainer {
         display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding-top: 100px;
+    }
+
+    .dashboardPerspective {
+        transform: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .heroTitle {
+        font-size: clamp(32px, 9vw, 36px);
     }
 }

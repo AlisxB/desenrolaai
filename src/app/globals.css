@@ -60,6 +60,10 @@
   scroll-behavior: smooth; -- Removed to use Lenis
 } */
 
+html {
+  overscroll-behavior-x: none;
+}
+
 body {
   background-color: var(--bg-primary);
   color: var(--text-secondary);
@@ -407,7 +411,6 @@ a:hover {
 
 /* Responsive */
 @media (max-width: 968px) {
-
   .grid-3,
   .stats-grid {
     grid-template-columns: 1fr;
@@ -420,6 +423,13 @@ a:hover {
 
   .section-title {
     font-size: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 max(12px, env(safe-area-inset-left));
+    padding-right: max(12px, env(safe-area-inset-right));
   }
 }
 

@@ -28,10 +28,12 @@
   top: 0;
   right: 0;
   bottom: 0;
-  width: min(320px, 85vw);
+  width: min(320px, calc(100vw - env(safe-area-inset-left)));
   background: rgba(0, 4, 10, 0.95);
   border-left: 1px solid rgba(81, 217, 254, 0.12);
   padding: var(--space-xl) var(--space-lg);
+  padding-right: max(var(--space-lg), env(safe-area-inset-right));
+  padding-bottom: max(var(--space-lg), env(safe-area-inset-bottom));
   display: flex;
   flex-direction: column;
   transform: translateX(100%);
