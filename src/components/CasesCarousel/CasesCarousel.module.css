@@ -341,66 +341,139 @@
 
 /* ── Responsive ─────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
-    /* Mobile: scroll horizontal com snap — o wrapper pai não é mais sticky */
     .stickyPanel {
-        position: static;
+        position: relative;
         height: auto;
-        padding: var(--space-lg) 0 var(--space-xl);
-        overflow: hidden;
-    }
-
-    .bgGlow {
-        width: 100%;
-        height: 400px;
-        top: 10%;
+        padding: var(--space-lg) 0;
+        overflow: visible;
     }
 
     .header {
-        padding: 0 var(--space-sm);
+        position: relative;
+        padding: 0 var(--space-md);
+        margin-bottom: var(--space-lg);
     }
 
-    /* Track: flex horizontal com scroll-snap — alinhado à esquerda */
+    .bgGlow {
+        width: 100vw;
+        height: 300px;
+        top: 15%;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+
     .track {
-        position: static;
         display: flex;
         overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
+        overflow-y: hidden;
         gap: var(--space-md);
-        padding: var(--space-md) var(--space-sm);
-        padding-left: max(var(--space-sm), env(safe-area-inset-left));
-        height: auto;
-        --card-gap: 0;
-        cursor: default;
-        user-select: auto;
+        padding: 0 var(--space-md);
+        height: 380px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        scroll-snap-type: x mandatory;
     }
 
     .track::-webkit-scrollbar {
         display: none;
     }
 
-    /* Cards: flex items com scroll-snap start para não cortar bordas */
     .card {
-        position: static;
-        flex: 0 0 82vw;
-        max-width: 320px;
-        height: 420px;
+        flex: 0 0 280px;
+        height: 100%;
         scroll-snap-align: start;
-        transform: none !important;
-        opacity: 1 !important;
-        pointer-events: auto;
-        transition:
-            box-shadow 300ms ease,
-            border-color 300ms ease;
     }
 
-    /* Progress bar: hide on mobile */
+    .header {
+        position: relative;
+        padding: 0 var(--space-md);
+        margin-bottom: var(--space-lg);
+        z-index: 10;
+        background: var(--bg-primary);
+    }
+
+    .header {
+        position: relative;
+        padding: 0 var(--space-md);
+        margin-bottom: var(--space-lg);
+    }
+
+    .bgGlow {
+        width: 100vw;
+        height: 300px;
+        top: 15%;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+
+    .track {
+        display: flex !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: var(--space-md);
+        padding: 0 var(--space-md);
+        height: 380px;
+        cursor: grab;
+        user-select: auto;
+        align-items: stretch;
+        scroll-behavior: smooth;
+        position: relative !important;
+        width: 100% !important;
+        flex-direction: row !important;
+    }
+
+    .track::-webkit-scrollbar {
+        display: none;
+    }
+
+    .card {
+        position: relative !important;
+        flex: 0 0 280px !important;
+        width: 280px !important;
+        height: 100% !important;
+        scroll-snap-align: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
     .progressTrack {
         display: none;
     }
 
     .progressWrap {
         margin-top: var(--space-md);
+        padding: 0 var(--space-md);
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+
+    .dots {
+        justify-content: center;
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        transition: all 0.3s ease;
+    }
+
+    .dotActive {
+        background: var(--accent-blue);
+        box-shadow: 0 0 10px var(--accent-blue);
+        transform: scale(1.2);
     }
 
     .scrollHint {
@@ -412,37 +485,34 @@
     }
 
     .cardGlow {
-        bottom: -40px;
+        bottom: -30px;
         width: 60%;
     }
 }
 
 @media (max-width: 480px) {
     .stickyPanel {
-        padding: var(--space-md) 0 var(--space-lg);
+        padding: var(--space-lg) 0;
+    }
+
+    .header {
+        padding: 0 var(--space-sm);
     }
 
     .track {
-        padding: var(--space-sm);
-        padding-left: max(var(--space-sm), env(safe-area-inset-left));
+        padding: 0 var(--space-sm);
         gap: var(--space-sm);
     }
 
     .card {
-        flex: 0 0 85vw;
-        max-width: 300px;
-        height: 380px;
-        scroll-snap-align: start;
+        height: 320px;
+    }
+
+    .cardTitle {
+        font-size: 20px;
     }
 
     .title {
-        font-size: clamp(18px, 4vw, 28px);
-    }
-}
-
-@media (min-width: 769px) {
-    /* Desktop: carrossel swipeável escondido */
-    .mobileTrack {
-        display: none;
+        font-size: 28px;
     }
 }

@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { ShoppingCart, Stethoscope, Code2, Heart, Building2, Briefcase } from 'lucide-react';
 import styles from './CasesCarousel.module.css';
+import MobileCasesCarousel from '@/components/MobileCasesCarousel/MobileCasesCarousel';
 
 const cases = [
     {
@@ -44,106 +45,6 @@ const cases = [
 
 const SCROLL_PER_SLIDE = 100;
 const LERP_FACTOR = 0.12;
-
-function MobileCarousel() {
-    const trackRef = useRef<HTMLDivElement>(null);
-    const [activeSlide, setActiveSlide] = useState(0);
-
-    const updateActiveSlide = useCallback(() => {
-        const track = trackRef.current;
-        if (!track) return;
-        const scrollLeft = track.scrollLeft;
-        const cardWidth = track.firstElementChild?.clientWidth ?? 300;
-        const gap = 16;
-        const index = Math.round(scrollLeft / (cardWidth + gap));
-        setActiveSlide(index);
-    }, []);
-
-    useEffect(() => {
-        const track = trackRef.current;
-        if (!track) return;
-        track.addEventListener('scroll', updateActiveSlide, { passive: true });
-        return () => track.removeEventListener('scroll', updateActiveSlide);
-    }, [updateActiveSlide]);
-
-    const goTo = (index: number) => {
-        const track = trackRef.current;
-        if (!track) return;
-        const cardWidth = track.firstElementChild?.clientWidth ?? 300;
-        const gap = 16;
-        track.scrollTo({ left: index * (cardWidth + gap), behavior: 'smooth' });
-    };
-
-    return (
-        <div className={styles.stickyPanel}>
-            <div
-                className={styles.bgGlow}
-                style={{ '--glow-color': cases[activeSlide].accent } as React.CSSProperties}
-            />
-
-            <div className={`container ${styles.header}`}>
-                <span className="tag">
-                    <Briefcase size={14} />
-                    Cases Reais
-                </span>
-                <h2 className={styles.title}>
-                    Resultado de verdade,<br />
-                    <span className={styles.titleAccent}>em cada segmento</span>
-                </h2>
-                <p className={styles.subtitle}>
-                    Explore como transformamos negócios através da inteligência artificial.
-                </p>
-            </div>
-
-            <div ref={trackRef} className={styles.track}>
-                {cases.map((c, i) => (
-                    <div
-                        key={i}
-                        className={styles.card}
-                        style={{ '--card-accent': c.accent } as React.CSSProperties}
-                    >
-                        <div className={styles.imageArea}>
-                            <div className={styles.imagePlaceholder}>
-                                <c.Icon size={48} strokeWidth={1.5} className={styles.placeholderIcon} />
-                                <span className={styles.placeholderText}>Espaço para imagem</span>
-                            </div>
-                            <div className={styles.imageOverlay}>
-                                <div className={styles.cardHeader}>
-                                    <div className={styles.segmentBadge}>
-                                        <span>{c.segment}</span>
-                                    </div>
-                                    <span className={styles.tagBadge}>{c.tag}</span>
-                                </div>
-                                <h3 className={styles.cardTitle}>{c.title}</h3>
-                            </div>
-                        </div>
-                        <div className={styles.cardGlow} />
-                    </div>
-                ))}
-            </div>
-
-            <div className={`container ${styles.progressWrap}`}>
-                <div className={styles.dots}>
-                    {cases.map((c, i) => (
-                        <button
-                            key={i}
-                            className={`${styles.dot} ${i === activeSlide ? styles.dotActive : ''}`}
-                            onClick={() => goTo(i)}
-                            aria-label={`Ir para case ${i + 1}`}
-                            style={{ '--dot-accent': c.accent } as React.CSSProperties}
-                        />
-                    ))}
-                </div>
-
-                <div className={styles.ctaWrap} style={{ position: 'static', transform: 'none' }}>
-                    <a href="/portfolio" className="btn btn-primary">
-                        Ver todos os cases
-                    </a>
-                </div>
-            </div>
-        </div>
-    );
-}
 
 export default function CasesCarousel() {
     const [isMobile, setIsMobile] = useState(false);
@@ -242,11 +143,7 @@ export default function CasesCarousel() {
     const wrapperHeight = `calc(100vh + ${(cases.length - 1) * SCROLL_PER_SLIDE}vh)`;
 
     if (isMobile) {
-        return (
-            <div id="cases">
-                <MobileCarousel />
-            </div>
-        );
+        return <MobileCasesCarousel />;
     }
 
     return (
