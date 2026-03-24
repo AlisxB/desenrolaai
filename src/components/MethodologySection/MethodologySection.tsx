@@ -206,11 +206,30 @@ export default function MethodologySection() {
                                             key={i}
                                             index={i}
                                             activeIndex={desktopStep}
-                                            step={methodologySteps[i]}
-                                            Icon={stepIcons[i]}
                                         />
                                     ))}
                                 </div>
+                                <AnimatePresence mode="wait">
+                                    <motion.div
+                                        key={desktopStep}
+                                        className={styles.stepInfo}
+                                        initial={{ opacity: 0, x: -8 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: 8 }}
+                                        transition={{ duration: 0.3 }}
+                                    >
+                                        <div className={styles.stepIcon}>
+                                            {(() => {
+                                                const Icon = stepIcons[desktopStep];
+                                                return <Icon size={16} strokeWidth={2} />;
+                                            })()}
+                                        </div>
+                                        <div className={styles.stepText}>
+                                            <span className={styles.stepTitle}>{methodologySteps[desktopStep].title}</span>
+                                            <span className={styles.stepDesc}>{methodologySteps[desktopStep].description}</span>
+                                        </div>
+                                    </motion.div>
+                                </AnimatePresence>
                             </div>
                         )}
                     </div>
@@ -223,13 +242,9 @@ export default function MethodologySection() {
 function Dot({
     index,
     activeIndex,
-    step,
-    Icon
 }: {
     index: number;
     activeIndex: number;
-    step: typeof methodologySteps[0];
-    Icon: typeof stepIcons[0];
 }) {
     const isActive = activeIndex === index;
     const isPast = activeIndex > index;
@@ -247,23 +262,6 @@ function Dot({
                     backgroundColor: isPast ? 'var(--accent-blue)' : isActive ? 'var(--accent-blue)' : 'rgba(255,255,255,0.2)'
                 }}
             />
-            <motion.div
-                className={styles.stepInfo}
-                initial={false}
-                animate={{
-                    opacity: isActive ? 1 : 0,
-                    x: isActive ? 0 : -8,
-                }}
-                transition={{ duration: 0.3 }}
-            >
-                <div className={styles.stepIcon}>
-                    <Icon size={16} strokeWidth={2} />
-                </div>
-                <div className={styles.stepText}>
-                    <span className={styles.stepTitle}>{step.title}</span>
-                    <span className={styles.stepDesc}>{step.description}</span>
-                </div>
-            </motion.div>
         </motion.div>
     );
 }
