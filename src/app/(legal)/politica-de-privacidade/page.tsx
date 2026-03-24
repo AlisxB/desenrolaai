@@ -15,15 +15,16 @@ const sections = [
     { id: 'armazenamento-e-seguranca', title: '3. Armazenamento e Segurança' },
     { id: 'compartilhamento-de-dados', title: '4. Compartilhamento de Dados' },
     { id: 'seus-direitos-lgpd', title: '5. Seus Direitos (LGPD)' },
-    { id: 'cookies', title: '6. Cookies' },
-    { id: 'criancas-e-adolescentes', title: '7. Crianças e Adolescentes' },
-    { id: 'alteracoes-a-esta-politica', title: '8. Alterações a Esta Política' },
-    { id: 'contato-dpo', title: '9. Contato / DPO' },
+    { id: 'protecao-dados-lgpd', title: '6. Proteção de Dados Pessoais (LGPD)' },
+    { id: 'cookies', title: '7. Cookies' },
+    { id: 'criancas-e-adolescentes', title: '8. Crianças e Adolescentes' },
+    { id: 'alteracoes-a-esta-politica', title: '9. Alterações a Esta Política' },
+    { id: 'contato-dpo', title: '10. Contato / DPO' },
 ];
 
 export default function PoliticaDePrivacidade() {
     return (
-        <LegalLayout title="Política de Privacidade" lastUpdated="21 de Março de 2026" sections={sections}>
+        <LegalLayout title="Política de Privacidade" lastUpdated="24 de Março de 2026" sections={sections}>
             <div className={styles.intro}>
                 <p>
                     A <strong>DesenrolaAI LTDA</strong> (&quot;DesenrolaAI&quot;, &quot;nós&quot; ou &quot;nosso&quot;) se compromete
@@ -186,15 +187,89 @@ export default function PoliticaDePrivacidade() {
                 </p>
             </section>
 
-            <section id="cookies">
-                <h2>6. Cookies</h2>
+            <section id="protecao-dados-lgpd">
+                <h2>6. Proteção de Dados Pessoais (LGPD)</h2>
                 <p>
-                    6.1. A DesenrolaAI utiliza <strong>cookies</strong> — pequenos arquivos de texto
+                    6.1. A DesenrolaAI coleta e trata dados pessoais nas seguintes categorias e finalidades:
+                </p>
+                <ul>
+                    <li>
+                        <strong>Dados de identificação</strong> (nome, e-mail, telefone, CNPJ/CPF) — para
+                        cadastro, identificação do usuário e formalização contratual;
+                    </li>
+                    <li>
+                        <strong>Dados de uso e navegação</strong> — para melhoria dos serviços, análise
+                        de desempenho e segurança da plataforma;
+                    </li>
+                    <li>
+                        <strong>Dados fornecidos no âmbito dos projetos contratados</strong> — para
+                        execução do serviço contratado, conforme escopo acordado;
+                    </li>
+                    <li>
+                        <strong>Dados de comunicação</strong> — para atendimento a solicitações,
+                        suporte e comunicações operacionais.
+                    </li>
+                </ul>
+                <p>
+                    6.2. O tratamento de dados pessoais realizado pela DesenrolaAI fundamenta-se nas
+                    seguintes hipóteses legais previstas na LGPD:
+                </p>
+                <ul>
+                    <li>
+                        <strong>Execução de contrato</strong> — para dados necessários à prestação dos
+                        serviços contratados (art. 7º, V);
+                    </li>
+                    <li>
+                        <strong>Cumprimento de obrigação legal ou regulatória</strong> (art. 7º, II);
+                    </li>
+                    <li>
+                        <strong>Consentimento</strong> do titular, colhido de forma livre, informada,
+                        específica e inequívoca, para finalidades que não se enquadrem nas hipóteses
+                        anteriores (art. 7º, I);
+                    </li>
+                    <li>
+                        <strong>Legítimo interesse</strong> da DesenrolaAI, para fins de segurança,
+                        prevenção a fraudes e melhoria dos serviços, desde que não prevaleçam os
+                        interesses ou direitos fundamentais do titular (art. 7º, IX).
+                    </li>
+                </ul>
+                <p>
+                    6.3. Os dados pessoais poderão ser compartilhados com: (a) parceiros e fornecedores
+                    de tecnologia necessários à execução dos serviços, incluindo provedores de
+                    computação em nuvem e APIs de inteligência artificial, que poderão estar
+                    localizados fora do Brasil; (b) autoridades públicas, quando exigido por lei
+                    ou decisão judicial.
+                </p>
+                <p>
+                    6.4. A transferência internacional de dados, quando ocorrer, será realizada em
+                    conformidade com os arts. 33 a 36 da LGPD, garantindo nível adequado de proteção
+                    ao titular.
+                </p>
+                <p>
+                    6.5. A DesenrolaAI adota medidas técnicas e organizacionais adequadas para proteger
+                    os dados pessoais contra acesso não autorizado, destruição, perda, alteração ou
+                    divulgação indevida. Em caso de incidente de segurança que possa acarretar risco
+                    ou dano relevante aos titulares, a DesenrolaAI comunicará o fato à ANPD e aos
+                    titulares afetados, no prazo e forma previstos na LGPD.
+                </p>
+                <p>
+                    6.6. Os dados pessoais serão retidos pelo período necessário ao cumprimento das
+                    finalidades para as quais foram coletados, ao cumprimento de obrigações legais ou
+                    contratuais, ou até que o titular exerça seu direito de eliminação, o que ocorrer
+                    primeiro. Dados necessários para defesa em processos judiciais, administrativos
+                    ou arbitrais poderão ser retidos pelo prazo prescricional aplicável.
+                </p>
+            </section>
+
+            <section id="cookies">
+                <h2>7. Cookies</h2>
+                <p>
+                    7.1. A DesenrolaAI utiliza <strong>cookies</strong> — pequenos arquivos de texto
                     armazenados no seu navegador — para garantir o funcionamento da plataforma,
                     analisar o tráfego e personalizar sua experiência.
                 </p>
                 <p>
-                    6.2. <strong>Tipos de cookies utilizados:</strong>
+                    7.2. <strong>Tipos de cookies utilizados:</strong>
                 </p>
                 <ul>
                     <li>
@@ -218,22 +293,22 @@ export default function PoliticaDePrivacidade() {
                     </li>
                 </ul>
                 <p>
-                    6.3. Você pode configurar seu navegador para bloquear cookies, com exceção
+                    7.3. Você pode configurar seu navegador para bloquear cookies, com exceção
                     dos essenciais. A desativação de cookies pode afetar a funcionalidade de
                     determinadas áreas da plataforma.
                 </p>
             </section>
 
             <section id="criancas-e-adolescentes">
-                <h2>7. Crianças e Adolescentes</h2>
+                <h2>8. Crianças e Adolescentes</h2>
                 <p>
-                    7.1. A plataforma DesenrolaAI não é direcionada a crianças e adolescentes
+                    8.1. A plataforma DesenrolaAI não é direcionada a crianças e adolescentes
                     menores de 18 anos. Não coletamos intencionalmente dados pessoais de menores
                     sem autorização prévia, expressa e verificável de seu representante legal,
                     conforme art. 14 da LGPD.
                 </p>
                 <p>
-                    7.2. Caso a DesenrolaAI tome conhecimento de que coletou dados de uma criança
+                    8.2. Caso a DesenrolaAI tome conhecimento de que coletou dados de uma criança
                     ou adolescente sem a devida autorização, tais dados serão eliminados em caráter
                     de urgência. Se você suspeita que dados de menor foram coletados, entre em
                     contato imediatamente pelo e-mail <strong>dpo@desenrola.ai</strong>.
@@ -241,27 +316,27 @@ export default function PoliticaDePrivacidade() {
             </section>
 
             <section id="alteracoes-a-esta-politica">
-                <h2>8. Alterações a Esta Política</h2>
+                <h2>9. Alterações a Esta Política</h2>
                 <p>
-                    8.1. Esta Política de Privacidade pode ser atualizada periodicamente para
+                    9.1. Esta Política de Privacidade pode ser atualizada periodicamente para
                     refletir alterações nas práticas de tratamento de dados, na legislação
                     aplicável ou em funcionalidades da plataforma.
                 </p>
                 <p>
-                    8.2. Quando realizarmos alterações relevantes — especialmente aquelas que
+                    9.2. Quando realizarmos alterações relevantes — especialmente aquelas que
                     alterem as finalidades, os tipos de dados coletados ou as formas de
                     compartilhamento — notificaremos você por e-mail ou por aviso destacado
                     na plataforma, com antecedência mínima razoável.
                 </p>
                 <p>
-                    8.3. A data da última atualização está indicada no topo deste documento.
+                    9.3. A data da última atualização está indicada no topo deste documento.
                     A continuidade do uso da plataforma após as alterações constitui aceite
                     da nova versão.
                 </p>
             </section>
 
             <section id="contato-dpo">
-                <h2>9. Contato / DPO</h2>
+                <h2>10. Contato / DPO</h2>
                 <p>
                     Para questões relacionadas à privacidade e proteção de dados pessoais,
                     entre em contato com nosso <strong>Encarregado de Proteção de Dados (DPO)</strong>:
