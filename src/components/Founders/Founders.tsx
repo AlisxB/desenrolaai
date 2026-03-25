@@ -12,29 +12,29 @@ interface Founder {
 
 const founders: Founder[] = [
     {
-        name: 'Yan Pedro',
-        role: 'CEO & Fundador',
-        image: '/assets/profile_2.png',
-    },
-    {
-        name: 'Maya',
-        role: 'Diretora de IA',
-        image: '/assets/profile_3.png',
-    },
-    {
-        name: 'Bruna Ferrari',
-        role: 'CTO & Dev Senior',
-        image: '/assets/profile_1.png',
-    },
-    {
-        name: 'Igor',
-        role: 'Arquiteto de Software',
-        image: '/assets/profile_4.png',
-    },
-    {
         name: 'Alison Santos',
         role: 'Diretor de Automações',
-        image: '/assets/profile_2.png',
+        image: '/assets/profile_1.webp',
+    },
+    {
+        name: 'Paulo Vitor',
+        role: 'Sócio e Co-Fundador',
+        image: '/assets/profile_2.webp',
+    },
+    {
+        name: 'Abraão Henrique',
+        role: 'Sócio e Co-Fundador',
+        image: '/assets/profile_3.webp',
+    },
+    {
+        name: 'João Frota',
+        role: 'Diretor de Desenvolvimento',
+        image: '/assets/profile_4.webp',
+    },
+    {
+        name: 'Ítalo Lima',
+        role: 'Diretor de Designer',
+        image: '/assets/profile_5.webp',
     },
 ];
 

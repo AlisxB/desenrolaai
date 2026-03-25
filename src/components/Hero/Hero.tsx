@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { Zap } from 'lucide-react';
+import { Zap, Cpu, BrainCircuit, Network, BarChart3, Sparkles } from 'lucide-react';
 import styles from './Hero.module.css';
 import NeuralPulse from './NeuralPulse';
 import HolographicScanner from './HoloScanner';
@@ -76,10 +76,10 @@ export default function Hero() {
     }, []);
 
     const profiles = [
-        { src: '/assets/profile_2.png', alt: 'Perfil de Yan Pedro - Especialista DesenrolaAI', name: 'Yan Pedro', className: styles.p1 },
-        { src: '/assets/profile_3.png', alt: 'Perfil de Maya - Consultora de IA', name: 'Maya', className: styles.p2 },
-        { src: '/assets/profile_1.png', alt: 'Perfil de Bruna Ferrari - Desenvolvedora Senior', name: 'Bruna Ferrari', className: styles.p3 },
-        { src: '/assets/profile_4.png', alt: 'Perfil de Igor - Arquiteto de Software', name: 'Igor', className: styles.p4 },
+        { className: styles.p1, Icon: Cpu, label: 'Automação' },
+        { className: styles.p2, Icon: BrainCircuit, label: 'IA Neural' },
+        { className: styles.p3, Icon: Network, label: 'Integração' },
+        { className: styles.p4, Icon: BarChart3, label: 'Analytics' },
     ];
 
     return (
@@ -99,16 +99,15 @@ export default function Hero() {
                 <div className={`${styles.floatElement} ${styles.floatCircle4}`} />
             </div>
 
-            {/* Floating Profile Cards */}
+            {/* Floating Tech Elements */}
             <div className={styles.floatingProfiles}>
-                {profiles.map((profile, i) => (
+                {profiles.map((item, i) => (
                     <div
                         key={i}
-                        className={`${styles.profileCard} ${profile.className}`}
+                        className={`${styles.techElement} ${item.className}`}
                         ref={(el) => { profileRefs.current[i] = el; }}
                     >
-                        <Image src={profile.src} alt={profile.alt} fill sizes="(max-width: 768px) 0px, 240px" style={{ objectFit: 'cover' }} priority={i < 2} />
-                        <span>{profile.name}</span>
+                        <item.Icon size={48} strokeWidth={1.5} />
                     </div>
                 ))}
             </div>
@@ -127,10 +126,10 @@ export default function Hero() {
                         Chega de sistemas que não conversam e processos travados. Criamos soluções sob
                         medida com automação e IA para o seu negócio deslanchar.
                     </p>
-                    <div className={styles.heroButtons}>
-                        <a href="#contato" className="btn btn-primary">Quero desenrolar meu negócio</a>
-                        <a href="#solucoes" className="btn btn-outline">Ver soluções</a>
-                    </div>
+                </div>
+                <div className={styles.heroButtons}>
+                    <a href="#contato" className="btn btn-primary">Quero desenrolar meu negócio</a>
+                    <a href="#solucoes" className="btn btn-outline">Ver soluções</a>
                 </div>
 
                 {/* Dashboard */}
