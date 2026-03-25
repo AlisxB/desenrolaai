@@ -274,7 +274,7 @@
         position: sticky;
         top: 240px;
         width: 100%;
-        height: 300px;
+        height: 250px;
         border-radius: 0;
         overflow: hidden;
         background: var(--bg-secondary);
@@ -288,10 +288,10 @@
     }
 
     /* Z-index: card 4 no topo, card 1 na base */
-    .cardItem:nth-child(1) { z-index: 1; margin-top: 500px; }
-    .cardItem:nth-child(2) { z-index: 2; margin-top: 200px; }
-    .cardItem:nth-child(3) { z-index: 3; margin-top: 200px; }
-    .cardItem:nth-child(4) { z-index: 4; margin-top: 200px; }
+    .cardItem:nth-child(1) { z-index: 1; margin-top: 420px; }
+    .cardItem:nth-child(2) { z-index: 2; margin-top: 40px; }
+    .cardItem:nth-child(3) { z-index: 3; margin-top: 40px; }
+    .cardItem:nth-child(4) { z-index: 4; margin-top: 40px; }
 
     /* Card ativo: borda cyan */
     .cardItem.cardActive {
@@ -304,13 +304,15 @@
         height: 100%;
         border-radius: 0;
         overflow: hidden;
+        padding: 0;
+        margin: 0;
     }
 
     .imageWrapper {
         position: relative;
-        width: calc(100% + var(--space-xl) * 2);
+        width: 100%;
         height: 100%;
-        margin-left: calc(var(--space-xl) * -1);
+        margin: 0;
     }
 
     /* Sidebar: dots de navegação */
@@ -360,6 +362,33 @@
         display: none;
     }
 }
+
+    /* Ajustes específicos para mobile intermediário */
+    @media (max-width: 640px) {
+        .cardItem {
+            height: 250px;
+        }
+
+        .cardItem:nth-child(1) { margin-top: 380px; }
+        .cardItem:nth-child(2),
+        .cardItem:nth-child(3),
+        .cardItem:nth-child(4) { margin-top: 220px; }
+    }
+
+    /* Mobile pequeno */
+    @media (max-width: 480px) {
+        .cardItem {
+            height: 250px;
+            top: 200px;
+        }
+
+        .cardItem:nth-child(1) { margin-top: 340px; }
+        .cardItem:nth-child(2),
+        .cardItem:nth-child(3),
+        .cardItem:nth-child(4) { margin-top: 200px; }
+
+        .cardItem:nth-child(4) { margin-bottom: -120px; }
+    }
 
 /* Safe area para notch */
 @media (max-width: 768px) and (max-height: 500px) {

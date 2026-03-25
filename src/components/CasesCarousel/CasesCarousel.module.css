@@ -70,7 +70,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 420px;
+    height: 480px;
     flex-shrink: 0;
     user-select: none;
     cursor: grab;
@@ -86,7 +86,7 @@
 .card {
     position: absolute;
     width: min(520px, 92vw);
-    height: 380px;
+    height: 420px;
     background: rgba(255, 255, 255, 0.015);
     border: 1px solid rgba(255, 255, 255, 0.06);
     backdrop-filter: blur(20px) saturate(140%);
@@ -105,6 +105,12 @@
 
 /* Image / Visual Area */
 .imageArea {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.caseImage {
     position: relative;
     width: 100%;
     height: 100%;
@@ -320,7 +326,7 @@
 /* ── CTA (last slide) ────────────────────────────────────────────────────── */
 .ctaWrap {
     position: absolute;
-    bottom: 28px;
+    bottom: 48px;
     left: 50%;
     translate: -50% 0;
     z-index: 2;

@@ -1,17 +1,19 @@
 'use client';
 
 import { useRef, useState, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 import { ShoppingCart, Stethoscope, Code2, Heart, Building2, Briefcase } from 'lucide-react';
 import styles from './CasesCarousel.module.css';
 import MobileCasesCarousel from '@/components/MobileCasesCarousel/MobileCasesCarousel';
 
 const cases = [
     {
-        segment: 'E-commerce',
+        segment: 'ERP Interno',
         Icon: ShoppingCart,
         accent: '#51D9FE',
-        tag: 'Automação de Vendas',
-        title: 'Recuperação de Carrinho via WhatsApp',
+        tag: 'Sistemas',
+        title: 'ERP Interno com IA Generativa',
+        image: '/assets/cases/sigoq.webp',
     },
     {
         segment: 'Clínicas & Saúde',
@@ -19,6 +21,7 @@ const cases = [
         accent: '#51D9FE',
         tag: 'Gestão de Pacientes',
         title: 'Follow-up de Consultas Automatizado',
+        image: '/assets/cases/clinicas.png',
     },
     {
         segment: 'SaaS & Tech',
@@ -26,6 +29,7 @@ const cases = [
         accent: '#51D9FE',
         tag: 'Automação de Processos',
         title: 'Onboarding de Clientes Escalável',
+        image: '/assets/cases/saas.png',
     },
     {
         segment: 'Pet Shops',
@@ -33,6 +37,7 @@ const cases = [
         accent: '#51D9FE',
         tag: 'Fidelização',
         title: 'Reativação de Clientes Inativos',
+        image: '/assets/cases/petshop.png',
     },
     {
         segment: 'Imobiliárias',
@@ -40,6 +45,7 @@ const cases = [
         accent: '#51D9FE',
         tag: 'Qualificação de Leads',
         title: 'Qualificação 24/7 com IA',
+        image: '/assets/cases/imobiliarias.png',
     },
 ];
 
@@ -205,10 +211,22 @@ export default function CasesCarousel() {
                                 onClick={() => !isActive && goTo(i)}
                             >
                                 <div className={styles.imageArea}>
-                                    <div className={styles.imagePlaceholder}>
-                                        <c.Icon size={48} strokeWidth={1.5} className={styles.placeholderIcon} />
-                                        <span className={styles.placeholderText}>Espaço para imagem</span>
-                                    </div>
+                                    {c.image ? (
+                                        <div className={styles.caseImage}>
+                                            <Image
+                                                src={c.image}
+                                                alt={c.title}
+                                                fill
+                                                sizes="(max-width: 768px) 100vw, 600px"
+                                                style={{ objectFit: 'cover' }}
+                                            />
+                                        </div>
+                                    ) : (
+                                        <div className={styles.imagePlaceholder}>
+                                            <c.Icon size={48} strokeWidth={1.5} className={styles.placeholderIcon} />
+                                            <span className={styles.placeholderText}>Espaço para imagem</span>
+                                        </div>
+                                    )}
                                     <div className={styles.imageOverlay}>
                                         <div className={styles.cardHeader}>
                                             <div className={styles.segmentBadge}>

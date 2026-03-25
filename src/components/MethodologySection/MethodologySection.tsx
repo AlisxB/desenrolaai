@@ -14,6 +14,7 @@ const methodologySteps = [
         title: 'Diagnóstico',
         description: 'Mapeamos cada gargalo da sua operação atual para identificar onde a automação terá o maior impacto imediato.',
         image: '/assets/methodology/diagnostico_methodology.webp',
+        imageMobile: '/assets/methodology/diagnostico_methodology-mobile.webp',
         color: 'rgba(81, 217, 254, 0.15)'
     },
     {
@@ -21,6 +22,7 @@ const methodologySteps = [
         title: 'Arquitetura',
         description: 'Desenhamos a infraestrutura de inteligência artificial sob medida para o seu modelo de negócio e tom de voz.',
         image: '/assets/methodology/arquitetura_methodology.webp',
+        imageMobile: '/assets/methodology/arquitetura_methodology-mobile.webp',
         color: 'rgba(188, 207, 28, 0.15)'
     },
     {
@@ -28,6 +30,7 @@ const methodologySteps = [
         title: 'Integração',
         description: 'Conectamos a IA nativamente ao seu ecossistema: WhatsApp, CRM, Meios de Pagamento e ERPs.',
         image: '/assets/methodology/integracao_methodology.webp',
+        imageMobile: '/assets/methodology/integracao_methodology-mobile.webp',
         color: 'rgba(167, 139, 250, 0.15)'
     },
     {
@@ -35,6 +38,7 @@ const methodologySteps = [
         title: 'Escala & Otimização',
         description: 'Monitoramento em tempo real e evolução contínua dos modelos para garantir que o resultado só cresça.',
         image: '/assets/methodology/escala_methodology.webp',
+        imageMobile: '/assets/methodology/escala_methodology-mobile.webp',
         color: 'rgba(251, 146, 60, 0.15)'
     }
 ];
@@ -146,7 +150,7 @@ export default function MethodologySection() {
                                             <div className={styles.cardContent}>
                                                 <div className={styles.imageWrapper}>
                                                     <Image
-                                                        src={s.image}
+                                                        src={s.imageMobile || s.image}
                                                         alt={`Passo ${i + 1}: ${s.title}`}
                                                         fill
                                                         sizes="100vw"
