@@ -13,28 +13,28 @@ interface Founder {
 const founders: Founder[] = [
     {
         name: 'Alison Santos',
-        role: 'Diretor de Automações',
+        role: 'Head de Engenharia e Inovação Aplicada',
         image: '/assets/profile_1.webp',
     },
     {
-        name: 'Paulo Vitor',
-        role: 'Sócio e Co-Fundador',
-        image: '/assets/profile_2.webp',
-    },
-    {
-        name: 'Abraão Henrique',
-        role: 'Sócio e Co-Fundador',
-        image: '/assets/profile_3.webp',
-    },
-    {
         name: 'João Frota',
-        role: 'Diretor de Desenvolvimento',
+        role: 'Desenvolvedor Full Stack',
         image: '/assets/profile_4.webp',
     },
     {
         name: 'Ítalo Lima',
-        role: 'Diretor de Designer',
+        role: 'Desenvolvedor Full Stack',
         image: '/assets/profile_5.webp',
+    },
+    {
+        name: 'Paulo Vitor',
+        role: 'Sócio',
+        image: '/assets/profile_2.webp',
+    },
+    {
+        name: 'Abraão Henrique',
+        role: 'Sócio Fundador',
+        image: '/assets/profile_3.webp',
     },
 ];
 
