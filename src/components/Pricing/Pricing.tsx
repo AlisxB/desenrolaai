@@ -104,7 +104,7 @@ function PricingCard({ plan, index }: { plan: typeof plans[0]; index: number }) 
             </div>
 
             <a
-                href="#contato"
+                href="contato"
                 className={`btn ${plan.highlighted ? 'btn-primary' : 'btn-outline'} ${styles.ctaBtn}`}
             >
                 {plan.cta}

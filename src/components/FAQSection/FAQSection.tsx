@@ -118,7 +118,7 @@ export default function FAQSection() {
                             <p className={styles.ctaText}>
                                 Fale diretamente com um de nossos estrategistas e descomplique sua empresa hoje.
                             </p>
-                            <a href="#contato" className="btn btn-primary">
+                            <a href="contato" className="btn btn-primary">
                                 Agendar Conversa
                             </a>
                         </div>

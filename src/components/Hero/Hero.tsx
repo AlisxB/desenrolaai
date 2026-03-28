@@ -128,7 +128,7 @@ export default function Hero() {
                     </p>
                 </div>
                 <div className={styles.heroButtons}>
-                    <a href="#contato" className="btn btn-primary">Quero desenrolar meu negócio</a>
+                    <a href="contato" className="btn btn-primary">Quero desenrolar meu negócio</a>
                     <a href="#solucoes" className="btn btn-outline">Ver soluções</a>
                 </div>
 
