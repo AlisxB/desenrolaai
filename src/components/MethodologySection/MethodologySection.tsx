@@ -31,7 +31,7 @@ const methodologySteps = [
         description: 'Conectamos a IA nativamente ao seu ecossistema: WhatsApp, CRM, Meios de Pagamento e ERPs.',
         image: '/assets/methodology/integracao_methodology.webp',
         imageMobile: '/assets/methodology/integracao_methodology-mobile.webp',
-        color: 'rgba(167, 139, 250, 0.15)'
+        color: 'rgba(81, 217, 254, 0.15)'
     },
     {
         id: 'escala',
@@ -39,7 +39,7 @@ const methodologySteps = [
         description: 'Monitoramento em tempo real e evolução contínua dos modelos para garantir que o resultado só cresça.',
         image: '/assets/methodology/escala_methodology.webp',
         imageMobile: '/assets/methodology/escala_methodology-mobile.webp',
-        color: 'rgba(251, 146, 60, 0.15)'
+        color: 'rgba(81, 217, 254, 0.15)'
     }
 ];
 
@@ -48,11 +48,19 @@ export default function MethodologySection() {
     const [isMobile, setIsMobile] = useState(false);
     const [activeStep, setActiveStep] = useState(0);
     const [desktopStep, setDesktopStep] = useState(0);
+    const [scrollProgress, setScrollProgress] = useState(0);
 
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start start", "end end"]
     });
+
+    useEffect(() => {
+        const unsubscribe = scrollYProgress.on('change', (v) => {
+            setScrollProgress(v);
+        });
+        return () => unsubscribe();
+    }, [scrollYProgress]);
 
     const activeIndex = useTransform(scrollYProgress, (pos) => {
         if (pos < 0.25) return 0;
@@ -138,6 +146,7 @@ export default function MethodologySection() {
                                 {methodologySteps.map((s, i) => {
                                     const isActive = i === activeStep;
                                     const isPast = i < activeStep;
+                                    const cardProgress = Math.max(0, Math.min(1, scrollProgress * 3 - i * 0.3));
                                     
                                     return (
                                         <div
@@ -145,6 +154,7 @@ export default function MethodologySection() {
                                             className={`${styles.cardItem} ${isActive ? styles.cardActive : ''} ${isPast ? styles.cardPast : ''}`}
                                             style={{
                                                 '--card-index': i,
+                                                '--scroll-progress': cardProgress,
                                             } as React.CSSProperties}
                                         >
                                             <div className={styles.cardContent}>

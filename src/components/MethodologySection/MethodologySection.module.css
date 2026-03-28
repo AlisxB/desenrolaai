@@ -277,7 +277,11 @@
         height: 250px;
         border-radius: 0;
         overflow: hidden;
-        background: var(--bg-secondary);
+        background: linear-gradient(
+            180deg,
+            rgba(81, 217, 254, calc(0.15 - var(--scroll-progress, 0) * 0.1)) 0%,
+            rgba(10, 10, 15, 1) 100%
+        );
         border-left: none;
         border-right: none;
         border-top: 2px solid rgba(255, 255, 255, 0.08);
