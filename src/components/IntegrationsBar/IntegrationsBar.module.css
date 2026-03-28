@@ -1,48 +1,26 @@
 .wrapper {
-    padding: 32px 0 8px;
+    padding: 48px 0 24px;
     position: relative;
     overflow: hidden;
 }
 
-.wrapper::before,
-.wrapper::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    width: 120px;
-    height: 100%;
-    z-index: 2;
-    pointer-events: none;
-}
-
-.wrapper::before {
-    left: 0;
-    background: linear-gradient(to right, var(--bg-primary), transparent);
-}
-
-.wrapper::after {
-    right: 0;
-    background: linear-gradient(to left, var(--bg-primary), transparent);
-}
-
 .header {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 }
 
 .label {
-    font-size: 12px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.3);
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.35);
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 }
 
 .track {
     overflow: hidden;
-    border-top: 1px solid rgba(255, 255, 255, 0.04);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-    padding: 20px 0;
+    padding: 8px 0;
 }
 
 @keyframes scrollLeft {
@@ -57,9 +35,9 @@
 
 .marquee {
     display: flex;
-    gap: 12px;
+    gap: 16px;
     white-space: nowrap;
-    animation: scrollLeft 28s linear infinite;
+    animation: scrollLeft 60s linear infinite;
     width: max-content;
 }
 
@@ -69,32 +47,77 @@
 
 .logoItem {
     display: inline-flex;
+    flex-direction: column;
     align-items: center;
-    padding: 10px 24px;
+    gap: 10px;
+    padding: 20px 28px;
     background: rgba(255, 255, 255, 0.025);
     border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
     cursor: default;
-    transition: all 250ms ease;
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
     flex-shrink: 0;
+    min-width: 120px;
+    width: 120px;
 }
 
 .logoItem:hover {
-    background: rgba(81, 217, 254, 0.06);
-    border-color: rgba(81, 217, 254, 0.2);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(81, 217, 254, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--brand-color, rgba(81, 217, 254, 0.3));
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 20px color-mix(in srgb, var(--brand-color, var(--accent-blue)) 20%, transparent);
+}
+
+.iconWrapper {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--brand-color, var(--accent-blue));
+    transition: all 300ms ease;
+}
+
+.logoItem:hover .iconWrapper {
+    background: color-mix(in srgb, var(--brand-color, var(--accent-blue)) 15%, transparent);
 }
 
 .logoText {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
-    font-family: var(--font-league-spartan), sans-serif;
-    color: rgba(255, 255, 255, 0.3);
+    font-family: var(--font-heading);
+    color: rgba(255, 255, 255, 0.5);
     letter-spacing: 0.5px;
-    transition: color 250ms ease;
+    transition: color 300ms ease;
 }
 
 .logoItem:hover .logoText {
-    color: var(--accent-blue);
+    color: var(--brand-color, var(--accent-blue));
+}
+
+@media (max-width: 768px) {
+    .wrapper {
+        padding: 32px 0 16px;
+    }
+
+    .logoItem {
+        padding: 16px 20px;
+        min-width: 100px;
+    }
+
+    .iconWrapper {
+        width: 40px;
+        height: 40px;
+    }
+
+    .iconWrapper svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .logoText {
+        font-size: 11px;
+    }
 }
