@@ -6,13 +6,15 @@ import { Menu } from 'lucide-react';
 import { motion } from 'framer-motion';
 import styles from './Navbar.module.css';
 import MobileMenu from '@/components/MobileMenu/MobileMenu';
+import { LINKS } from '@/lib/links';
+import { CTAS } from '@/lib/ctas';
 
 const navItems = [
     { href: '#fundadores', label: 'Fundadores' },
-    { href: '/servicos', label: 'Soluções' },
-    { href: '/portfolio', label: 'Portfólio' },
-    { href: '/sobre', label: 'Sobre' },
-    { href: '/contato', label: 'Contato' },
+    { href: LINKS.servicos, label: 'Soluções' },
+    { href: LINKS.portfolio, label: 'Portfólio' },
+    { href: LINKS.sobre, label: 'Sobre' },
+    { href: LINKS.contato, label: 'Contato' },
 ];
 
 export default function Navbar() {
@@ -40,7 +42,7 @@ export default function Navbar() {
         <>
             <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`} id="navbar">
                 <div className="container">
-                    <Link href="/" className={styles.logo}>
+                    <Link href={LINKS.home} className={styles.logo}>
                         Desenrola<span>AI</span>
                     </Link>
                     <div className={styles.navLinks}>
@@ -67,11 +69,11 @@ export default function Navbar() {
                         ))}
                     </div>
                     <Link
-                        href="/contato"
+                        href={CTAS.navbarCta.href}
                         className={`btn btn-primary ${styles.navCta}`}
                         data-cursor="pointer"
                     >
-                        Fale Conosco
+                        {CTAS.navbarCta.label}
                     </Link>
                     <button
                         className={styles.hamburger}
@@ -83,7 +85,7 @@ export default function Navbar() {
                     </button>
                 </div>
             </nav>
-            <MobileMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} navItems={navItems} ctaHref="/contato" ctaLabel="Fale Conosco" />
+            <MobileMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} navItems={navItems} ctaHref={CTAS.navbarCta.href} ctaLabel={CTAS.navbarCta.label} />
         </>
     );
 }

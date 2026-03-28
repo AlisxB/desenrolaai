@@ -7,6 +7,8 @@ import styles from './Hero.module.css';
 import NeuralPulse from './NeuralPulse';
 import HolographicScanner from './HoloScanner';
 import { onLenisScroll } from '@/components/SmoothScroll/SmoothScroll';
+import { CTAS } from '@/lib/ctas';
+import { LINKS } from '@/lib/links';
 
 export default function Hero() {
     const dashboardRef = useRef<HTMLDivElement>(null);
@@ -128,8 +130,8 @@ export default function Hero() {
                     </p>
                 </div>
                 <div className={styles.heroButtons}>
-                    <a href="contato" className="btn btn-primary">Quero desenrolar meu negócio</a>
-                    <a href="#solucoes" className="btn btn-outline">Ver soluções</a>
+                    <a href={CTAS.hero.href} className="btn btn-primary">{CTAS.hero.label}</a>
+                    <a href={CTAS.heroSecondary.href} className="btn btn-outline">{CTAS.heroSecondary.label}</a>
                 </div>
 
                 {/* Dashboard */}

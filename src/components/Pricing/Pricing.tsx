@@ -4,6 +4,7 @@ import { useRef, MouseEvent } from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 import styles from './Pricing.module.css';
+import { CTAS } from '@/lib/ctas';
 
 const plans = [
     {
@@ -104,7 +105,7 @@ function PricingCard({ plan, index }: { plan: typeof plans[0]; index: number }) 
             </div>
 
             <a
-                href="contato"
+                href={CTAS.pricing.href}
                 className={`btn ${plan.highlighted ? 'btn-primary' : 'btn-outline'} ${styles.ctaBtn}`}
             >
                 {plan.cta}
@@ -157,7 +158,7 @@ export default function Pricing() {
                 </div>
 
                 <p className={styles.footnote}>
-                    Não encontrou o que precisa? <a href="#contato">Fale com a gente</a> — cada projeto começa com uma conversa.
+                    Não encontrou o que precisa? <a href={CTAS.pricingContact.href}>Fale com a gente</a> — cada projeto começa com uma conversa.
                 </p>
             </div>
         </section>

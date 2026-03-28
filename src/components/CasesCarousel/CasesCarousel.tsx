@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { ShoppingCart, Stethoscope, Code2, Heart, Building2, Briefcase } from 'lucide-react';
 import styles from './CasesCarousel.module.css';
 import MobileCasesCarousel from '@/components/MobileCasesCarousel/MobileCasesCarousel';
+import { CTAS } from '@/lib/ctas';
 
 const cases = [
     {
@@ -280,7 +281,7 @@ export default function CasesCarousel() {
 
                 {active === cases.length - 1 && (
                     <div className={styles.ctaWrap}>
-                        <a href="/portfolio" className="btn btn-primary">
+                        <a href={CTAS.portfolio.href} className="btn btn-primary">
                             Quero um case como esse
                         </a>
                     </div>

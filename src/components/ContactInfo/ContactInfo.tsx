@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { MapPin, Mail, Phone, Clock, Linkedin, Instagram } from 'lucide-react';
 import styles from './ContactInfo.module.css';
+import { LINKS } from '@/lib/links';
 
 const contactData = [
     {
@@ -55,10 +56,10 @@ export default function ContactInfo() {
             ))}
 
             <div className={styles.social}>
-                <a href="#" className={styles.socialLink} aria-label="LinkedIn">
+                <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" className={styles.socialLink} aria-label="LinkedIn">
                     <Linkedin size={18} />
                 </a>
-                <a href="#" className={styles.socialLink} aria-label="Instagram">
+                <a href={LINKS.instagram} target="_blank" rel="noopener noreferrer" className={styles.socialLink} aria-label="Instagram">
                     <Instagram size={18} />
                 </a>
             </div>

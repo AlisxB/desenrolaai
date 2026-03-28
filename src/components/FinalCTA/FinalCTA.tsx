@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import styles from './FinalCTA.module.css';
+import { CTAS } from '@/lib/ctas';
 
 export default function FinalCTA() {
     return (
@@ -24,8 +25,8 @@ export default function FinalCTA() {
                             parar de te dar dor de cabeça e começar a te dar lucro.
                         </p>
                         <div className={styles.ctaButtons}>
-                            <Link href="/contato" className={`btn btn-primary ${styles.ctaButton}`}>
-                                Falar com especialista
+                            <Link href={CTAS.finalCta.href} className={`btn btn-primary ${styles.ctaButton}`}>
+                                {CTAS.finalCta.label}
                                 <ArrowRight size={18} />
                             </Link>
                         </div>

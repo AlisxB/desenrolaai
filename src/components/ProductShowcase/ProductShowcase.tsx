@@ -6,6 +6,7 @@ import {
     Home, Settings, Mail, Zap
 } from 'lucide-react';
 import styles from './ProductShowcase.module.css';
+import { CTAS } from '@/lib/ctas';
 
 const features = [
     { Icon: Bot, title: 'Agente 24/7 no WhatsApp', text: 'Atende, qualifica e fecha vendas enquanto você dorme.' },
@@ -107,7 +108,7 @@ export default function ProductShowcase() {
                         ))}
                     </ul>
 
-                    <a href="#contato" className="btn btn-primary" style={{ marginTop: '8px', width: 'fit-content' }}>
+                    <a href={CTAS.productShowcase.href} className="btn btn-primary" style={{ marginTop: '8px', width: 'fit-content' }}>
                         Quero ver funcionando
                     </a>
                 </div>

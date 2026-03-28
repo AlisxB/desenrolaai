@@ -1,14 +1,14 @@
 'use client';
 
 import styles from './WhatsAppButton.module.css';
-
-const WHATSAPP_NUMBER = '5511999999999';
-const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=Olá! Vim pelo site da DesenrolaAI e gostaria de mais informações.`;
+import { getWhatsAppUrl } from '@/lib/links';
 
 export default function WhatsAppButton() {
+    const whatsappUrl = getWhatsAppUrl();
+
     return (
         <a
-            href={WHATSAPP_URL}
+            href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             className={styles.whatsappBtn}

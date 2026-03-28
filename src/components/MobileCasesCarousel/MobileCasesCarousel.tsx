@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { ShoppingCart, Stethoscope, Code2, Heart, Building2, Briefcase } from 'lucide-react';
 import styles from './MobileCasesCarousel.module.css';
+import { CTAS } from '@/lib/ctas';
 
 const cases = [
     {
@@ -114,7 +115,7 @@ export default function MobileCasesCarousel() {
                         />
                     ))}
                 </div>
-                <a href="/portfolio" className="btn btn-primary">
+                <a href={CTAS.portfolio.href} className="btn btn-primary">
                     Ver todos os cases
                 </a>
             </div>

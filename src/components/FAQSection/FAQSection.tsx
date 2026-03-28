@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { HelpCircle } from 'lucide-react';
 import styles from './FAQSection.module.css';
+import { CTAS } from '@/lib/ctas';
 
 const faqs = [
     {
@@ -118,7 +119,7 @@ export default function FAQSection() {
                             <p className={styles.ctaText}>
                                 Fale diretamente com um de nossos estrategistas e descomplique sua empresa hoje.
                             </p>
-                            <a href="contato" className="btn btn-primary">
+                            <a href={CTAS.faq.href} className="btn btn-primary">
                                 Agendar Conversa
                             </a>
                         </div>
