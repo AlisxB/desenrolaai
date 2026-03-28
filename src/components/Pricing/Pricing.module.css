@@ -63,9 +63,7 @@
     gap: 32px;
     overflow: hidden;
     animation: cardIn 600ms cubic-bezier(0.4, 0, 0.2, 1) both;
-    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
-        box-shadow 250ms ease,
-        border-color 250ms ease;
+    transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     cursor: default;
@@ -75,31 +73,29 @@
 .card::before {
     content: '';
     position: absolute;
-    inset: -1px;
+    inset: -20px;
     border-radius: inherit;
-    background: conic-gradient(
-        from var(--angle, 0deg),
-        transparent 60%,
-        var(--accent-blue) 100%
+    background: radial-gradient(
+        circle at 50% 30%,
+        rgba(81, 217, 254, 0.15) 0%,
+        rgba(81, 217, 254, 0.08) 30%,
+        transparent 70%
     );
     opacity: 0;
-    transition: opacity 400ms ease;
+    transform: scale(0.8);
+    transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1), transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
     z-index: -1;
+    filter: blur(20px);
 }
 
 .card:hover::before {
-    opacity: 0.4;
-    animation: sweepBorder 0.8s ease forwards;
+    opacity: 1;
+    transform: scale(1);
 }
 
-@keyframes sweepBorder {
-    0% {
-        background: conic-gradient(from 0deg, transparent 80%, var(--accent-blue) 100%);
-    }
-
-    100% {
-        background: conic-gradient(from 360deg, transparent 60%, var(--accent-blue) 100%);
-    }
+.card:not(:hover)::before {
+    transform: scale(0.6);
+    filter: blur(30px);
 }
 
 @property --angle {
@@ -109,8 +105,9 @@
 }
 
 .card:not(.highlighted):hover {
-    border-color: rgba(81, 217, 254, 0.1);
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+    border-color: rgba(81, 217, 254, 0.3);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(81, 217, 254, 0.15);
+    transform: translateY(-8px);
 }
 
 /* === Highlighted Card === */
