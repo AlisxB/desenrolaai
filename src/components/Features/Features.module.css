@@ -36,6 +36,13 @@
     margin-bottom: var(--space-sm);
 }
 
+.featureVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+}
+
 @media (max-width: 968px) {
     .checkList {
         gap: 10px;

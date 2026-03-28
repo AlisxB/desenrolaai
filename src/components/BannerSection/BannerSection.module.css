@@ -10,44 +10,12 @@
 
 /* Ambient cyan glow that bleeds over the section edges */
 .bannerGlow {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 50% 50%,
-            rgba(81, 217, 254, 0.08) 0%,
-            transparent 70%);
-    z-index: 2;
-    pointer-events: none;
-}
-
-/* Border-top and border-bottom fade lines */
-.bannerSection::before,
-.bannerSection::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg,
-            transparent 0%,
-            rgba(81, 217, 254, 0.25) 30%,
-            rgba(81, 217, 254, 0.4) 50%,
-            rgba(81, 217, 254, 0.25) 70%,
-            transparent 100%);
-    z-index: 3;
-}
-
-.bannerSection::before {
-    top: 0;
-}
-
-.bannerSection::after {
-    bottom: 0;
+    display: none;
 }
 
 .bannerWrapper {
     position: relative;
     width: 100%;
-    /* Constrain max height on very wide screens */
     max-height: 620px;
     overflow: hidden;
     display: flex;
@@ -58,10 +26,26 @@
 .bannerImage {
     width: 100%;
     height: auto;
+    max-height: 500px;
     object-fit: cover;
     display: block;
-    /* Subtle scale so it feels "alive" */
     transition: transform 600ms ease;
+}
+
+.bannerDesktop {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+}
+
+.bannerMobile {
+    display: none;
+    width: 100%;
+    height: auto;
+    max-height: 350px;
+    object-fit: cover;
 }
 
 .bannerSection:hover .bannerImage {
@@ -84,17 +68,32 @@
 
 /* Responsive */
 @media (max-width: 968px) {
-    .bannerWrapper {
-        max-height: 380px;
+    .bannerDesktop {
+        max-height: 400px;
+    }
+    .bannerMobile {
+        max-height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .bannerDesktop {
+        display: none;
+    }
+    .bannerMobile {
+        display: block;
     }
 }
 
 @media (max-width: 600px) {
-    .bannerWrapper {
-        max-height: 240px;
-    }
-
     .bannerSection {
         margin-top: 0;
+    }
+
+    .bannerDesktop {
+        max-height: 280px;
+    }
+    .bannerMobile {
+        max-height: 250px;
     }
 }

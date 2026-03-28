@@ -8,6 +8,7 @@ import styles from './Features.module.css';
 const features = [
     {
         image: '/assets/systems.png',
+        video: '/assets/videos/systems.mp4',
         imageAlt: 'Visualização de sistemas sob medida integrados e eficientes',
         tag: 'Exclusivo',
         title: 'Sistemas que falam a língua do seu negócio',
@@ -16,6 +17,7 @@ const features = [
     },
     {
         image: '/assets/automation.png',
+        video: '/assets/videos/automation.mp4',
         imageAlt: 'Fluxo de automação inteligente otimizando processos manuais repetitivos',
         tag: 'Eficiência',
         title: 'Liberte seu time do trabalho manual',
@@ -23,6 +25,21 @@ const features = [
         checks: null,
     },
 ];
+
+function FeatureVideo({ src, alt }: { src: string; alt: string }) {
+    return (
+        <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className={styles.featureVideo}
+            poster={alt}
+        >
+            <source src={src} type="video/mp4" />
+        </video>
+    );
+}
 
 export default function Features() {
     return (
@@ -38,13 +55,17 @@ export default function Features() {
                         transition={{ duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
                     >
                         <div className="feature-image">
-                            <Image
-                                src={feature.image}
-                                alt={feature.imageAlt}
-                                width={600}
-                                height={338}
-                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                            />
+                            {feature.video ? (
+                                <FeatureVideo src={feature.video} alt={feature.imageAlt} />
+                            ) : (
+                                <Image
+                                    src={feature.image}
+                                    alt={feature.imageAlt}
+                                    width={600}
+                                    height={338}
+                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                />
+                            )}
                         </div>
                         <div className="feature-content">
                             <span className="tag">{feature.tag}</span>
