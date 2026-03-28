@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { motion, type Variants } from 'framer-motion';
 import { Shield, Code2, Database, Cloud } from 'lucide-react';
 import styles from './Features.module.css';
@@ -9,15 +8,13 @@ const features = [
     {
         icon: Code2,
         title: 'Arquitetura de Sistemas',
-        description: 'Desenvolvemos estruturas robustaspensadas para escala. Microsserviços, APIs RESTful eGraphQL, caches distributed, e desacoplamento real.',
+        description: 'Desenvolvemos estruturas robustas pensadas para escala. Microsserviços, APIs RESTful e GraphQL, caches distribuídos, e desacoplamento real.',
         details: [
             'Clean Architecture (DDD)',
             'Rate Limiting & Throttling',
             'Circuit Breaker Patterns',
             'Versionamento de API',
         ],
-        image: '/assets/systems.png',
-        imageAlt: 'Arquitetura de microsserviços escalável',
     },
     {
         icon: Database,
@@ -29,8 +26,6 @@ const features = [
             'Replication & Failover',
             'Backup Automatizado',
         ],
-        image: '/assets/automation.png',
-        imageAlt: 'Infraestrutura de dados',
     },
     {
         icon: Shield,
@@ -42,8 +37,6 @@ const features = [
             'Audit Logs Completos',
             '2FA / MFA',
         ],
-        image: '/assets/systems.png',
-        imageAlt: 'Segurança de dados',
     },
     {
         icon: Cloud,
@@ -55,8 +48,6 @@ const features = [
             'Pagamentos (Stripe, Mercado Pago)',
             'Webhooks & Event-Driven',
         ],
-        image: '/assets/automation.png',
-        imageAlt: 'Integrações de sistemas',
     },
 ];
 
@@ -93,11 +84,8 @@ function FeatureCard({ feature, index }: { feature: typeof features[0]; index: n
             whileInView="visible"
             viewport={{ once: true, margin: '-40px' }}
         >
-            <div className={styles.cardHeader}>
-                <div className={styles.iconWrapper}>
-                    <Icon size={24} />
-                </div>
-                <span className={styles.cardIndex}>0{index + 1}</span>
+            <div className={styles.cardIcon}>
+                <Icon size={40} />
             </div>
             
             <h3 className={styles.cardTitle}>{feature.title}</h3>
@@ -111,17 +99,6 @@ function FeatureCard({ feature, index }: { feature: typeof features[0]; index: n
                     </li>
                 ))}
             </ul>
-            
-            <div className={styles.cardVisual}>
-                <Image
-                    src={feature.image}
-                    alt={feature.imageAlt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className={styles.cardImage}
-                />
-                <div className={styles.imageOverlay} />
-            </div>
         </motion.div>
     );
 }
