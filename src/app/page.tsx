@@ -10,7 +10,7 @@ import FAQSection from '@/components/FAQSection/FAQSection';
 import Features from '@/components/Features/Features';
 import Pricing from '@/components/Pricing/Pricing';
 import Testimonials from '@/components/Testimonials/Testimonials';
-import Contact from '@/components/Contact/Contact';
+import FinalCTA from '@/components/FinalCTA/FinalCTA';
 import Footer from '@/components/Footer/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton/WhatsAppButton';
 import ScrollToTop from '@/components/ScrollToTop/ScrollToTop';
@@ -46,7 +46,7 @@ export default function HomePage() {
         <BannerSection />
         <Features />
         <Pricing />
-        <Contact />
+        <FinalCTA />
       </main>
       <Footer />
       <ScrollToTop />

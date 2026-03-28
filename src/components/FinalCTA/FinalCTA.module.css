@@ -1,0 +1,74 @@
+.ctaWrapper {
+    text-align: center;
+    padding: var(--space-xl) 0;
+}
+
+.ctaContent {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.ctaLabel {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent-blue);
+    display: block;
+    margin-bottom: var(--space-md);
+}
+
+.ctaTitle {
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+    line-height: 1.2;
+}
+
+.ctaDesc {
+    font-size: 18px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--space-lg);
+}
+
+.ctaButtons {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    margin-bottom: var(--space-md);
+}
+
+.ctaButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 32px;
+    font-size: 16px;
+}
+
+.ctaNote {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 640px) {
+    .ctaTitle {
+        font-size: 28px;
+    }
+
+    .ctaDesc {
+        font-size: 16px;
+    }
+
+    .ctaButtons {
+        flex-direction: column;
+    }
+
+    .ctaButton {
+        width: 100%;
+        justify-content: center;
+    }
+}
