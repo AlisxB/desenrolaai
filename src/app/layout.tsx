@@ -5,7 +5,8 @@ import SmoothScroll from '@/components/SmoothScroll/SmoothScroll';
 import CustomCursor from '@/components/CustomCursor/CustomCursor';
 import ScrollProgress from '@/components/ScrollProgress/ScrollProgress';
 import PageTransition from '@/components/PageTransition/PageTransition';
-import CookieConsentWrapper from '@/components/CookieConsent';
+import { CookieProvider } from '@/components/CookieConsent/CookieContext';
+import CookieConsent from '@/components/CookieConsent/CookieConsent';
 
 const archivo = Archivo({ subsets: ['latin'], weight: ['400', '500', '600'], variable: '--font-archivo', display: 'swap' });
 const ibmPlexSerif = IBM_Plex_Serif({ subsets: ['latin'], weight: ['500'], variable: '--font-ibm-plex-serif', display: 'swap' });
@@ -45,13 +46,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-BR" className={`${archivo.variable} ${ibmPlexSerif.variable} ${leagueSpartan.variable}`}>
       <body>
-        <SmoothScroll />
-        <CustomCursor />
-        <ScrollProgress />
-        <PageTransition>
-          {children}
-        </PageTransition>
-        <CookieConsentWrapper />
+        <CookieProvider>
+          <SmoothScroll />
+          <CustomCursor />
+          <ScrollProgress />
+          <PageTransition>
+            {children}
+          </PageTransition>
+          <CookieConsent />
+        </CookieProvider>
       </body>
     </html>
   );

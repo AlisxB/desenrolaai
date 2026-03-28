@@ -1,24 +1,26 @@
 'use client';
 
-import { createContext, useContext, useState, type ReactNode } from 'react';
+import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
 
 interface CookieContextValue {
     showPreferences: boolean;
     openPreferences: () => void;
+    setShowPreferences: (value: boolean) => void;
 }
 
 const CookieContext = createContext<CookieContextValue>({
     showPreferences: false,
     openPreferences: () => {},
+    setShowPreferences: () => {},
 });
 
 export function CookieProvider({ children }: { children: ReactNode }) {
     const [showPreferences, setShowPreferences] = useState(false);
 
-    const openPreferences = () => setShowPreferences(true);
+    const openPreferences = useCallback(() => setShowPreferences(true), []);
 
     return (
-        <CookieContext.Provider value={{ showPreferences, openPreferences }}>
+        <CookieContext.Provider value={{ showPreferences, openPreferences, setShowPreferences }}>
             {children}
         </CookieContext.Provider>
     );
