@@ -1,50 +1,179 @@
-.checkList {
-    list-style: none;
-    color: var(--text-primary);
-    font-weight: 500;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: var(--space-md);
+.sectionHeader {
+    text-align: center;
+    margin-bottom: var(--space-xl);
 }
 
-.checkItem {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.checkIcon {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: rgba(81, 217, 254, 0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.featureDesc {
-    composes: section-desc from global;
-    text-align: left;
-    margin: var(--space-md) 0;
-}
-
-.featureTitle {
-    font-size: var(--font-h2);
+.sectionLabel {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent-blue);
+    display: block;
     margin-bottom: var(--space-sm);
 }
 
-.featureVideo {
+.highlight {
+    background: var(--accent-blue-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.featuresGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+}
+
+.featureCard {
+    background: var(--bg-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    position: relative;
+    overflow: hidden;
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.featureCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(81, 217, 254, 0.3), transparent);
+    opacity: 0;
+    transition: opacity 300ms ease;
+}
+
+.featureCard:hover {
+    border-color: rgba(81, 217, 254, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.featureCard:hover::before {
+    opacity: 1;
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-md);
+}
+
+.iconWrapper {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, rgba(81, 217, 254, 0.15), rgba(81, 217, 254, 0.05));
+    border: 1px solid rgba(81, 217, 254, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-blue);
+}
+
+.cardIndex {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.cardTitle {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+    letter-spacing: -0.5px;
+}
+
+.cardDescription {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+}
+
+.detailsList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: var(--space-lg);
+}
+
+.detailItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.detailDot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent-blue);
+    flex-shrink: 0;
+}
+
+.cardVisual {
+    position: relative;
+    height: 160px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin-top: auto;
+    width: 100%;
+}
+
+.cardImage {
+    object-fit: cover;
+    transition: transform 500ms ease;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    border-radius: var(--radius-lg);
+}
+
+.featureCard:hover .cardImage {
+    transform: scale(1.05);
+}
+
+.imageOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 4, 10, 0.8) 0%, transparent 60%);
 }
 
 @media (max-width: 968px) {
-    .checkList {
-        gap: 10px;
+    .featuresGrid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+
+    .featureCard {
+        padding: var(--space-md);
+    }
+
+    .cardVisual {
+        height: 140px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cardTitle {
+        font-size: 20px;
+    }
+
+    .cardDescription {
+        font-size: 14px;
     }
 }
