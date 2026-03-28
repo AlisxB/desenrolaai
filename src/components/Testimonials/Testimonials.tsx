@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { MessageSquare, Users } from 'lucide-react';
@@ -112,10 +113,10 @@ export default function Testimonials() {
                         <p className={styles.desc}>
                             Grandes estrategistas e experts confiam na DesenrolaAI para automatizar seus processos, centralizar dados e escalar resultados.
                         </p>
-                        <button className={styles.talkButton}>
+                        <Link href="/contato" className={styles.talkButton}>
                             <MessageSquare size={16} />
                             Falar com um consultor
-                        </button>
+                        </Link>
                     </div>
                 </div>
 
