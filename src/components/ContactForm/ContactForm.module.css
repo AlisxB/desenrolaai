@@ -4,6 +4,22 @@
     gap: 20px;
 }
 
+.error {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 18px;
+    background: rgba(255, 75, 75, 0.1);
+    border: 1px solid rgba(255, 75, 75, 0.3);
+    border-radius: var(--radius-md);
+    color: var(--error);
+    font-size: 14px;
+}
+
+.error svg {
+    flex-shrink: 0;
+}
+
 .row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -22,6 +38,11 @@
     text-transform: uppercase;
     letter-spacing: 0.8px;
     color: var(--text-secondary);
+}
+
+.labelRequired {
+    color: var(--accent-blue);
+    margin-left: 2px;
 }
 
 .input,
@@ -49,6 +70,10 @@
 .textarea:focus {
     border-color: rgba(81, 217, 254, 0.4);
     background: rgba(81, 217, 254, 0.04);
+}
+
+.inputError {
+    border-color: var(--error) !important;
 }
 
 .select {
