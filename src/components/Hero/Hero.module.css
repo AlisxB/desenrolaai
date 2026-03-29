@@ -152,6 +152,15 @@
     transition: transform 0.1s linear, filter 0.1s linear;
     transform-origin: center top;
     position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.heroVideo {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-lg);
 }
 
 .dashboardPerspective::before {

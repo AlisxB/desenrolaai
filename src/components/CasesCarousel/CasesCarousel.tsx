@@ -14,7 +14,7 @@ const cases = [
         accent: '#51D9FE',
         tag: 'Sistemas',
         title: 'ERP Interno com IA Generativa',
-        image: '/assets/cases/sigoq.png',
+        image: '/assets/cases/sigoq.webp',
     },
     {
         segment: 'Automotivo',
@@ -30,7 +30,7 @@ const cases = [
         accent: '#51D9FE',
         tag: 'Sistemas',
         title: 'Sistema de Gestão com IA para Suporte e Vendas',
-        image: '/assets/cases/alinova.png',
+        image: '/assets/cases/alinova.webp',
     },
     {
         segment: 'Condominíos',
@@ -38,7 +38,7 @@ const cases = [
         accent: '#51D9FE',
         tag: 'Sistemas',
         title: 'Sistema de Gestão para Condominíos',
-        image: '/assets/cases/maison.png',
+        image: '/assets/cases/maison.webp',
     },
     {
         segment: 'Clinicas',

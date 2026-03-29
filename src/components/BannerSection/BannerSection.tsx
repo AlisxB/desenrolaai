@@ -7,7 +7,7 @@ export default function BannerSection() {
             <div className={styles.bannerGlow} aria-hidden="true" />
             <div className={styles.bannerWrapper}>
                 <Image
-                    src="/assets/banner-ia.png"
+                    src="/assets/banner-ia.webp"
                     alt="A DesenrolaAI conecta inteligência artificial e automação sob medida para o seu negócio deslanchar"
                     width={1920}
                     height={600}
@@ -16,7 +16,7 @@ export default function BannerSection() {
                     sizes="100vw"
                 />
                 <Image
-                    src="/assets/banner-ia-mobile.png"
+                    src="/assets/banner-ia-mobile.webp"
                     alt="A DesenrolaAI conecta inteligência artificial e automação sob medida para o seu negócio deslanchar"
                     width={800}
                     height={400}

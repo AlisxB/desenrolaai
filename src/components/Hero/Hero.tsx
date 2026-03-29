@@ -137,14 +137,15 @@ export default function Hero() {
                 {/* Dashboard */}
                 <div className={styles.heroVisual}>
                     <div className={styles.dashboardPerspective} ref={dashboardRef} id="dashboard">
-                        <Image
-                            src="/assets/hero-v2.png"
-                            alt="Interface do Dashboard DesenrolaAI mostrando métricas de conversão e receita"
-                            width={1100}
-                            height={620}
-                            priority
-                            style={{ width: '100%', height: 'auto' }}
-                        />
+                        <video
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className={styles.heroVideo}
+                        >
+                            <source src="/assets/videos/hero-v2.mp4" type="video/mp4" />
+                        </video>
                     </div>
                 </div>
             </div>
