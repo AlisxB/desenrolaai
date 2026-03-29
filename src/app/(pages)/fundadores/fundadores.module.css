@@ -72,6 +72,14 @@
     grid-template-columns: 1fr 1fr;
     gap: var(--space-xl);
     align-items: center;
+    transition: transform 300ms ease;
+}
+
+.card:hover .cardImage {
+    box-shadow: 
+        0 0 0 1px rgba(81, 217, 254, 0.15),
+        0 8px 32px rgba(0, 0, 0, 0.5),
+        0 0 40px rgba(81, 217, 254, 0.15);
 }
 
 .cardRight {

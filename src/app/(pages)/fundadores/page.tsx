@@ -1,8 +1,9 @@
 'use client';
 
+import { useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, type Variants } from 'framer-motion';
+import { motion, useScroll, useTransform, type Variants } from 'framer-motion';
 import { Linkedin, ArrowRight } from 'lucide-react';
 import { CTAS } from '@/lib/ctas';
 import styles from './fundadores.module.css';
@@ -68,41 +69,101 @@ const itemVariants: Variants = {
     },
 };
 
+const imageVariants: Variants = {
+    hidden: { scale: 1.1, opacity: 0 },
+    visible: {
+        scale: 1,
+        opacity: 1,
+        transition: {
+            duration: 0.8,
+            ease: [0.22, 1, 0.36, 1] as const,
+        },
+    },
+};
+
+const contentVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            staggerChildren: 0.1,
+            delayChildren: 0.2,
+        },
+    },
+};
+
+const textItemVariants: Variants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.5,
+            ease: [0.22, 1, 0.36, 1] as const,
+        },
+    },
+};
+
 function FounderCard({ founder, index }: { founder: typeof founders[0]; index: number }) {
     const isEven = index % 2 === 0;
+    const cardRef = useRef<HTMLDivElement>(null);
     
+    const { scrollYProgress } = useScroll({
+        target: cardRef,
+        offset: ['start end', 'end start'],
+    });
+    
+    const imageY = useTransform(scrollYProgress, [0, 1], [0, -20]);
+
     return (
         <motion.div
+            ref={cardRef}
             className={`${styles.card} ${isEven ? styles.cardLeft : styles.cardRight}`}
             variants={itemVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
         >
-                <div className={styles.cardImage}>
-                <Image
-                    src={founder.image}
-                    alt={founder.name}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 40vw"
-                    className={styles.image}
-                />
-            </div>
-            <div className={styles.cardContent}>
-                <h2 className={styles.cardName}>{founder.name}</h2>
-                <span className={styles.cardRole}>{founder.role}</span>
-                <p className={styles.cardBio}>{founder.bio}</p>
-                <a
+            <motion.div 
+                className={styles.cardImage}
+                variants={imageVariants}
+            >
+                <motion.div style={{ y: imageY, width: '100%', height: '100%' }}>
+                    <Image
+                        src={founder.image}
+                        alt={founder.name}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 40vw"
+                        className={styles.image}
+                    />
+                </motion.div>
+            </motion.div>
+            <motion.div 
+                className={styles.cardContent}
+                variants={contentVariants}
+            >
+                <motion.h2 className={styles.cardName} variants={textItemVariants}>{founder.name}</motion.h2>
+                <motion.span className={styles.cardRole} variants={textItemVariants}>{founder.role}</motion.span>
+                <motion.p className={styles.cardBio} variants={textItemVariants}>{founder.bio}</motion.p>
+                <motion.a
                     href={founder.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={styles.linkedinLink}
+                    variants={textItemVariants}
+                    whileHover={{ gap: 12 }}
                 >
                     <Linkedin size={18} />
                     <span>Conectar no LinkedIn</span>
-                    <ArrowRight size={16} />
-                </a>
-            </div>
+                    <motion.span
+                        animate={{ x: [0, 4, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+                    >
+                        <ArrowRight size={16} />
+                    </motion.span>
+                </motion.a>
+            </motion.div>
         </motion.div>
     );
 }
