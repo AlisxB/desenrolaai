@@ -2,11 +2,13 @@
 
 import { motion } from 'framer-motion';
 import { Trophy } from 'lucide-react';
+import LogoBackground from '@/components/LogoBackground/LogoBackground';
 import styles from './PortfolioHero.module.css';
 
 export default function PortfolioHero() {
     return (
         <section className={styles.hero}>
+            <LogoBackground />
             <div className="container">
                 <motion.div
                     className={styles.inner}

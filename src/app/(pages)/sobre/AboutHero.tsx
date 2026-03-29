@@ -2,11 +2,13 @@
 
 import { motion } from 'framer-motion';
 import { MapPin } from 'lucide-react';
+import LogoBackground from '@/components/LogoBackground/LogoBackground';
 import styles from './AboutHero.module.css';
 
 export default function AboutHero() {
     return (
         <section className={styles.hero}>
+            <LogoBackground />
             <div className="container">
                 <motion.div
                     className={styles.heroInner}

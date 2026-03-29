@@ -1,13 +1,14 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { Zap, Cpu, BrainCircuit, Network, BarChart3, Sparkles } from 'lucide-react';
 import styles from './Hero.module.css';
 import NeuralPulse from './NeuralPulse';
 import HolographicScanner from './HoloScanner';
 import { onLenisScroll } from '@/components/SmoothScroll/SmoothScroll';
 import { CTAS } from '@/lib/ctas';
+import LogoBackground from '@/components/LogoBackground/LogoBackground';
 import { LINKS } from '@/lib/links';
 
 export default function Hero() {
@@ -113,6 +114,9 @@ export default function Hero() {
                     </div>
                 ))}
             </div>
+
+            {/* Logo Background */}
+            <LogoBackground />
 
             {/* Hero Content */}
             <div className={`container ${styles.heroContent} animate-entrance`}>

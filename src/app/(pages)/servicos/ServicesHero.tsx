@@ -3,11 +3,13 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import LogoBackground from '@/components/LogoBackground/LogoBackground';
 import styles from './ServicesHero.module.css';
 
 export default function ServicesHero() {
     return (
         <section className={styles.hero}>
+            <LogoBackground />
             <div className="container">
                 <motion.div
                     className={styles.inner}

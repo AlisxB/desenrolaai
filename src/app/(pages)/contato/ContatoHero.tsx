@@ -2,11 +2,13 @@
 
 import { motion } from 'framer-motion';
 import { MessageSquare } from 'lucide-react';
+import LogoBackground from '@/components/LogoBackground/LogoBackground';
 import styles from './ContatoHero.module.css';
 
 export default function ContatoHero() {
     return (
         <section className={styles.hero}>
+            <LogoBackground />
             <div className="container">
                 <motion.div
                     className={styles.inner}

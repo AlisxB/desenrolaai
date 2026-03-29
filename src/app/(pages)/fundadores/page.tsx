@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { motion, useScroll, useTransform, type Variants } from 'framer-motion';
 import { Linkedin, ArrowRight } from 'lucide-react';
 import { CTAS } from '@/lib/ctas';
+import LogoBackground from '@/components/LogoBackground/LogoBackground';
 import styles from './fundadores.module.css';
 
 const founders = [
@@ -172,6 +173,7 @@ export default function FoundersPage() {
     return (
         <main className={styles.main}>
             <section className={styles.hero}>
+                <LogoBackground />
                 <div className="container">
                     <motion.div
                         className={styles.heroContent}
