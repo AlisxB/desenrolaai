@@ -28,7 +28,7 @@ const iconMap: Record<string, typeof Users> = {
     '/servicos': Zap,
     '/portfolio': Briefcase,
     '/sobre': Info,
-    '#fundadores': Users,
+    '/fundadores': Users,
     '#solucoes': Zap,
     '#diferenciais': Zap,
     '#resultados': Users,

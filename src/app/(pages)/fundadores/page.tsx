@@ -1,0 +1,169 @@
+'use client';
+
+import Image from 'next/image';
+import Link from 'next/link';
+import { motion, type Variants } from 'framer-motion';
+import { Linkedin, ArrowRight } from 'lucide-react';
+import { CTAS } from '@/lib/ctas';
+import styles from './fundadores.module.css';
+
+const founders = [
+    {
+        name: 'Alison Santos',
+        role: 'Head de Engenharia e Inovação Aplicada',
+        bio: 'Especialista em IA aplicada e arquitetura de sistemas escaláveis. Com mais de 10 anos de experiência, Alison lidera a equipe técnica da DesenrolaAI, criando soluções inovadoras que transformam negócios. Sua visão estratégica combina tecnologia de ponta com resultados mensuráveis.',
+        linkedin: 'https://linkedin.com/in/alison-santos',
+        image: '/assets/profile_1.webp',
+    },
+    {
+        name: 'João Frota',
+        role: 'Desenvolvedor Full Stack',
+        bio: 'Apaixonado por resolver problemas complexos com código limpo e eficiente. João traz toda sua expertise em desenvolvimento web para criar interfaces intuitivas e sistemas robustos. Focado em experiência do usuário e performance, ele garante que cada projeto seja entregar com excelência.',
+        linkedin: 'https://linkedin.com/in/joao-frota',
+        image: '/assets/profile_4.webp',
+    },
+    {
+        name: 'Ítalo Lima',
+        role: 'Desenvolvedor Full Stack',
+        bio: 'Especialista em automação e integração de sistemas. Ítalo transforma processos manuais em soluções automatizadas, aumentando a eficiência dos clientes. Sua habilidade em conectar diferentes tecnologias permite criar ecossistemas digitais completos e integrados.',
+        linkedin: 'https://linkedin.com/in/italo-lima',
+        image: '/assets/profile_5.webp',
+    },
+    {
+        name: 'Paulo Vitor',
+        role: 'Sócio',
+        bio: 'Com visão estratégica de negócio e implementação de tecnologia, Paulo lidera a área comercial e de crescimento da DesenrolaAI. Focado em escalabilidade, ele auxilía empresas a alcançarem seu potencial máximo através de soluções tecnológicas inovadoras.',
+        linkedin: 'https://linkedin.com/in/paulo-vitor',
+        image: '/assets/profile_2.webp',
+    },
+    {
+        name: 'Abraão Henrique',
+        role: 'Sócio Fundador',
+        bio: 'Empreendedor nato com foco em inovação e tecnologia. Abraão acredita que a IA pode transformar negócios brasileiros, democratizando o acesso a ferramentas poderosas. Sua liderança inspira a equipe a sempre buscar a excelência e resultados extraordinários.',
+        linkedin: 'https://linkedin.com/in/abraao-henrique',
+        image: '/assets/profile_3.webp',
+    },
+];
+
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.15,
+            delayChildren: 0.1,
+        },
+    },
+};
+
+const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.7,
+            ease: [0.22, 1, 0.36, 1] as const,
+        },
+    },
+};
+
+function FounderCard({ founder, index }: { founder: typeof founders[0]; index: number }) {
+    const isEven = index % 2 === 0;
+    
+    return (
+        <motion.div
+            className={`${styles.card} ${isEven ? styles.cardLeft : styles.cardRight}`}
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+        >
+                <div className={styles.cardImage}>
+                <Image
+                    src={founder.image}
+                    alt={founder.name}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    className={styles.image}
+                />
+            </div>
+            <div className={styles.cardContent}>
+                <h2 className={styles.cardName}>{founder.name}</h2>
+                <span className={styles.cardRole}>{founder.role}</span>
+                <p className={styles.cardBio}>{founder.bio}</p>
+                <a
+                    href={founder.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.linkedinLink}
+                >
+                    <Linkedin size={18} />
+                    <span>Conectar no LinkedIn</span>
+                    <ArrowRight size={16} />
+                </a>
+            </div>
+        </motion.div>
+    );
+}
+
+export default function FoundersPage() {
+    return (
+        <main className={styles.main}>
+            <section className={styles.hero}>
+                <div className="container">
+                    <motion.div
+                        className={styles.heroContent}
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <span className={styles.heroLabel}>FUNDADORES</span>
+                        <h1 className={styles.heroTitle}>
+                            Pessoas por trás da <span className={styles.highlight}>DesenrolaAI</span>
+                        </h1>
+                        <p className={styles.heroDesc}>
+                            Somos um time de empreendedores e desenvolvedores comprometidos 
+                            em transformar negócios através da tecnologia e inteligência artificial.
+                        </p>
+                    </motion.div>
+                </div>
+            </section>
+
+            <section className={styles.founders}>
+                <div className="container">
+                    <motion.div
+                        className={styles.list}
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate="visible"
+                    >
+                        {founders.map((founder, index) => (
+                            <FounderCard key={founder.name} founder={founder} index={index} />
+                        ))}
+                    </motion.div>
+                </div>
+            </section>
+
+            <section className={styles.cta}>
+                <div className="container">
+                    <motion.div
+                        className={styles.ctaContent}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <h2 className={styles.ctaTitle}>Quer trocar uma ideia?</h2>
+                        <p className={styles.ctaDesc}>
+                            Estamos sempre abertos para conversar sobre novos projetos e oportunidades.
+                        </p>
+                        <Link href={CTAS.talkToConsultant.href} className={`btn btn-primary ${styles.ctaButton}`}>
+                            {CTAS.talkToConsultant.label}
+                        </Link>
+                    </motion.div>
+                </div>
+            </section>
+        </main>
+    );
+}

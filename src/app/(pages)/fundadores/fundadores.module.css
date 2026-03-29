@@ -1,0 +1,243 @@
+.main {
+    min-height: 100vh;
+    padding-top: 100px;
+}
+
+.hero {
+    padding: var(--space-xl) 0;
+    text-align: center;
+    position: relative;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(81, 217, 254, 0.06) 0%, transparent 70%);
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30z' fill='%2351D9FE' fill-opacity='0.02'/%3E%3C/svg%3E");
+    pointer-events: none;
+}
+
+.heroContent {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.heroLabel {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent-blue);
+    display: block;
+    margin-bottom: var(--space-md);
+}
+
+.heroTitle {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.1;
+    margin-bottom: var(--space-md);
+}
+
+.highlight {
+    background: var(--accent-blue-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.heroDesc {
+    font-size: 18px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.founders {
+    padding: var(--space-lg) 0 var(--space-xl);
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+.card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+}
+
+.cardRight {
+    direction: rtl;
+}
+
+.cardRight > * {
+    direction: ltr;
+}
+
+.cardImage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    box-shadow: 
+        0 0 0 1px rgba(81, 217, 254, 0.08),
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 0 60px rgba(81, 217, 254, 0.05);
+}
+
+.image {
+    object-fit: cover;
+}
+
+.cardContent {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.cardName {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #fff 0%, var(--accent-blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+}
+
+.cardRole {
+    font-size: 16px;
+    color: var(--accent-blue);
+    font-weight: 500;
+}
+
+.cardBio {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-top: var(--space-sm);
+}
+
+.linkedinLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: var(--space-lg);
+    padding: 10px 18px;
+    background: rgba(81, 217, 254, 0.08);
+    border: 1px solid rgba(81, 217, 254, 0.15);
+    border-radius: var(--radius-pill);
+    color: var(--accent-blue);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 200ms ease;
+    width: fit-content;
+}
+
+.linkedinLink:hover {
+    background: rgba(81, 217, 254, 0.15);
+    border-color: rgba(81, 217, 254, 0.3);
+    gap: 12px;
+}
+
+.cta {
+    padding: var(--space-xl) 0;
+    text-align: center;
+    background: var(--bg-secondary);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ctaContent {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.ctaTitle {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+}
+
+.ctaDesc {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-lg);
+}
+
+.ctaButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    font-size: 15px;
+}
+
+@media (max-width: 1024px) {
+    .card {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+
+    .cardRight {
+        direction: ltr;
+    }
+
+    .cardImage {
+        aspect-ratio: 3 / 4;
+    }
+
+    .cardName {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 640px) {
+    .main {
+        padding-top: 80px;
+    }
+
+    .hero {
+        padding: var(--space-lg) 0;
+    }
+
+    .heroDesc {
+        font-size: 16px;
+    }
+
+    .list {
+        gap: var(--space-lg);
+    }
+
+    .cardName {
+        font-size: 24px;
+    }
+
+    .cardRole {
+        font-size: 14px;
+    }
+
+    .cardBio {
+        font-size: 14px;
+    }
+
+    .cta {
+        padding: var(--space-lg) 0;
+    }
+
+    .ctaTitle {
+        font-size: 24px;
+    }
+}

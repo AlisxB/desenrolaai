@@ -10,7 +10,7 @@ import { LINKS } from '@/lib/links';
 import { CTAS } from '@/lib/ctas';
 
 const navItems = [
-    { href: '#fundadores', label: 'Fundadores' },
+    { href: LINKS.fundadores, label: 'Fundadores' },
     { href: LINKS.servicos, label: 'Soluções' },
     { href: LINKS.portfolio, label: 'Portfólio' },
     { href: LINKS.sobre, label: 'Sobre' },

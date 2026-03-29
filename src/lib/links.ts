@@ -4,6 +4,7 @@ export const LINKS = {
   portfolio: '/portfolio',
   sobre: '/sobre',
   contato: '/contato',
+  fundadores: '/fundadores',
   
   termosDeUso: '/termos-de-uso',
   politicaPrivacidade: '/politica-de-privacidade',
