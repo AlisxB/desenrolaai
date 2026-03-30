@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     url: 'https://desenrola.ai',
     title: 'DesenrolaAI | Tecnologia que descomplica',
     description: 'Automação inteligente e Sistemas Sob Medida com IA para o seu negócio deslanchar.',
-    images: [{ url: '/assets/og-image.png', width: 1200, height: 630 }],
+    images: [{ url: '/assets/og-image.webp', width: 1200, height: 630 }],
     locale: 'pt_BR',
     siteName: 'DesenrolaAI',
   },
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'DesenrolaAI | Tecnologia que descomplica',
     description: 'Automação inteligente e Sistemas Sob Medida com IA para o seu negócio deslanchar.',
-    images: ['/assets/og-image.png'],
+    images: ['/assets/og-image.webp'],
   },
   robots: { index: true, follow: true },
   icons: {
