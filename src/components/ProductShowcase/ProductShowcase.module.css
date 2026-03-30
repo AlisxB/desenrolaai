@@ -304,11 +304,12 @@
     gap: 4px;
     height: 100%;
     justify-content: flex-end;
+    overflow: hidden;
 }
 
 @keyframes barGrow {
     from {
-        height: 0;
+        transform: scaleY(0);
     }
 }
 
@@ -318,6 +319,8 @@
     border-radius: 3px 3px 0 0;
     animation: barGrow 800ms cubic-bezier(0.4, 0, 0.2, 1) both;
     box-shadow: 0 0 6px rgba(81, 217, 254, 0.3);
+    transform-origin: bottom;
+    will-change: transform;
 }
 
 .barLabel {

@@ -9,7 +9,7 @@
     pointer-events: none;
     z-index: 9999;
     opacity: 0;
-    transition: opacity 300ms ease, width 200ms ease, height 200ms ease, border-color 200ms ease, background 200ms ease;
+    transition: opacity 300ms ease, transform 200ms ease;
     mix-blend-mode: difference;
     will-change: transform;
 }
@@ -19,10 +19,8 @@
 }
 
 .cursor.hovering {
-    width: 56px;
-    height: 56px;
+    transform: scale(1.56);
     background: rgba(81, 217, 254, 0.08);
-    border-color: var(--accent-blue);
 }
 
 .cursorDot {
