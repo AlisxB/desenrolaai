@@ -17,7 +17,7 @@ export const LINKS = {
   instagram: 'https://instagram.com/desenrolaai',
   
   whatsapp: {
-    number: '5511999999999',
+    number: '5585998195457',
     baseUrl: 'https://wa.me',
   },
 };
