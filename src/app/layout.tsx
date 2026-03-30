@@ -36,6 +36,10 @@ export const metadata: Metadata = {
     images: ['/assets/og-image.png'],
   },
   robots: { index: true, follow: true },
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
 };
 
 export const viewport: Viewport = {
