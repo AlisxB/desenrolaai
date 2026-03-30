@@ -146,6 +146,8 @@ export default function Hero() {
                             loop
                             muted
                             playsInline
+                            poster="/assets/videos/hero-poster.webp"
+                            preload="none"
                             className={styles.heroVideo}
                         >
                             <source src="/assets/videos/hero-v2.mp4" type="video/mp4" />
