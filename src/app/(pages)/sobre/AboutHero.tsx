@@ -24,10 +24,10 @@ export default function AboutHero() {
                         Quem <span className={styles.accent}>somos</span>
                     </h1>
                     <p className={styles.heroDesc}>
-                        A DesenrolaAI nasceu em 2022 com um propósito claro: descomplicar a tecnologia
-                        para empresas brasileiras. Saímos de Fortaleza/CE com a missão de provar que
+                        A DesenrolaAI nasceu em 2025 com um propósito claro: descomplicar a tecnologia
+                        para empresas brasileiras. Temos como a missão de provar que
                         automação e inteligência artificial não precisam ser coisas de grandes corporações
-                        — podem (e devem) estar ao alcance de qualquer negócio que queira crescer.
+                        podem (e devem) estar ao alcance de qualquer negócio que queira crescer.
                     </p>
                 </motion.div>
             </div>

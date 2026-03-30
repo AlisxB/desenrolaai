@@ -6,8 +6,8 @@ import { TrendingUp, Users, Clock, Star } from 'lucide-react';
 import styles from './AboutStats.module.css';
 
 const stats = [
-    { icon: TrendingUp, value: 120, suffix: '+', label: 'Projetos Entregues' },
-    { icon: Users, value: 85, suffix: '+', label: 'Clientes Atendidos' },
+    { icon: TrendingUp, value: 50, suffix: '+', label: 'Projetos Entregues' },
+    { icon: Users, value: 67, suffix: '+', label: 'Clientes Atendidos' },
     { icon: Clock, value: 14000, suffix: 'h', label: 'Horas Economizadas' },
     { icon: Star, value: 98, suffix: '%', label: 'NPS dos Clientes' },
 ];
@@ -55,14 +55,29 @@ function StatCard({ icon: Icon, value, suffix, label, index }: typeof stats[0] &
         <motion.div
             ref={ref}
             className={styles.card}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1, duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+            initial={{ opacity: 0, y: 40, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ 
+                delay: index * 0.15, 
+                duration: 0.6, 
+                ease: [0.22, 1, 0.36, 1] 
+            }}
         >
-            <div className={styles.iconWrapper}>
+            <motion.div
+                className={styles.iconWrapper}
+                initial={{ scale: 0, rotate: -15 }}
+                whileInView={{ scale: 1, rotate: 0 }}
+                viewport={{ once: true }}
+                transition={{ 
+                    delay: index * 0.15 + 0.2, 
+                    type: 'spring', 
+                    stiffness: 260, 
+                    damping: 20 
+                }}
+            >
                 <Icon size={22} />
-            </div>
+            </motion.div>
             <div className={styles.value}>
                 {count.toLocaleString('pt-BR')}{suffix}
             </div>

@@ -9,22 +9,6 @@ import { CTAS } from '@/lib/ctas';
 
 const cases = [
     {
-        segment: 'ERP Interno',
-        Icon: ShoppingCart,
-        accent: '#51D9FE',
-        tag: 'Sistemas',
-        title: 'ERP Interno com IA Generativa',
-        image: '/assets/cases/sigoq.webp',
-    },
-    {
-        segment: 'Automotivo',
-        Icon: Building2,
-        accent: '#51D9FE',
-        tag: 'Qualificação de Leads',
-        title: 'Qualificação de Leads para Concessionárias',
-        image: '/assets/cases/imobiliarias.png',
-    },
-    {
         segment: 'Consultoria',
         Icon: Stethoscope,
         accent: '#51D9FE',
@@ -41,12 +25,28 @@ const cases = [
         image: '/assets/cases/maison.webp',
     },
     {
+        segment: 'ERP Interno',
+        Icon: ShoppingCart,
+        accent: '#51D9FE',
+        tag: 'Sistemas',
+        title: 'ERP Interno com IA Generativa',
+        image: '/assets/cases/sigoq.webp',
+    },
+    {
+        segment: 'Automotivo',
+        Icon: Building2,
+        accent: '#51D9FE',
+        tag: 'Qualificação de Leads',
+        title: 'Qualificação de Leads para Concessionárias',
+        image: '/assets/cases/qualify.webp',
+    },
+    {
         segment: 'Clinicas',
         Icon: Heart,
         accent: '#51D9FE',
         tag: 'Automações',
         title: 'Automação de Agendamento e Suporte para Clínicas',
-        image: '/assets/cases/petshop.png',
+        image: '/assets/cases/vox.webp',
     },
 ];
 

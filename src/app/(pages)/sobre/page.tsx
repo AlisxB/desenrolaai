@@ -42,11 +42,11 @@ export default function SobrePage() {
                             <p>
                                 Tudo começou com uma frustração comum: ver empresas perdendo tempo em tarefas
                                 que poderiam ser resolvidas em minutos com a ferramenta certa. A DesenrolaAI
-                                nasceu como resposta a isso — uma empresa que coloca o resultado do cliente
+                                nasceu como resposta a isso. Uma empresa que coloca o resultado do cliente
                                 acima de qualquer complexidade técnica.
                             </p>
                             <p>
-                                Hoje, com mais de 120 projetos entregues e clientes em todo o Brasil,
+                                Hoje, atendendo clientes em todo o Brasil,
                                 continuamos com o mesmo DNA de origem: proximidade, transparência e
                                 tecnologia que realmente resolve problemas do dia a dia.
                             </p>
