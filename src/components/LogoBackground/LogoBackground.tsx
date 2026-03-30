@@ -45,11 +45,12 @@ export default function LogoBackground({
             }}
         >
             <Image
-                src="/logo.png"
+                src="/favicons/icon-512x512.png"
                 alt=""
                 fill
                 sizes={`${size}px`}
                 className={styles.logoImage}
+                priority
             />
         </motion.div>
     );

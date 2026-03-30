@@ -1,9 +1,13 @@
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import ContactHero from './ContatoHero';
 import ContactInfo from '@/components/ContactInfo/ContactInfo';
 import ContactForm from '@/components/ContactForm/ContactForm';
-import ContactMap from '@/components/ContactMap/ContactMap';
 import styles from './page.module.css';
+
+const ContactMap = dynamic(() => import('@/components/ContactMap/ContactMap'), {
+  ssr: true,
+});
 
 export const metadata: Metadata = {
     title: 'Contato | DesenrolaAI — Fale com nossa equipe',

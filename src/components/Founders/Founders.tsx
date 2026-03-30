@@ -27,7 +27,7 @@ const founders: Founder[] = [
         image: '/assets/profile_5.webp',
     },
     {
-        name: 'Paulo Vitor',
+        name: 'Paulo Vicstor',
         role: 'Sócio',
         image: '/assets/profile_2.webp',
     },

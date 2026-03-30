@@ -32,10 +32,10 @@ const founders = [
         image: '/assets/profile_5.webp',
     },
     {
-        name: 'Paulo Vitor',
+        name: 'Paulo Victor',
         role: 'Sócio',
         bio: 'Com visão estratégica de negócio e implementação de tecnologia, Paulo lidera a área comercial e de crescimento da DesenrolaAI. Focado em escalabilidade, ele auxilía empresas a alcançarem seu potencial máximo através de soluções tecnológicas inovadoras.',
-        linkedin: 'https://linkedin.com/in/paulo-vitor',
+        linkedin: 'https://linkedin.com/in/paulo-victor',
         image: '/assets/profile_2.webp',
     },
     {

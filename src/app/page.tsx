@@ -1,20 +1,43 @@
+import { Suspense } from 'react';
+import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar/Navbar';
 import Hero from '@/components/Hero/Hero';
 import IntegrationsBar from '@/components/IntegrationsBar/IntegrationsBar';
 import Founders from '@/components/Founders/Founders';
 import ProductShowcase from '@/components/ProductShowcase/ProductShowcase';
-import BannerSection from '@/components/BannerSection/BannerSection';
-import CasesCarousel from '@/components/CasesCarousel/CasesCarousel';
 import MethodologySection from '@/components/MethodologySection/MethodologySection';
-import FAQSection from '@/components/FAQSection/FAQSection';
-import Features from '@/components/Features/Features';
-import Pricing from '@/components/Pricing/Pricing';
-import Testimonials from '@/components/Testimonials/Testimonials';
-import FinalCTA from '@/components/FinalCTA/FinalCTA';
 import Footer from '@/components/Footer/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton/WhatsAppButton';
 import ScrollToTop from '@/components/ScrollToTop/ScrollToTop';
 import styles from './page.module.css';
+
+const BannerSection = dynamic(() => import('@/components/BannerSection/BannerSection'), {
+  ssr: true,
+});
+
+const CasesCarousel = dynamic(() => import('@/components/CasesCarousel/CasesCarousel'), {
+  ssr: true,
+});
+
+const Testimonials = dynamic(() => import('@/components/Testimonials/Testimonials'), {
+  ssr: true,
+});
+
+const FAQSection = dynamic(() => import('@/components/FAQSection/FAQSection'), {
+  ssr: true,
+});
+
+const Features = dynamic(() => import('@/components/Features/Features'), {
+  ssr: true,
+});
+
+const Pricing = dynamic(() => import('@/components/Pricing/Pricing'), {
+  ssr: true,
+});
+
+const FinalCTA = dynamic(() => import('@/components/FinalCTA/FinalCTA'), {
+  ssr: true,
+});
 
 export default function HomePage() {
   return (
