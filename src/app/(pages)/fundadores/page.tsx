@@ -13,7 +13,7 @@ const founders = [
     {
         name: 'Alison Santos',
         role: 'Head de Engenharia e Inovação Aplicada',
-        bio: 'Especialista em IA aplicada e arquitetura de sistemas escaláveis. Com mais de 10 anos de experiência, Alison lidera a equipe técnica da DesenrolaAI, criando soluções inovadoras que transformam negócios. Sua visão estratégica combina tecnologia de ponta com resultados mensuráveis.',
+        bio: 'Especialista em IA aplicada e arquitetura de sistemas escaláveis. Com mais de 6 anos de experiência, Alison lidera a equipe técnica da DesenrolaAI, criando soluções inovadoras que transformam negócios. Sua visão estratégica combina tecnologia de ponta com resultados mensuráveis.',
         linkedin: 'https://linkedin.com/in/alison-santos',
         image: '/assets/profile_1.webp',
     },

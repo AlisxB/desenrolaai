@@ -25,7 +25,7 @@ export default function ContatoHero() {
                     </h1>
                     <p className={styles.desc}>
                         Preencha o formulário e retornaremos em até 24h úteis.
-                        Sem compromisso — queremos entender o seu desafio antes de qualquer coisa.
+                        Sem compromisso, queremos entender o seu desafio antes de qualquer coisa.
                     </p>
                 </motion.div>
             </div>
