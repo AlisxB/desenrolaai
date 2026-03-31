@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 import styles from './Pricing.module.css';
 import { CTAS } from '@/lib/ctas';
+import { getWhatsAppUrl, WHATSAPP_MESSAGES } from '@/lib/links';
 
 const plans = [
     {
@@ -158,7 +159,7 @@ export default function Pricing() {
                 </div>
 
                 <p className={styles.footnote}>
-                    Não encontrou o que precisa? <a href={CTAS.pricingContact.href}>Fale com a gente</a> — cada projeto começa com uma conversa.
+                    Não encontrou o que precisa? <a href={getWhatsAppUrl(WHATSAPP_MESSAGES.contact)}>Fale com a gente</a> — cada projeto começa com uma conversa.
                 </p>
             </div>
         </section>

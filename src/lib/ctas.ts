@@ -23,7 +23,8 @@ export const CTAS = {
   },
   pricingContact: {
     label: 'Fale com a gente',
-    href: LINKS.contatoSection,
+    href: LINKS.contato,
+    whatsapp: getWhatsAppUrl(WHATSAPP_MESSAGES.contact),
   },
   
   finalCta: {
