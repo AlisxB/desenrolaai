@@ -14,7 +14,7 @@ export const LINKS = {
   contatoSection: '#contato',
   
   linkedin: 'https://linkedin.com/company/desenrolaai',
-  instagram: 'https://instagram.com/desenrolaai',
+  instagram: 'https://instagram.com/desenrola__ai',
   
   whatsapp: {
     number: '5585998195457',
