@@ -21,6 +21,7 @@ const plans = [
         ],
         outcome: 'Clareza sobre onde a IA pode gerar impacto.',
         cta: 'Agendar diagnóstico',
+        whatsappMsg: WHATSAPP_MESSAGES.contact,
         highlighted: false,
     },
     {
@@ -28,14 +29,15 @@ const plans = [
         name: 'Estruturando IA',
         description: 'Para empresas que querem integrar IA nos processos da operação.',
         features: [
-            'Implementação de automações',
-            'Agentes de IA personalizados',
-            'Integração com sistemas',
-            'Painel de monitoramento',
-            'Treinamento do time',
+            'Diagnóstico profundo',
+            '3 automações ou agentes',
+            'Integração com ERP/CRM',
+            'Dashboard de resultados',
+            'Treinamento de equipe',
         ],
-        outcome: 'Processos automatizados e ganhos de eficiência.',
+        outcome: 'Operação mais eficiente e team productivity.',
         cta: 'Quero implementar IA',
+        whatsappMsg: WHATSAPP_MESSAGES.budget,
         highlighted: true,
     },
     {
@@ -51,6 +53,7 @@ const plans = [
         ],
         outcome: 'IA integrada à operação e crescimento escalável.',
         cta: 'Falar com especialista',
+        whatsappMsg: WHATSAPP_MESSAGES.contact,
         highlighted: false,
     },
 ];
@@ -106,7 +109,7 @@ function PricingCard({ plan, index }: { plan: typeof plans[0]; index: number }) 
             </div>
 
             <a
-                href={CTAS.pricing.href}
+                href={plan.whatsappMsg ? getWhatsAppUrl(plan.whatsappMsg) : CTAS.pricing.whatsapp}
                 className={`btn ${plan.highlighted ? 'btn-primary' : 'btn-outline'} ${styles.ctaBtn}`}
             >
                 {plan.cta}
@@ -159,7 +162,7 @@ export default function Pricing() {
                 </div>
 
                 <p className={styles.footnote}>
-                    Não encontrou o que precisa? <a href={getWhatsAppUrl(WHATSAPP_MESSAGES.contact)}>Fale com a gente</a> — cada projeto começa com uma conversa.
+                    Não encontrou o que precisa? <a href={getWhatsAppUrl(WHATSAPP_MESSAGES.budget)}>Fale com a gente</a> — cada projeto começa com uma conversa.
                 </p>
             </div>
         </section>
