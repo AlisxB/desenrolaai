@@ -28,6 +28,7 @@ export const WHATSAPP_MESSAGES = {
   services: 'Olá! Tenho interesse nos serviços da DesenrolaAI. Podem me ajudar?',
   portfolio: 'Olá! Vim pelo site e gostaria de ver alguns cases de sucesso.',
   budget: 'Olá! Gostaria de solicitar um orçamento para um projeto.',
+  escala: 'Olá! Estou interessado em soluções de IA para escalar meu negócio. Podem me ajudar?',
 };
 
 export function getWhatsAppUrl(message?: string): string {
