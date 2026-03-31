@@ -21,6 +21,7 @@ const plans = [
         ],
         outcome: 'Clareza sobre onde a IA pode gerar impacto.',
         cta: 'Agendar diagnóstico',
+        useWhatsapp: false,
         highlighted: false,
     },
     {
@@ -36,6 +37,7 @@ const plans = [
         ],
         outcome: 'Processos automatizados e ganhos de eficiência.',
         cta: 'Quero implementar IA',
+        useWhatsapp: false,
         highlighted: true,
     },
     {
@@ -51,6 +53,8 @@ const plans = [
         ],
         outcome: 'IA integrada à operação e crescimento escalável.',
         cta: 'Falar com especialista',
+        useWhatsapp: true,
+        whatsappMsg: WHATSAPP_MESSAGES.escala,
         highlighted: false,
     },
 ];
@@ -106,7 +110,7 @@ function PricingCard({ plan, index }: { plan: typeof plans[0]; index: number }) 
             </div>
 
             <a
-                href={CTAS.pricing.href}
+                href={plan.useWhatsapp ? getWhatsAppUrl(plan.whatsappMsg) : CTAS.pricing.href}
                 className={`btn ${plan.highlighted ? 'btn-primary' : 'btn-outline'} ${styles.ctaBtn}`}
             >
                 {plan.cta}
