@@ -5,7 +5,15 @@ import { MapPin, Mail, Phone, Clock, Linkedin, Instagram } from 'lucide-react';
 import styles from './ContactInfo.module.css';
 import { LINKS } from '@/lib/links';
 
-const contactData = [
+interface ContactItem {
+    icon: React.ComponentType<{ size?: number }>;
+    label: string;
+    value: string;
+    sub: string;
+    href?: string;
+}
+
+const contactData: ContactItem[] = [
     {
         icon: MapPin,
         label: 'Endereço',
@@ -21,8 +29,9 @@ const contactData = [
     {
         icon: Phone,
         label: 'WhatsApp',
-        value: '+55 (85) 99999-9999',
+        value: '+55 (85) 99819-5457',
         sub: 'Seg a Sex, 8h às 18h',
+        href: 'wa.me/5585998195457',
     },
     {
         icon: Clock,
@@ -49,7 +58,11 @@ export default function ContactInfo() {
                     </div>
                     <div>
                         <div className={styles.label}>{item.label}</div>
-                        <div className={styles.value}>{item.value}</div>
+                        {item.href ? (
+                            <a href={`https://${item.href}`} className={styles.value}>{item.value}</a>
+                        ) : (
+                            <div className={styles.value}>{item.value}</div>
+                        )}
                         <div className={styles.sub}>{item.sub}</div>
                     </div>
                 </motion.div>
