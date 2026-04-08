@@ -27,14 +27,14 @@ const founders = [
     {
         name: 'Ítalo Lima',
         role: 'Desenvolvedor Full Stack',
-        bio: 'Especialista em automação e integração de sistemas. Ítalo transforma processos manuais em soluções automatizadas, aumentando a eficiência dos clientes. Sua habilidade em conectar diferentes tecnologias permite criar ecossistemas digitais completos e integrados.',
+        bio: 'Desenvolvedor Full Stack com foco na criação de aplicações completas e eficientes. Ítalo atua tanto no front-end quanto no back-end, desenvolvendo interfaces intuitivas e sistemas robustos. Sua habilidade em integrar diferentes tecnologias permite criar soluções escaláveis e ecossistemas digitais bem estruturados.',
         linkedin: 'https://linkedin.com/in/italo-lima',
         image: '/assets/profile_5.webp',
     },
     {
         name: 'Paulo Victor',
         role: 'Sócio',
-        bio: 'Com visão estratégica de negócio e implementação de tecnologia, Paulo lidera a área comercial e de crescimento da DesenrolaAI. Focado em escalabilidade, ele auxilía empresas a alcançarem seu potencial máximo através de soluções tecnológicas inovadoras.',
+        bio: 'Com experiência em estratégia e tecnologia, Paulo desenvolve e apoia iniciativas voltadas à inovação e à transformação digital e faz parte do conselho da empresa. Seu foco está na criação de soluções escaláveis que potencializam resultados em diferentes contextos organizacionais.',
         linkedin: 'https://linkedin.com/in/paulo-victor',
         image: '/assets/profile_2.webp',
     },
